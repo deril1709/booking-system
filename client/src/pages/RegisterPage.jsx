@@ -1,15 +1,31 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
 
 function RegisterPage() {
+    const [name, setName] = useState('')
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    function registerUser(e) {
+        e.preventDefault();
+        axios.get('http://localhost:4000/test');
+    }
+
     return (
         <div className='mt-4 flex grow items-center justify-around'>
             <div className='mb-40'>
                 <h1 className='text-4xl mb-4 text-center p-4'>Create Account</h1>
-                <form action="" className='max-w-md mx-auto '>
-                    <input type="text" placeholder='Username' />
-                    <input type="email" placeholder='Email' />
-                    <input type="password" placeholder='Password' />
+                <form action="" className='max-w-md mx-auto' onSubmit={registerUser}>
+                    <input type="text" placeholder='Username'
+                        value={name}
+                        onChange={e => setName(e.target.value)} />
+
+                    <input type="email" placeholder='Email'
+                        value={email}
+                        onChange={e => setEmail(e.target.value)} />
+                    <input type="password" placeholder='Password'
+                        value={password}
+                        onChange={e => setPassword(e.target.value)} />
                     <button>Register</button>
                     <div className='text-center p-2'>Already Have an Account? <Link to={'/login'} className='underline text-gray-600'>Login</Link>
                     </div>

@@ -10,7 +10,7 @@ function LoginPage() {
                     <input type="email" placeholder='Email' />
                     <input type="password" placeholder='Password' />
                     <button>Login</button>
-                    <div className='text-center p-2'>Don't have account yet? <Link to={'/register'} className='underline text-gray-600'>Register Here!</Link>
+                    <div className='text-center p-2'>Don't have an account yet? <Link to={'/register'} className='underline text-gray-600'>Register Here!</Link>
                     </div>
                 </form>
             </div>
