@@ -7,8 +7,8 @@ function LoginPage() {
             <div className='mb-40'>
                 <h1 className='text-4xl mb-4 text-center p-4'>Login</h1>
                 <form action="" className='max-w-md mx-auto '>
-                    <input type="text" placeholder='Email' />
-                    <input type="text" placeholder='Password' />
+                    <input type="email" placeholder='Email' />
+                    <input type="password" placeholder='Password' />
                     <button>Login</button>
                     <div className='text-center p-2'>Don't have account yet? <Link to={'/register'} className='underline text-gray-600'>Register Here!</Link>
                     </div>
