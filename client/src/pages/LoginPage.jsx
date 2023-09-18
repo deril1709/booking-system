@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
+
 function LoginPage() {
     return (
         <div className='mt-4 flex grow items-center justify-around'>
