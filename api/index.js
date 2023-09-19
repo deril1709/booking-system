@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const { default: mongoose } = require('mongoose');
 const app = express();
+require('dotenv').config()
 
 app.use(express.json())
 app.use(cors({
@@ -9,6 +10,7 @@ app.use(cors({
     origin: 'http://localhost:5173',
 }));
 
+console.log(process.env.MONGO_URL)
 mongoose.connect(process.env.MONGO_URL)
 
 app.get('/test', (req,res) =>{
