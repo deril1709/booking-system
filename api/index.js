@@ -1,9 +1,12 @@
 const express = require('express');
 const cors = require('cors');
 const { default: mongoose } = require('mongoose');
+const bcrypt = require('bcryptjs');
 const User = require('./models/User');
 const app = express();
 require('dotenv').config()
+
+
 
 app.use(express.json())
 app.use(cors({
@@ -19,7 +22,7 @@ app.get('/test', (req,res) =>{
 });
 app.post('/register', (req,res) =>{
     const {name,email,password} = req.body;
-    User.create({name:name,email:email,password:password})
+    User.create({name,email,password:bcrypt.hashSync(password, secret)});
     res.json({name,email,password});
 });
 
