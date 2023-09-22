@@ -22,8 +22,16 @@ app.get('/test', (req,res) =>{
 });
 app.post('/register', async (req,res) =>{
     const {name,email,password} = req.body;
-    const userDoc = await User.create({name,email,password:bcrypt.hashSync(password, bcryptSalt)});
-    res.json(userDoc);
+    try {
+        const userDoc = await User.create({
+            name,
+            email,
+            password:bcrypt.hashSync(password, bcryptSalt)
+        });
+        res.json(userDoc);
+    } catch (error) {
+        res.status(422).json(error);
+    }
 });
 
 app.listen(4000);
