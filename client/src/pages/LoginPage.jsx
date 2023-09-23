@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-
+import axios from 'axios';
 
 
 function LoginPage() {
@@ -11,8 +11,9 @@ function LoginPage() {
         e.preventDefault();
         try {
             await axios.post('/login', { email, password });
+            alert('Success');
         } catch (error) {
-            alert('login error ')
+            alert('login error ');
         }
     }
     return (
