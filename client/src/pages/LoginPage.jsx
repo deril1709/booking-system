@@ -7,13 +7,19 @@ function LoginPage() {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-
-
+    async function handleLoginSubmit(e) {
+        e.preventDefault();
+        try {
+            await axios.post('/login', { email, password });
+        } catch (error) {
+            alert('login error ')
+        }
+    }
     return (
         <div className='mt-4 flex grow items-center justify-around'>
             <div className='mb-40'>
                 <h1 className='text-4xl mb-4 text-center p-4'>Login</h1>
-                <form action="" className='max-w-md mx-auto '>
+                <form action="" className='max-w-md mx-auto' onSubmit={handleLoginSubmit}>
                     <input type="email"
                         placeholder='Email'
                         value={email}
