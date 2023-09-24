@@ -9,7 +9,7 @@ function Header() {
             <header className=' flex justify-between'>
                 <Link to={'/'} className=" items-center gap-1 flex">
                     <img src={Logo} alt="" className='w-10 h-w-10' />
-                    <span className="font-semibold text-xl">Damai Badminton Court</span>
+                    <span className="font-semibold text-xl">Damai</span>
                 </Link>
                 <div className='flex gap-2 border border-gray-300 rounded-full py-2 px-4 shadow-sm shadow-blue-500'>
                     <div>Jl.Damai</div>
