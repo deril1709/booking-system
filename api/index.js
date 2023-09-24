@@ -40,9 +40,9 @@ app.post('/login', async (req,res) =>{
     if(userDoc){
         const passOk = bcrypt.compareSync(password, userDoc.password)
         if(passOk){
-            res.json('pass ok');
+            res.cookie('token', '').json('pass ok');
         }else{
-            res.json('pass not ok');
+            res.status(422).json('pass not ok');
         }
     }else{
         res.json('not found')
