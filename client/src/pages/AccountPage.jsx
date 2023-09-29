@@ -16,10 +16,10 @@ function AccountPage() {
 
     return (
         <div>
-            <nav>
-                <Link to={'/account'}>My profile</Link>
-                <Link to={'account/bookings'}>my booking</Link>
-                <Link to={'account/lapangan'}>Daftar Lapangan</Link>
+            <nav className='w-full justify-center mt-8 flex gap-4 '>
+                <Link className='p-2 px-6 text-white bg-blue-400' to={'/account'}>My profile</Link>
+                <Link className='p-2 px-6 ' to={'account/bookings'}>my booking</Link>
+                <Link className='p-2 px-6 ' to={'account/lapangan'}>Daftar Lapangan</Link>
             </nav>
         </div>
     )
