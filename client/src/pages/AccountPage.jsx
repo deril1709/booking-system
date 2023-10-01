@@ -5,6 +5,10 @@ import { Link } from 'react-router-dom';
 
 function AccountPage() {
     const { ready, user } = useContext(UserContext);
+    let { subpage } = useParams();
+    if (subpage === undefined) {
+        subpage = 'profile';
+    }
 
     if (!ready) {
         return <div>Loading...</div>
@@ -15,16 +19,12 @@ function AccountPage() {
     }
 
 
-    let { subpage } = useParams();
-    if (subpage === undefined) {
-        subpage = 'profile';
-    }
 
 
     function linkClasses(type = null) {
         let classes = 'py-2 px-6';
         if (type === subpage) {
-            classes = 'py-2 px-6 text-white bg-blue-400 rounded-full';
+            classes += ' text-white bg-blue-400';
         }
         return classes;
     }
@@ -35,6 +35,12 @@ function AccountPage() {
                 <Link className={linkClasses('bookings')} to={'/account/bookings'}>My Booking</Link>
                 <Link className={linkClasses('lapangan')} to={'/account/lapangan'}>Lapangan</Link>
             </nav>
+            {subpage === 'profile' && (
+                <div className='text-center max-w-xs mx-auto'>
+                    Logged in as{user.name}({user.email}) <br />
+                    <button className='to-blue-400 max-w-sm mt-4'>Log out</button>
+                </div>
+            )}
         </div>
     )
 }
