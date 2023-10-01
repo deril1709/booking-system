@@ -15,7 +15,7 @@ function AccountPage() {
     }
 
 
-    let { subpage } = useParams()
+    let { subpage } = useParams();
     if (subpage === undefined) {
         subpage = 'profile';
     }
@@ -24,16 +24,16 @@ function AccountPage() {
     function linkClasses(type = null) {
         let classes = 'py-2 px-6';
         if (type === subpage) {
-            classes += 'text-white bg-blue-400 rounded-full';
+            classes = 'py-2 px-6 text-white bg-blue-400 rounded-full';
         }
         return classes;
     }
     return (
         <div>
             <nav className='w-full flex justify-center mt-8  gap-2 '>
-                <Link className={linkClasses('profile')} to={'/account'}>My profile</Link>
-                <Link className={linkClasses('bookings')} to={'/account/bookings'}>my booking</Link>
-                <Link className={linkClasses('places')} to={'/account/lapangan'}>My accomondation</Link>
+                <Link className={linkClasses('profile')} to={'/account'}>My Profile</Link>
+                <Link className={linkClasses('bookings')} to={'/account/bookings'}>My Booking</Link>
+                <Link className={linkClasses('lapangan')} to={'/account/lapangan'}>Lapangan</Link>
             </nav>
         </div>
     )
