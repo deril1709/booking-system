@@ -3,8 +3,10 @@ import { UserContext } from '../UserContext'
 import { Navigate, useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { useState } from 'react';
 
 function AccountPage() {
+    const [redirect, setRedirect] = useState(null);
     const { ready, user } = useContext(UserContext);
     let { subpage } = useParams();
     if (subpage === undefined) {
@@ -12,7 +14,8 @@ function AccountPage() {
     }
 
     async function logout() {
-        await axios.post('/logout')
+        await axios.post('/logout');
+        setRedirect('/');
     }
 
     if (!ready) {
@@ -22,7 +25,9 @@ function AccountPage() {
     if (ready && !user) {
         return <Navigate to={'/login'} />;
     }
-
+    if (redirect) {
+        return <Navigate to={redirect} />;
+    }
 
 
 
