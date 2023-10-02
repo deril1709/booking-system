@@ -7,7 +7,7 @@ import { useState } from 'react';
 
 function AccountPage() {
     const [redirect, setRedirect] = useState(null);
-    const { ready, user } = useContext(UserContext);
+    const { ready, user, setUser } = useContext(UserContext);
     let { subpage } = useParams();
     if (subpage === undefined) {
         subpage = 'profile';
@@ -15,6 +15,7 @@ function AccountPage() {
 
     async function logout() {
         await axios.post('/logout');
+        setUser(null);
         setRedirect('/');
     }
 
