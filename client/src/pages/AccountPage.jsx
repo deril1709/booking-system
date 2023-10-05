@@ -4,6 +4,7 @@ import { Navigate, useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useState } from 'react';
+import PlacesPages from './PlacesPages';
 
 function AccountPage() {
     const [redirect, setRedirect] = useState(null);
@@ -43,14 +44,17 @@ function AccountPage() {
         <div>
             <nav className='w-full flex justify-center mt-8  gap-2 '>
                 <Link className={linkClasses('profile')} to={'/account'}>My Profile</Link>
-                <Link className={linkClasses('bookings')} to={'/account/bookings'}>My Booking</Link>
+                <Link className={linkClasses('bookings')} to={'/account/bookings'}>Booking List</Link>
                 <Link className={linkClasses('lapangan')} to={'/account/lapangan'}>Lapangan</Link>
             </nav>
             {subpage === 'profile' && (
                 <div className='text-center max-w-xs mx-auto'>
-                    Logged in as{user.name}({user.email}) <br />
+                    Logged in as {user.name}({user.email}) <br />
                     <button onClick={logout} className='bg-blue-400 max-w-sm mt-4'>Log out</button>
                 </div>
+            )}
+            {subpage === 'lapangan' && (
+                <PlacesPages />
             )}
         </div>
     )
