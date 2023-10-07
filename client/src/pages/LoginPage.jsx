@@ -37,7 +37,7 @@ function LoginPage() {
                         placeholder='Password'
                         value={password}
                         onChange={e => setPassword(e.target.value)} />
-                    <button>Login</button>
+                    <button className='login'>Login</button>
                     <div className='text-center p-2'>Don't have an account yet? <Link to={'/register'} className='underline text-gray-600'>Register Here!</Link>
                     </div>
                 </form>

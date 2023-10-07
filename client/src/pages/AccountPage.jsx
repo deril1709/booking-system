@@ -67,7 +67,7 @@ function AccountPage() {
             {subpage === 'profile' && (
                 <div className='text-center max-w-xs mx-auto'>
                     Logged in as {user.name}({user.email}) <br />
-                    <button onClick={logout} className='bg-blue-400 max-w-sm mt-4'>Log out</button>
+                    <button onClick={logout} className='bg-blue-400 max-w-sm mt-4 login'>Log out</button>
                 </div>
             )}
             {subpage === 'lapangan' && (

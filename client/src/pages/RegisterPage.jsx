@@ -35,7 +35,7 @@ function RegisterPage() {
                     <input type="password" placeholder='Password'
                         value={password}
                         onChange={e => setPassword(e.target.value)} />
-                    <button>Register</button>
+                    <button className='login'>Register</button>
                     <div className='text-center p-2'>Already Have an Account? <Link to={'/login'} className='underline text-gray-600'>Login</Link>
                     </div>
                 </form>
