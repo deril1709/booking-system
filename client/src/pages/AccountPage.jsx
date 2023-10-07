@@ -37,6 +37,8 @@ function AccountPage() {
         let classes = 'inline-flex gap-1 py-2 gap-2 px-4';
         if (type === subpage) {
             classes += ' text-white bg-blue-400 rounded';
+        } else {
+            classes += ' bg-gray-200'
         }
         return classes;
     }
