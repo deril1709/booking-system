@@ -51,6 +51,9 @@ function PlacesPages() {
                                 <input type="text" />
                             </div>
                         </div>
+                        <div>
+                            <button type='login' className='login my-4'>Save</button>
+                        </div>
                     </form>
                 </div>
             )}
