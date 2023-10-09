@@ -36,6 +36,9 @@ function PlacesPages() {
                                 Upload
                             </button>
                         </div>
+                        <h2 className='text-xl mt-4'>Deskripsi</h2>
+                        <p className='text-gray-500 text-sm'>Deskripsi mengenai lapangan yang tersedia</p>
+                        <textarea />
                     </form>
                 </div>
             )}
