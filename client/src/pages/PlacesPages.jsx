@@ -39,6 +39,18 @@ function PlacesPages() {
                         <h2 className='text-xl mt-4'>Deskripsi</h2>
                         <p className='text-gray-500 text-sm'>Deskripsi mengenai lapangan yang tersedia</p>
                         <textarea />
+                        <h2 className='text-xl mt-4'>Opening & Closing Time</h2>
+                        <p className='text-gray-500 text-sm'>Pilih waktu opening dan closing pada lapangan</p>
+                        <div className='grid sm:grid-cols-4 gap-4'>
+                            <div>
+                                <h3 className='mt-2 -mb-1'>Opening Time</h3>
+                                <input type="text" placeholder='09.00' />
+                            </div>
+                            <div>
+                                <h3 className='mt-2 -mb-1'>Closing Time</h3>
+                                <input type="text" />
+                            </div>
+                        </div>
                     </form>
                 </div>
             )}

@@ -8,6 +8,8 @@ const FieldSchema = new mongoose.Schema({
     description : String,
     perks : [String],
     extraInfo : String,
+    openingTime : Number,
+    closingTime : Number,
     bookings : Number,
 });
 
