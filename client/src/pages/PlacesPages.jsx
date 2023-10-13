@@ -1,8 +1,16 @@
+import { useState } from 'react';
 import { Link, useParams, } from 'react-router-dom';
 
 function PlacesPages() {
     const { action } = useParams();
-    console.log(action);
+    const [title, setTitle] = useState('');
+    const [addres, setAddres] = useState('')
+    const [photo, setPhoto] = useState([])
+    const [photoLink, setPhotoLink] = useState('')
+    const [description, setDescription] = useState('')
+    const [openingHours, setOpeningHours] = useState('')
+    const [closingHours, setClosingHours] = useState('')
+
     return (
         <div>
             {action !== 'new' && (

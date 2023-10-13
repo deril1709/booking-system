@@ -6,6 +6,6 @@ input[type="text"],input[type="password"],input[type="email"],textarea{
     @apply w-full border border-gray-300 my-1 py-2 px-3 rounded-xl
 }
 button.login{
-    background-color: #3b82f6;
+    background-color: #60A5FA;
     @apply rounded-full p-2 w-full text-white
 }
