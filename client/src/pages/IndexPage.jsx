@@ -18,9 +18,9 @@ function IndexPage() {
                     Mudahkan pengalaman bermain anda dengan mulai memesan lapangan <br />
                     melalui aplikasi pembookingan lapangan Badminton.
                 </p>
-                <Link to="/login">
+                <Link to="/home">
                     <button className="p-4 bg-blue-400 text-white text-lg rounded-lg hover:bg-blue-600 hover:shadow-md transition duration-300 mt-6">
-                        Book Now
+                        Lihat Lapangan
                     </button>
                 </Link>
             </div>
