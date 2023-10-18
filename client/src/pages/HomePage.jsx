@@ -16,7 +16,7 @@ function HomePage() {
                 <h2 className="font-bold">lapangan 1</h2>
                 <h3 className="text-sm text-gray-500">Lorem ipsum dolor sit.</h3>
                 <div className="mt-1">
-                    <span className="font-bold">$300</span> per night
+                    <span className="font-bold">Rp 45.000</span> per jam
                 </div>
             </Link>
 
@@ -28,8 +28,8 @@ function HomePage() {
                         className="rounded-2xl object-cover w-full h-full"
                     />
                 </div>
-                <h2 className="font-bold">test</h2>
-                <h3 className="text-sm text-gray-500">Lapangan 1</h3>
+                <h2 className="font-bold">Coming Soon</h2>
+                <h3 className="text-sm text-gray-500">Lorem ipsum</h3>
                 <div className="mt-1">
                     <span className="font-bold">Rp 45.000</span> per jam
                 </div>

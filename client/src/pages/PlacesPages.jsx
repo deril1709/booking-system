@@ -60,6 +60,10 @@ function PlacesPages() {
                             </div>
                         </div>
                         <div>
+                            <h3 className='mt-2 -mb-1'>Harga</h3>
+                            <input type="text" placeholder='Rp 45.000' />
+                        </div>
+                        <div>
                             <button type='login' className='login my-4'>Save</button>
                         </div>
                     </form>
