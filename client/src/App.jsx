@@ -8,6 +8,7 @@ import axios from 'axios'
 import { UserContextProvider } from './UserContext'
 import AccountPage from './pages/AccountPage'
 import HomePage from './pages/HomePage'
+import SingleField from './pages/SingleField'
 
 axios.defaults.baseURL = 'http://localhost:4000';
 axios.defaults.withCredentials = true;
@@ -21,6 +22,7 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/home" element={<HomePage />} />
+          <Route path="/field" element={<SingleField />} />
           <Route path="/account/:subpage?" element={<AccountPage />} />
           <Route path="/account/:subpage/:action" element={<AccountPage />} />
         </Route>

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 function HomePage() {
     return (
         <div className="mt-8 flex flex-wrap gap-x-6 gap-y-8">
-            <Link to="/login">
+            <Link to="/field">
                 <div className="bg-gray-500 mb-2 rounded-2xl flex" style={{ height: '12rem' }}>
                     <img
                         src={img}
@@ -20,7 +20,7 @@ function HomePage() {
                 </div>
             </Link>
 
-            <Link to="/login">
+            <Link to="/home">
                 <div className="bg-gray-500 mb-2 rounded-2xl flex" style={{ height: '12rem' }}>
                     <img
                         src={img}
