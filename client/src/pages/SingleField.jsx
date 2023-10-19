@@ -4,9 +4,9 @@ import lapangan from '../Lapangan.jpg';
 
 function SingleField() {
     return (
-        <div className="mt-4 bg-gray-100 -mx-8 px-8 pt-8">
+        <div className="mt-4 bg-gray-300 -mx-8 px-8 pt-8">
             <h1 className="text-3xl">Lapangan 1</h1>
-            <a href={'https://www.google.com/maps/place/Lapangan+Bulutangkis+Damai/@-5.1302029,119.4939794,17z/data=!4m8!3m7!1s0x2dbefdb79dac8719:0xae0fa332867d9268!8m2!3d-5.1302029!4d119.4939794!9m1!1b1!16s%2Fg%2F11js8ntvlh?entry=ttu'} className='block font-semibold underline flex gap-1 my-2'>
+            <a href={'https://www.google.com/maps/place/Lapangan+Bulutangkis+Damai/@-5.1302029,119.4939794,17z/data=!4m8!3m7!1s0x2dbefdb79dac8719:0xae0fa332867d9268!8m2!3d-5.1302029!4d119.4939794!9m1!1b1!16s%2Fg%2F11js8ntvlh?entry=ttu'} className='font-semibold underline flex gap-1 my-2'>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 flex">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
                     <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
@@ -37,25 +37,28 @@ function SingleField() {
                     <p>Open: 09.00</p>
                     <p>Close: 22.00</p>
                 </div>
-                <div className='bg-gray-300 p-4 rounded-xl shadow'>
-                    <div>
-                        <div className='text-xl text-center'>
+                <div className='bg-white p-4 rounded-xl shadow'>
+                    <div className='border rounded-2xl mt-4'>
+                        <div className='text-xl text-center font-semibold'>
                             Harga Rp 45.000 per jam <br />
                         </div>
-                        <button className='login'>Booking Lapangan</button>
-                        <div className=''>
-                            <label htmlFor="" className='ml-1 mr-4'>Pilih Tanggal</label>
-                            <input type="date" />
+                        <div className="flex">
+                            <div className=' bg-white py-3 px-4'>
+                                <label>Pilih Tanggal</label>
+                                <input type="date" />
+                            </div>
+                            <div className=' bg-white py-3 px-4 border-t'>
+                                <label>Pilih Jam</label>
+                                <input type="time" />
+                            </div>
                         </div>
-                        <div className=''>
-                            <label htmlFor="" className='ml-1 mr-11'>Pilih Jam</label>
-                            <input type="time" />
-                        </div>
+                        <button className='login my-4'>Booking Lapangan</button>
                     </div>
+                    <div></div>
                 </div>
 
             </div>
-            <div className="bg-white -mx-8 px-8 py-8 border-t">
+            <div className="bg-white -mx-8 px-8 py-8 border-l">
                 <div>
                     <h2 className="font-semibold text-2xl">Extra info</h2>
                 </div>
