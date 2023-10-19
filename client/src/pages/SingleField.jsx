@@ -32,15 +32,15 @@ function SingleField() {
                 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Blanditiis, vero. Esse eveniet omnis sunt deserunt accusamus alias fugit, fuga quidem.
             </div>
 
-            <div className='grid grid-cols-2 '>
+            <div className='grid grid-cols-[2fr_1fr] '>
                 <div>
                     <p>Open: 09.00</p>
                     <p>Close: 22.00</p>
                 </div>
-                <div className='bg-white p-4 rounded-xl shadow'>
+                <div className='bg-white p-4 rounded-xl shadow mb-4'>
                     <div className='border rounded-2xl mt-4'>
                         <div className='text-xl text-center font-semibold'>
-                            Harga Rp 45.000 per jam <br />
+                            Harga : Rp 45.000 per jam <br />
                         </div>
                         <div className="flex">
                             <div className=' bg-white py-3 px-4'>
