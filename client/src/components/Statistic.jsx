@@ -1,10 +1,9 @@
 import React from "react";
-import Chart from "./Chart";
 
-function Dashboard() {
+function Statistic() {
     return (
         <div className="flex flex-col py-10 px-16 h-screen overflow-y-auto w-full">
-            <h2>Dashboard</h2>
+            <h2>Statistic</h2>
 
             <div className="flex space-x-8 py-6">
                 <div className="flex flex-col rounded-md border w-[400px] h-[150px] p-8 justify-center">
@@ -36,4 +35,4 @@ function Dashboard() {
     );
 }
 
-export default Dashboard;
+export default Statistic;
