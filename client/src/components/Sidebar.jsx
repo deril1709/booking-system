@@ -2,14 +2,15 @@ import React, { useState } from "react";
 import Logo from "../assets/badminton.svg";
 import {
     ArrowLeftRightIcon,
-    BarChart3Icon,
-    Clock4Icon,
+    UserCog,
+    ImagePlus,
     LayoutDashboard,
     HelpCircleIcon,
+    LogOut
 } from "lucide-react";
 import { motion } from "framer-motion";
-
 import RightArrowIcon from "./../assets/icons/rightArrow.svg";
+import { Link, useParams } from "react-router-dom";
 
 const variants = {
     expanded: { width: "20%" },
@@ -18,6 +19,18 @@ const variants = {
 
 function Navbar() {
     const [isExpanded, setIsExpanded] = useState(true);
+    let { subpage } = useParams();
+    function LinkClasses(type = null) {
+        let classes = '';
+        if (type === subpage) {
+            classes += ' rounded bg-blue-400 text-white';
+        }
+        return classes;
+    }
+    if (subpage === undefined) {
+        subpage = 'dashboard';
+    }
+
 
     return (
         <motion.div
@@ -41,29 +54,34 @@ function Navbar() {
             >
                 <img src={RightArrowIcon} className="w-2" />
             </div>
+
             <div className="logo-div flex space-x-4 items-center">
                 <img src={Logo} className="w-8 h-w-8" />
                 <span className={!isExpanded ? "hidden" : "block"}>Damai</span>
             </div>
             <div className="flex flex-col space-y-8 mt-12">
-                <div className="nav-links w-full">
-                    <div className="flex space-x-3 w-full p-2 rounded bg-blue-400 text-white">
-                        <LayoutDashboard />
-                        <span className={!isExpanded ? "hidden" : "block"}>Dashboard</span>
+                <Link className={LinkClasses('dashboard')} to={'/admin'}>
+                    <div className="nav-links w-full">
+                        <div className="flex space-x-3 w-full p-2">
+                            <LayoutDashboard />
+                            <span className={!isExpanded ? "hidden" : "block"}>Dashboard</span>
+                        </div>
                     </div>
-                </div>
+                </Link>
+                <Link className={LinkClasses('formlapangan')} to={'/admin/formlapangan'}>
+                    <div className="nav-links w-full" >
+                        <div className="flex space-x-3 w-full p-2" >
+                            <ImagePlus />
+                            <span className={!isExpanded ? "hidden" : "block"}>Lapangan</span>
+                        </div>
+                    </div>
+                </Link>
 
-                <div className="nav-links w-full">
-                    <div className="flex space-x-3 w-full p-2 rounded">
-                        <Clock4Icon />
-                        <span className={!isExpanded ? "hidden" : "block"}>Acticity</span>
-                    </div>
-                </div>
 
                 <div className="nav-links w-full">
                     <div className="flex space-x-3 w-full p-2 rounded ">
-                        <BarChart3Icon />
-                        <span className={!isExpanded ? "hidden" : "block"}>Analytics</span>
+                        <UserCog />
+                        <span className={!isExpanded ? "hidden" : "block"}>User</span>
                     </div>
                 </div>
 
@@ -84,6 +102,15 @@ function Navbar() {
                         </span>
                     </div>
                 </div>
+                <div className="nav-links w-full">
+                    <div className="flex space-x-3 w-full p-2 rounded  ">
+                        <LogOut />
+                        <span className={!isExpanded ? "hidden" : "block"}>
+                            LogOut
+                        </span>
+                    </div>
+                </div>
+
             </div>
         </motion.div>
     );

@@ -28,7 +28,7 @@ function App() {
           <Route path="/account/:subpage/:action" element={<AccountPage />} />
         </Route>
         <Route path='/admin' element={<DashboardPage />}>
-
+          <Route path="/admin/:subpage?" element={<AccountPage />} />
         </Route>
       </Routes>
     </UserContextProvider>
