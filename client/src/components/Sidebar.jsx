@@ -62,7 +62,7 @@ function Navbar() {
             <div className="flex flex-col space-y-8 mt-12">
                 <Link className={LinkClasses('dashboard')} to={'/admin'}>
                     <div className="nav-links w-full">
-                        <div className="flex space-x-3 w-full p-2">
+                        <div className="flex gap-3 w-full p-2">
                             <LayoutDashboard />
                             <span className={!isExpanded ? "hidden" : "block"}>Dashboard</span>
                         </div>
@@ -77,39 +77,46 @@ function Navbar() {
                     </div>
                 </Link>
 
+                <Link className={LinkClasses('user')} to={'/admin/user'}>
+                    <div className="nav-links w-full">
+                        <div className="flex space-x-3 w-full p-2 rounded ">
+                            <UserCog />
+                            <span className={!isExpanded ? "hidden" : "block"}>User</span>
+                        </div>
+                    </div>
+                </Link>
 
-                <div className="nav-links w-full">
-                    <div className="flex space-x-3 w-full p-2 rounded ">
-                        <UserCog />
-                        <span className={!isExpanded ? "hidden" : "block"}>User</span>
+                <Link className={LinkClasses('booking')} to={'/admin/booking'}>
+                    <div className="nav-links w-full">
+                        <div className="flex space-x-3 w-full p-2 rounded">
+                            <ArrowLeftRightIcon />
+                            <span className={!isExpanded ? "hidden" : "block"}>
+                                Booking List
+                            </span>
+                        </div>
                     </div>
-                </div>
+                </Link>
 
-                <div className="nav-links w-full">
-                    <div className="flex space-x-3 w-full p-2 rounded">
-                        <ArrowLeftRightIcon />
-                        <span className={!isExpanded ? "hidden" : "block"}>
-                            Transactions
-                        </span>
+                <Link className={LinkClasses('help')} to={'/admin/help'}>
+                    <div className="nav-links w-full">
+                        <div className="flex space-x-3 w-full p-2 rounded  ">
+                            <HelpCircleIcon />
+                            <span className={!isExpanded ? "hidden" : "block"}>
+                                Help Center
+                            </span>
+                        </div>
                     </div>
-                </div>
-
-                <div className="nav-links w-full">
-                    <div className="flex space-x-3 w-full p-2 rounded  ">
-                        <HelpCircleIcon />
-                        <span className={!isExpanded ? "hidden" : "block"}>
-                            Help Center
-                        </span>
+                </Link>
+                <Link to={'/login'}>
+                    <div className="nav-links w-full">
+                        <div className="flex space-x-3 w-full p-2 rounded  ">
+                            <LogOut />
+                            <span className={!isExpanded ? "hidden" : "block"}>
+                                LogOut
+                            </span>
+                        </div>
                     </div>
-                </div>
-                <div className="nav-links w-full">
-                    <div className="flex space-x-3 w-full p-2 rounded  ">
-                        <LogOut />
-                        <span className={!isExpanded ? "hidden" : "block"}>
-                            LogOut
-                        </span>
-                    </div>
-                </div>
+                </Link>
 
             </div>
         </motion.div>
