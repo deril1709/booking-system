@@ -9,7 +9,8 @@ import { UserContextProvider } from './UserContext'
 import Lapangan from './pages/Lapangan'
 import SingleField from './pages/SingleField'
 import AccountPage from './pages/AccountPage'
-import DashboardPage from './pages/Dashboard'
+import DashboardPage from './Admin'
+import Sidebar from './components/Sidebar'
 
 axios.defaults.baseURL = 'http://localhost:4000';
 axios.defaults.withCredentials = true;
@@ -28,7 +29,7 @@ function App() {
           <Route path="/account/:subpage/:action" element={<AccountPage />} />
         </Route>
         <Route path='/admin' element={<DashboardPage />}>
-          <Route path="/admin/:subpage?" element={<AccountPage />} />
+          <Route path="/admin/:subpage?" element={<DashboardPage />} />
         </Route>
       </Routes>
     </UserContextProvider>

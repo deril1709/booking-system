@@ -11,6 +11,7 @@ import {
 import { motion } from "framer-motion";
 import RightArrowIcon from "./../assets/icons/rightArrow.svg";
 import { Link, useParams } from "react-router-dom";
+import Graph from './Graph'
 
 const variants = {
     expanded: { width: "20%" },
@@ -117,7 +118,6 @@ function Navbar() {
                         </div>
                     </div>
                 </Link>
-
             </div>
         </motion.div>
     );
