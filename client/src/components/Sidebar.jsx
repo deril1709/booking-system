@@ -74,7 +74,7 @@ function Sidebar() {
                     </div>
                 </NavLink>
 
-                <NavLink to={'/admin/user'} activeClassName="active-link" exact>
+                <NavLink to={'/admin/user'} style={location.pathname === '/admin/user' ? activeLinkStyle : null}>
                     <div className="nav-links w-full">
                         <div className="flex space-x-3 w-full p-2 rounded ">
                             <UserCog />

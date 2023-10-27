@@ -10,8 +10,8 @@ import Lapangan from './pages/Lapangan'
 import SingleField from './pages/SingleField'
 import AccountPage from './pages/AccountPage'
 import AdminUser from './admin/AdminUser'
-import Admin from './Admin'
 import AdminDashboard from './admin/AdminDashboard'
+import AdminFormlapangan from './admin/AdminFormlapangan'
 
 axios.defaults.baseURL = 'http://localhost:4000';
 axios.defaults.withCredentials = true;
@@ -29,9 +29,9 @@ function App() {
           <Route path="/account/:subpage?" element={<AccountPage />} />
           <Route path="/account/:subpage/:action" element={<AccountPage />} />
         </Route>
-        <Route path='/admin' element={<Admin />} />
+        <Route path='/admin' element={<AdminDashboard />} />
         <Route path="/admin/user" element={<AdminUser />} />
-        <Route path="/admin/formlapangan" element={<AdminDashboard />} />
+        <Route path="/admin/formlapangan" element={<AdminFormlapangan />} />
       </Routes>
     </UserContextProvider>
   )
