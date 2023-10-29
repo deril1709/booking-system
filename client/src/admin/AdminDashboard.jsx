@@ -1,14 +1,13 @@
 import React from 'react'
 import Sidebar from '../components/Sidebar'
-import Graph from '../components/Graph'
-import Date from '../components/Date'
+import Dashboard from '../components/Dashboard'
 
 function AdminDashboard() {
     return (
         <div className='flex'>
             <Sidebar />
             <main className='grow'>
-                <Date />
+                <Dashboard />
             </main>
         </div>
     )
