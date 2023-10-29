@@ -1,16 +1,15 @@
 import React from 'react'
 import Sidebar from '../components/Sidebar'
-import Graph from '../components/Graph'
 
-function AdminUser() {
+function AdminBooking() {
     return (
         <div className='flex'>
             <Sidebar />
             <main className='grow'>
-                <Graph />
+                booking
             </main>
         </div>
     )
 }
 
-export default AdminUser
+export default AdminBooking

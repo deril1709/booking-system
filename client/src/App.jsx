@@ -9,9 +9,9 @@ import { UserContextProvider } from './UserContext'
 import Lapangan from './pages/Lapangan'
 import SingleField from './pages/SingleField'
 import AccountPage from './pages/AccountPage'
-import AdminUser from './admin/AdminUser'
 import AdminDashboard from './admin/AdminDashboard'
 import AdminFormlapangan from './admin/AdminFormlapangan'
+import AdminBooking from './admin/AdminBooking'
 
 axios.defaults.baseURL = 'http://localhost:4000';
 axios.defaults.withCredentials = true;
@@ -30,8 +30,8 @@ function App() {
           <Route path="/account/:subpage/:action" element={<AccountPage />} />
         </Route>
         <Route path='/admin' element={<AdminDashboard />} />
-        <Route path="/admin/user" element={<AdminUser />} />
         <Route path="/admin/formlapangan" element={<AdminFormlapangan />} />
+        <Route path="/admin/booking" element={<AdminBooking />} />
       </Routes>
     </UserContextProvider>
   )

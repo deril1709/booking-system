@@ -1,8 +1,10 @@
 import React from 'react';
+import image from '../badminton.jpg'
 
 function FieldItem({ field, onEdit, onDelete }) {
     return (
         <div className="border p-4 mb-4">
+            <img src={image} alt="" className='' />
             <h2 className="text-xl font-semibold">{field.name}</h2>
             <p className="text-gray-600">{field.address}</p>
             <div className="flex mt-2">

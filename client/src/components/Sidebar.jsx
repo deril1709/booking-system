@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import Logo from "../assets/badminton.svg";
 import {
-    ArrowLeftRightIcon,
-    UserCog,
+    List,
     ImagePlus,
     LayoutDashboard,
     HelpCircleIcon,
@@ -74,19 +73,10 @@ function Sidebar() {
                     </div>
                 </NavLink>
 
-                <NavLink to={'/admin/user'} style={location.pathname === '/admin/user' ? activeLinkStyle : null}>
-                    <div className="nav-links w-full">
-                        <div className="flex space-x-3 w-full p-2 rounded ">
-                            <UserCog />
-                            <span className={!isExpanded ? "hidden" : "block"}>User</span>
-                        </div>
-                    </div>
-                </NavLink>
-
-                <NavLink to={'/admin/booking'} activeClassName="active-link" exact>
+                <NavLink to={'/admin/booking'} style={location.pathname === '/admin/booking' ? activeLinkStyle : null}>
                     <div className="nav-links w-full">
                         <div className="flex space-x-3 w-full p-2 rounded">
-                            <ArrowLeftRightIcon />
+                            <List />
                             <span className={!isExpanded ? "hidden" : "block"}>
                                 Booking List
                             </span>
