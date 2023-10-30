@@ -9,3 +9,18 @@ button.login{
     background-color: #60A5FA;
     @apply rounded-full p-2 w-full text-white
 }
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5); /* Adjust the alpha value for the desired level of blur */
+    backdrop-filter: blur(10px); /* Adjust the blur value as needed */
+    z-index: 49; /* Ensure it's below the payment popup */
+  }
+  
+.modal-container {
+    position: relative;
+    z-index: 50;
+    filter: none; /* Remove any filter from the container */
+  }
+  

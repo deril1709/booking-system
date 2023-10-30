@@ -1,8 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import img from '../badminton.jpg';
 import lapangan from '../Lapangan.jpg';
+import PaymentPopup from '../components/PaymentPopup';
+
 
 function SingleField() {
+    const [isPaymentPopupOpen, setPaymentPopupOpen] = useState(false);
+
+    const handleOpenPaymentPopup = () => {
+        setPaymentPopupOpen(true);
+    };
+
+    const handleClosePaymentPopup = () => {
+        setPaymentPopupOpen(false);
+    };
+
+    const handlePaymentConfirmation = () => {
+        // Handle the payment confirmation logic here
+        // You can implement this part according to your project's requirements
+        // For example, you can send payment details to your backend
+        // and display a confirmation message to the user
+        // Then close the payment pop-up
+        handleClosePaymentPopup();
+    };
+
     return (
         <div className="mt-4 bg-gray-300 -mx-8 px-8 pt-8">
             <h1 className="text-3xl">Lapangan 1</h1>
@@ -50,7 +71,9 @@ function SingleField() {
                                 <input type="time" />
                             </div>
                         </div>
-                        <button className='login my-4 hover:bg-blue-600'>Booking Lapangan</button>
+                        <button onClick={handleOpenPaymentPopup} className='login my-4 hover:bg-blue-600'>Booking Lapangan</button>
+                        {/* Payment Pop-up */}
+                        <PaymentPopup isOpen={isPaymentPopupOpen} onClose={handleClosePaymentPopup} onPayment={handlePaymentConfirmation} />
                     </div>
                     <div></div>
                 </div>
