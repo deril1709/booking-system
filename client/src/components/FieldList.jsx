@@ -24,19 +24,21 @@ function FieldList() {
     };
 
     return (
-        <div div className="flex flex-col py-10 px-16 h-screen overflow-y-auto w-full">
-            <h2 className="text-xl font-semibold mb-6">List Lapangan</h2>
+        <div className="py-10 px-6 lg:px-12 xl:px-16 h-screen overflow-y-auto">
+            <h2 className="text-3xl font-semibold mb-8">List Lapangan</h2>
             {editingField ? (
                 <FormLapangan field={editingField} setEditingField={setEditingField} />
             ) : (
-                fields.map((field) => (
-                    <FieldItem
-                        key={field.id}
-                        field={field}
-                        onEdit={handleEditField}
-                        onDelete={handleDeleteField}
-                    />
-                ))
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+                    {fields.map((field) => (
+                        <FieldItem
+                            key={field.id}
+                            field={field}
+                            onEdit={handleEditField}
+                            onDelete={handleDeleteField}
+                        />
+                    ))}
+                </div>
             )}
         </div>
     );

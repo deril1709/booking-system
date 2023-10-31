@@ -43,14 +43,14 @@ function Dashboard() {
                 <div className="flex flex-col rounded-md border w-full p-8 justify-center">
                     <h2>Dummy</h2>
                     <div className="flex space-x-8 py-6">
-                        <table className="border-collapse border w-full">
+                        <table className="border-collapse  w-full">
                             <thead>
                                 <tr>
                                     <th className="border p-2">ID</th>
-                                    <th className=" p-2">Name</th>
-                                    <th className=" p-2">Email</th>
-                                    <th className=" p-2">Password</th>
-                                    <th className=" p-2">Actions</th>
+                                    <th className="border p-2">Name</th>
+                                    <th className="border p-2">Email</th>
+                                    <th className="border p-2">Password</th>
+                                    <th className="border p-2">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
