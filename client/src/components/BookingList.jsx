@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Plus, Trash2, Eye } from 'lucide-react';
+import { Plus, Trash2, Eye, Pencil, Save, X } from 'lucide-react';
 
 function AdminBookingList() {
     // Sample data for booking list
@@ -36,6 +36,7 @@ function AdminBookingList() {
 
     const [bookingData, setBookingData] = useState(initialBookingData);
     const [viewedPaymentProof, setViewedPaymentProof] = useState(null);
+    const [editingBooking, setEditingBooking] = useState(null);
 
     const handleDeleteBooking = (id) => {
         // Implement the delete functionality here
@@ -47,8 +48,23 @@ function AdminBookingList() {
         setViewedPaymentProof(paymentProof);
     };
 
-    const closeViewPaymentProof = () => {
-        setViewedPaymentProof(null);
+    const handleEditBooking = (booking) => {
+        setEditingBooking(booking);
+    };
+
+    const handleSaveBooking = () => {
+        const updatedBookingData = bookingData.map((booking) => {
+            if (booking.id === editingBooking.id) {
+                return editingBooking;
+            }
+            return booking;
+        });
+        setBookingData(updatedBookingData);
+        setEditingBooking(null);
+    };
+
+    const handleCancelEdit = () => {
+        setEditingBooking(null);
     };
 
     const addNewBooking = () => {
@@ -70,7 +86,7 @@ function AdminBookingList() {
     return (
         <div className="flex flex-col py-10 px-16 h-screen overflow-y-auto w-full">
             <h2 className="text-xl font-semibold mb-6">Admin Booking List</h2>
-            <div className="border p-4 my-4 rounded-lg">
+            <div className="border border-blue-400 p-4 my-4 rounded-lg">
                 <table className="w-full border-collapse">
                     <thead>
                         <tr>
@@ -95,13 +111,19 @@ function AdminBookingList() {
                                         onClick={() => handleViewPaymentProof(booking.paymentProof)}
                                         className="bg-blue-500 text-white p-2 rounded-md"
                                     >
-                                        <Eye /> View
+                                        <Eye />
+                                    </button>
+                                    <button
+                                        onClick={() => handleEditBooking(booking)}
+                                        className="bg-green-700 text-white p-2 rounded-md"
+                                    >
+                                        <Pencil />
                                     </button>
                                     <button
                                         onClick={() => handleDeleteBooking(booking.id)}
                                         className="bg-red-500 text-white p-2 rounded-md"
                                     >
-                                        <Trash2 /> Delete
+                                        <Trash2 />
                                     </button>
                                 </td>
                             </tr>
@@ -119,13 +141,67 @@ function AdminBookingList() {
             {viewedPaymentProof && (
                 <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-60">
                     <div className="bg-white p-4 rounded-lg">
-                        <img src={viewedPaymentProof} alt="Payment Proof" />
+                        <img src={viewedPaymentProof} alt="Bukti Pembayaran" />
                         <button
-                            onClick={closeViewPaymentProof}
+                            onClick={() => setViewedPaymentProof(null)}
                             className="bg-red-500 text-white p-2 rounded-md mt-2"
                         >
-                            Close
+                            <X /> Close
                         </button>
+                    </div>
+                </div>
+            )}
+
+            {editingBooking && (
+                <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-60">
+                    <div className="bg-white p-4 rounded-lg">
+                        <h2>Edit Booking</h2>
+                        <form>
+                            <label>User Name</label>
+                            <input
+                                type="text"
+                                value={editingBooking.userName}
+                                onChange={(e) => setEditingBooking({ ...editingBooking, userName: e.target.value })}
+                            />
+                            <label>Booking Date</label>
+                            <input
+                                type="text"
+                                value={editingBooking.bookingDate}
+                                onChange={(e) => setEditingBooking({ ...editingBooking, bookingDate: e.target.value })}
+                            />
+                            <label>Booking Time</label>
+                            <input
+                                type="text"
+                                value={editingBooking.bookingTime}
+                                onChange={(e) => setEditingBooking({ ...editingBooking, bookingTime: e.target.value })}
+                            />
+                            <label>Duration</label>
+                            <input
+                                type="text"
+                                value={editingBooking.duration}
+                                onChange={(e) => setEditingBooking({ ...editingBooking, duration: e.target.value })}
+                            />
+                            <label>Status</label>
+                            <input
+                                type="text"
+                                value={editingBooking.status}
+                                onChange={(e) => setEditingBooking({ ...editingBooking, status: e.target.value })}
+                            />
+                            <div className="mt-4">
+                                <button
+                                    onClick={handleSaveBooking}
+                                    className="bg-blue-500 text-white p-2 rounded-md"
+                                >
+                                    <Save /> Save
+                                </button>
+                                <button
+                                    onClick={handleCancelEdit}
+                                    className="bg-red-500 text-white p-2 rounded-md ml-2"
+                                >
+                                    <X /> Cancel
+                                </button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             )}
