@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Chart from './Graph';
 
 function Dashboard() {
     // Dummy user data
@@ -30,7 +29,7 @@ function Dashboard() {
 
             <div className="flex space-x-8 py-6">
                 <div className="flex flex-col rounded-md border-blue-400 border w-[400px] h-[150px] p-8 justify-center">
-                    <h2 className='text-4xl text-cente'>Total Pesanan</h2>
+                    <h2 className='text-4xl text-center'>Total Pesanan</h2>
                     <p className="text-gray-500 mt-3 text-center text-2xl">10</p>
                 </div>
                 <div className="flex flex-col rounded-md border-blue-400 border w-[400px] h-[150px] p-8 justify-center">
