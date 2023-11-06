@@ -108,16 +108,16 @@ function AdminBookingList() {
                                 <td className="border p-2">{booking.status}</td>
                                 <td className="border p-2 justify-center text-center space-x-2">
                                     <button
-                                        onClick={() => handleViewPaymentProof(booking.paymentProof)}
-                                        className="bg-blue-500 text-white p-2 rounded-md"
-                                    >
-                                        <Eye />
-                                    </button>
-                                    <button
                                         onClick={() => handleEditBooking(booking)}
                                         className="bg-green-700 text-white p-2 rounded-md"
                                     >
                                         <Pencil />
+                                    </button>
+                                    <button
+                                        onClick={() => handleViewPaymentProof(booking.paymentProof)}
+                                        className="bg-blue-500 text-white p-2 rounded-md"
+                                    >
+                                        <Eye />
                                     </button>
                                     <button
                                         onClick={() => handleDeleteBooking(booking.id)}

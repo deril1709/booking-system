@@ -49,7 +49,7 @@ function PaymentPopup({ isOpen, onClose, onPayment, totalPayment }) {
                         <input type="file" onChange={handleFileChange} className="mb-4" />
                     </div>
                     <div>
-                        <label>Total Payment Amount: Rp 45.000</label>
+                        <label>Total Payment Amount: {onPayment}</label>
                         <input
                             type="number"
                             value={totalPayment}
