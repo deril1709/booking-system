@@ -70,6 +70,10 @@ function SingleField() {
                                 <label>Pilih Jam</label>
                                 <input type="time" />
                             </div>
+                            <div className=' bg-white py-3 px-4 border-t'>
+                                <label>Durasi</label>
+                                <input type="number" placeholder="1 jam" />
+                            </div>
                         </div>
                         <button onClick={handleOpenPaymentPopup} className='login my-4 hover:bg-blue-600'>Booking Lapangan</button>
                         {/* Payment Pop-up */}

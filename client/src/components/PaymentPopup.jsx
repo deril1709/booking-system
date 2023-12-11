@@ -3,6 +3,9 @@ import React, { useState } from 'react';
 function PaymentPopup({ isOpen, onClose, onPayment, totalPayment }) {
     const [paymentMethod, setPaymentMethod] = useState('qris'); // Default to QRIS
     const [paymentProof, setPaymentProof] = useState(null);
+    const [rentDuration, setRentDuration] = useState(1); // Default to 1 hour
+    const hourlyRate = 45000;
+
 
     const handleFileChange = (e) => {
         const file = e.target.files[0];
@@ -60,10 +63,10 @@ function PaymentPopup({ isOpen, onClose, onPayment, totalPayment }) {
                     {paymentProof && (
                         <img src={URL.createObjectURL(paymentProof)} alt="Payment Proof" className="mt-4 w-full h-40 object-contain" />
                     )}
-                    <button onClick={handlePayment} className="bg-blue-500 text-white p-2 rounded-md mt-6">
+                    <button onClick={handlePayment} className="bg-blue-400 hover:bg-blue-500 text-white p-2 rounded-md mt-6">
                         Confirm Payment
                     </button>
-                    <button onClick={onClose} className="bg-gray-500 text-white p-2 rounded-md ml-2 mt-6">
+                    <button onClick={onClose} className="bg-gray-500 hover:bg-gray-600  text-white p-2 rounded-md ml-2 mt-6">
                         Close
                     </button>
                 </div>

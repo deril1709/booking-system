@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import FieldItem from './FieldItem';
 import FormLapangan from './FormLapangan';
+import { Plus } from 'lucide-react';
 
 function FieldList() {
     // Dummy field data
@@ -40,6 +41,10 @@ function FieldList() {
                     ))}
                 </div>
             )}
+
+            <button className="bg-blue-400 text-white p-2 rounded-md flex text-center justify-center gap-2 w-full">
+                <Plus /> Tambah Lapangan
+            </button>
         </div>
     );
 }
