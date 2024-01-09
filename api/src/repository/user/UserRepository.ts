@@ -5,7 +5,10 @@ export abstract class UserRepository {
     throw new Error("Method not implemented.");
   }
 
-  async getUserByUsername(username: string): Promise<UserEntity | null> {
+  async getUserByUsername(
+    username: string,
+    isOrderPopulated: boolean = false
+  ): Promise<UserEntity | null> {
     throw new Error("Method not implemented.");
   }
 }

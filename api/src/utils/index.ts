@@ -1,5 +1,7 @@
 import { Response } from "express";
 import { ITokenPayload } from "./interfaces/ITokenPayload";
+import { IOrderSchema } from "./interfaces/schema/OrderSchema";
+import { OrderEntity } from "../entities/order/OrderEntity";
 
 export const createResponse = (
   status: string,
@@ -69,4 +71,25 @@ export const constants = {
 export enum RESPONSE_MESSAGE {
   SUCCESS = "success",
   FAILED = "failed",
+}
+
+export enum BOOKING_STATUS {
+  PENDING = "PENDING",
+  FAILED = "FAILED",
+  SUCCESS = "SUCCESS",
+}
+
+export function orderSchemaToOrderEntity(orderSchema: IOrderSchema) {
+  const order = new OrderEntity(
+    orderSchema.user.toString(),
+    orderSchema.field.toString(),
+    orderSchema.bookDate,
+    orderSchema.duration,
+    orderSchema.status,
+    orderSchema.paymentProof
+  );
+  order.createdAt = orderSchema.createdAt;
+  order.updatedAt = orderSchema.updatedAt;
+
+  return order;
 }

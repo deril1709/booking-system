@@ -1,3 +1,5 @@
+import { OrderEntity } from "../order/OrderEntity";
+
 export class FieldEntity {
   private _title!: string;
   private _address!: string;
@@ -8,6 +10,7 @@ export class FieldEntity {
   private _closingTime!: number;
   private _id!: string;
   private _priceHourly!: number;
+  private _orders?: OrderEntity[] | undefined;
 
   constructor(
     title: string,
@@ -25,6 +28,14 @@ export class FieldEntity {
     this.description = description;
     this.extraInfo = extraInfo;
     this.priceHourly = priceHourly;
+  }
+
+  public get orders(): OrderEntity[] | undefined {
+    return this._orders;
+  }
+
+  public set orders(value: OrderEntity[] | undefined) {
+    this._orders = value;
   }
 
   public get priceHourly(): number {

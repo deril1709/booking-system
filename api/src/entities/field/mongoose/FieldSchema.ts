@@ -1,4 +1,5 @@
 import { Schema, model } from "mongoose";
+import { IFieldSchema } from "../../../utils/interfaces/schema/FieldSchema";
 
 const FieldSchema = new Schema({
   title: { type: String, required: true },
@@ -9,6 +10,7 @@ const FieldSchema = new Schema({
   openingTime: { type: Number, required: true },
   closingTime: { type: Number, required: true },
   priceHourly: { type: Number, required: true },
+  orders: [{ type: Schema.Types.ObjectId, ref: "Order" }],
 });
 
-export const FieldModel = model("Field", FieldSchema);
+export const FieldModel = model<IFieldSchema>("Field", FieldSchema);

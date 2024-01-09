@@ -1,7 +1,9 @@
 import { BadRequestError } from "../../../Exceptions/http/BadRequestError";
+import { OrderEntity } from "../../../entities/order/OrderEntity";
 import { UserEntity } from "../../../entities/user/UserEntity";
 import { UserModel } from "../../../entities/user/mongoose/UserSchema";
-import { ERRORCODE, ROLE } from "../../../utils";
+import { ERRORCODE, ROLE, orderSchemaToOrderEntity } from "../../../utils";
+import { IOrderSchema } from "../../../utils/interfaces/schema/OrderSchema";
 import { UserRepository } from "../UserRepository";
 
 export class UserRepositoryImpl extends UserRepository {
@@ -23,21 +25,33 @@ export class UserRepositoryImpl extends UserRepository {
     }
   }
 
-  async getUserByUsername(username: string) {
-    const userQuery = await UserModel.findOne({
+  async getUserByUsername(username: string, isOrderPopulated: boolean = false) {
+    const query = UserModel.findOne({
       email: username,
-    }).exec();
+    });
+    let userQuery;
+    let orders: OrderEntity[] = [];
+
+    if (isOrderPopulated) {
+      userQuery = await query.populate<{ orders: IOrderSchema[] }>("orders");
+      orders = userQuery?.orders?.map(orderSchemaToOrderEntity) ?? [];
+    } else {
+      userQuery = await query;
+    }
 
     if (!userQuery) {
       return null;
     }
 
-    return new UserEntity(
-      userQuery.name_ ?? "",
+    const user = new UserEntity(
+      userQuery.name ?? "",
       userQuery.email ?? "",
       userQuery.role ?? ROLE.RENTEE,
       userQuery.password ?? "",
       userQuery.id
     );
+    user.orders = orders;
+
+    return user;
   }
 }

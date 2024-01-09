@@ -1,4 +1,5 @@
 import { ROLE } from "../../utils";
+import { OrderEntity } from "../order/OrderEntity";
 
 export class UserEntity {
   private _name!: string;
@@ -6,6 +7,7 @@ export class UserEntity {
   private _password?: string | undefined;
   private _role!: ROLE | string;
   private _id?: string | undefined;
+  private _orders?: OrderEntity[] | undefined;
 
   constructor(
     name: string,
@@ -19,6 +21,14 @@ export class UserEntity {
     this.email = email;
     this.password = password;
     this.role = role;
+  }
+
+  public get orders(): OrderEntity[] | undefined {
+    return this._orders;
+  }
+
+  public set orders(value: OrderEntity[] | undefined) {
+    this._orders = value;
   }
 
   public get name(): string {

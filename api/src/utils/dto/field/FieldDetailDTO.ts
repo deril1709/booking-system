@@ -1,3 +1,4 @@
+import { BOOKING_STATUS } from "../..";
 import { FieldEntity } from "../../../entities/field/FieldEntity";
 
 interface IFieldDetailDTO {
@@ -10,6 +11,14 @@ interface IFieldDetailDTO {
   extraInfo?: string;
   address: string;
   id: string;
+  orders: {
+    id: string;
+    bookDate: number;
+    duration: number;
+    status: BOOKING_STATUS;
+    createdAt: Date | string;
+    updatedAt: Date | string;
+  }[];
 }
 
 export const fieldDetailDTO = (field: FieldEntity) => {
@@ -23,5 +32,13 @@ export const fieldDetailDTO = (field: FieldEntity) => {
     id: field.id,
     openingTime: field.openingTime,
     extraInfo: field.extraInfo,
+    orders: field.orders?.map((order) => ({
+      bookDate: order.bookDate,
+      createdAt: order.createdAt,
+      duration: order.duration,
+      id: order.id,
+      status: order.status,
+      updatedAt: order.updatedAt,
+    })),
   } as IFieldDetailDTO;
 };
