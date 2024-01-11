@@ -3,10 +3,40 @@ import { FieldEntity } from "../../../entities/field/FieldEntity";
 import { FieldModel } from "../../../entities/field/mongoose/FieldSchema";
 import { FieldRepository } from "../FieldRepository";
 import { IOrderSchema } from "../../../utils/interfaces/schema/OrderSchema";
-import { orderSchemaToOrderEntity } from "../../../utils";
+import { ERRORCODE, orderSchemaToOrderEntity } from "../../../utils";
 import { OrderEntity } from "../../../entities/order/OrderEntity";
+import { BadRequestError } from "../../../Exceptions/http/BadRequestError";
+import { IPostFieldPayload } from "../../../utils/interfaces/request/IPostFieldPayload";
+import { IPutFieldPayload } from "../../../utils/interfaces/request/IPutFieldPayload";
 
 export class FieldRepositoryImpl extends FieldRepository {
+  async updateFieldById(id: string, payload: IPutFieldPayload): Promise<void> {
+    try {
+      await FieldModel.findByIdAndUpdate(id, {
+        $set: {
+          address: payload.address,
+          closingTime: payload.closingTime,
+          description: payload.description,
+          extraInfo: payload.extraInfo,
+          openingTime: payload.openingTime,
+          photos: payload.photos,
+          title: payload.title,
+          priceHourly: payload.priceHourly,
+        },
+      });
+    } catch (error: any) {
+      throw new BadRequestError(ERRORCODE.BAD_REQUEST_ERROR, error.toString());
+    }
+  }
+
+  async deleteById(id: string): Promise<void> {
+    try {
+      await FieldModel.findByIdAndDelete(id);
+    } catch (error: any) {
+      throw new BadRequestError(ERRORCODE.BAD_REQUEST_ERROR, error.toString());
+    }
+  }
+
   async getFieldById(
     id: string,
     isOrderPopulated: boolean = false

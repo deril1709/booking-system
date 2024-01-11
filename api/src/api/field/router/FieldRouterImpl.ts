@@ -29,7 +29,17 @@ export class FieldRouterImpl extends BaseRouter {
       .get(this.handler.getFields);
 
     // * get one field by id
-    this.router.route(this.path + "/:id").get(this.handler.getField);
+    this.router
+      .route(this.path + "/:id")
+      .get(this.handler.getField)
+      .delete(
+        this.authorizationMiddlware.authorize([ROLE.ADMIN]),
+        this.handler.deleteField
+      )
+      .put(
+        this.authorizationMiddlware.authorize([ROLE.ADMIN]),
+        this.handler.putField
+      );
 
     return this.router;
   }

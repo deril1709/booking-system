@@ -44,6 +44,22 @@ export class UserRouterImpl extends BaseRouter {
     // * register an admin
     this.router.route(this.path + "/admins").post(this.handler.postUserAdmin);
 
+    // * get users master
+    this.router
+      .route(this.path + "/master")
+      .get(
+        this.authorizationMiddlware.authorize([ROLE.ADMIN]),
+        this.handler.getUsersMaster
+      );
+
+    // * delete user by id
+    this.router
+      .route(this.path + "/:userId/master")
+      .delete(
+        this.authorizationMiddlware.authorize([ROLE.ADMIN]),
+        this.handler.deleteUserMaster
+      );
+
     return this.router;
   }
 }

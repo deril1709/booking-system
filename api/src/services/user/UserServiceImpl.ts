@@ -3,7 +3,7 @@ import { HashAbstract } from "../../config/crypto/HashAbstract";
 import { UserEntity } from "../../entities/user/UserEntity";
 import { UserRepository } from "../../repository/user/UserRepository";
 import { ERRORCODE, ROLE } from "../../utils";
-import { IPostUserPayload } from "../../utils/interfaces/IPostUserPayload";
+import { IPostUserPayload } from "../../utils/interfaces/request/IPostUserPayload";
 import { UserService } from "./UserService";
 
 export class UserServiceImpl extends UserService {
@@ -15,6 +15,25 @@ export class UserServiceImpl extends UserService {
   ) {
     super(repository);
     this.hashImpl = hashImpl;
+  }
+
+  async deleteUserById(userId: string): Promise<void> {
+    const user = this.userRepository.getUserById(userId);
+
+    if (!user) {
+      throw new NotFoundError(
+        ERRORCODE.USER_NOT_FOUND_ERROR,
+        "user's not found"
+      );
+    }
+
+    await this.userRepository.deleteUserById(userId);
+  }
+
+  async getAllUsers(): Promise<UserEntity[]> {
+    const users = this.userRepository.getAllUsers();
+
+    return users;
   }
 
   async addNewUserAdmin(payload: IPostUserPayload): Promise<void> {

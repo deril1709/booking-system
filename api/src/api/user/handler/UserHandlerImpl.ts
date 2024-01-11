@@ -6,7 +6,7 @@ import {
   getTokenPayload,
 } from "../../../utils";
 import { AuthService } from "../../../services/auth/AuthService";
-import { IPostUserPayload } from "../../../utils/interfaces/IPostUserPayload";
+import { IPostUserPayload } from "../../../utils/interfaces/request/IPostUserPayload";
 import { SchemaValidator } from "../../../validator/SchemaValidator";
 import { UserPostPayloadSchema } from "../../../validator/user/Joi/UserPostPayloadSchema";
 import { UserService } from "../../../services/user/UserService";
@@ -28,6 +28,40 @@ export class UserHandlerImpl extends UserHandler {
     this.authService = service.authService;
     this.userService = service.userService;
     this.schemaValidator = schemaValidator;
+  }
+
+  async deleteUserMaster(
+    req: Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>,
+    res: Response<any, Record<string, any>>,
+    next: NextFunction
+  ): Promise<any> {
+    const { userId } = req.params;
+
+    try {
+      await this.userService.deleteUserById(userId);
+
+      return res
+        .status(200)
+        .json(
+          createResponse(RESPONSE_MESSAGE.SUCCESS, "successfully delete user")
+        );
+    } catch (error) {
+      return next(error);
+    }
+  }
+
+  async getUsersMaster(
+    req: Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>,
+    res: Response<any, Record<string, any>>,
+    next: NextFunction
+  ): Promise<any> {
+    const users = await this.userService.getAllUsers();
+
+    return res
+      .status(200)
+      .json(
+        createResponse(RESPONSE_MESSAGE.SUCCESS, users.map(userCredentialDTO))
+      );
   }
 
   async postUserAdmin(
@@ -95,10 +129,17 @@ export class UserHandlerImpl extends UserHandler {
   }
   async getUserCredential(req: Request, res: Response, next: NextFunction) {
     const tokenPayload: ITokenPayload = getTokenPayload(res);
-    const user = await this.userService.getUserByUsername(tokenPayload.email);
 
-    return res
-      .status(200)
-      .json(createResponse(RESPONSE_MESSAGE.SUCCESS, userCredentialDTO(user)));
+    try {
+      const user = await this.userService.getUserByUsername(tokenPayload.email);
+
+      return res
+        .status(200)
+        .json(
+          createResponse(RESPONSE_MESSAGE.SUCCESS, userCredentialDTO(user))
+        );
+    } catch (error) {
+      return next(error);
+    }
   }
 }

@@ -2,6 +2,8 @@ import { Response } from "express";
 import { ITokenPayload } from "./interfaces/ITokenPayload";
 import { IOrderSchema } from "./interfaces/schema/OrderSchema";
 import { OrderEntity } from "../entities/order/OrderEntity";
+import { UserEntity } from "../entities/user/UserEntity";
+import { FieldEntity } from "../entities/field/FieldEntity";
 
 export const createResponse = (
   status: string,
@@ -81,8 +83,12 @@ export enum BOOKING_STATUS {
 
 export function orderSchemaToOrderEntity(orderSchema: IOrderSchema) {
   const order = new OrderEntity(
-    orderSchema.user.toString(),
-    orderSchema.field.toString(),
+    orderSchema.user instanceof UserEntity
+      ? orderSchema.user.id ?? ""
+      : orderSchema.user.toString() ?? "",
+    orderSchema.field instanceof FieldEntity
+      ? orderSchema.field.id ?? ""
+      : orderSchema.field.toString() ?? "",
     orderSchema.bookDate,
     orderSchema.duration,
     orderSchema.status,

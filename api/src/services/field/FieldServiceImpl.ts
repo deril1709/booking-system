@@ -1,10 +1,31 @@
 import { NotFoundError } from "../../Exceptions/http/NotFoundError";
 import { FieldEntity } from "../../entities/field/FieldEntity";
 import { ERRORCODE } from "../../utils";
-import { IPostFieldPayload } from "../../utils/interfaces/IPostFieldPayload";
+import { IPostFieldPayload } from "../../utils/interfaces/request/IPostFieldPayload";
+import { IPutFieldPayload } from "../../utils/interfaces/request/IPutFieldPayload";
 import { FieldService } from "./FieldService";
 
 export class FieldServiceImpl extends FieldService {
+  async updateFieldById(id: string, payload: IPutFieldPayload): Promise<void> {
+    const field = await this.fieldRepository.getFieldById(id);
+
+    if (!field) {
+      throw new NotFoundError(ERRORCODE.COMMON_NOT_FOUND, "field's not found");
+    }
+
+    await this.fieldRepository.updateFieldById(id, payload);
+  }
+
+  async deleteFieldById(id: string): Promise<void> {
+    const field = await this.fieldRepository.getFieldById(id);
+
+    if (!field) {
+      throw new NotFoundError(ERRORCODE.COMMON_NOT_FOUND, "field's not found");
+    }
+
+    await this.fieldRepository.deleteById(id);
+  }
+
   async getFieldById(id: string): Promise<FieldEntity> {
     const field = await this.fieldRepository.getFieldById(id);
 

@@ -6,6 +6,23 @@ export abstract class UserHandler {
     this.getUserCredential = this.getUserCredential.bind(this);
     this.postUser = this.postUser.bind(this);
     this.postUserAdmin = this.postUserAdmin.bind(this);
+    this.getUsersMaster = this.getUsersMaster.bind(this);
+    this.deleteUserMaster = this.deleteUserMaster.bind(this);
+  }
+  async deleteUserMaster(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<any> {
+    throw new Error("Method not implemented.");
+  }
+
+  async getUsersMaster(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<any> {
+    throw new Error("Method not implemented.");
   }
 
   async postUserAdmin(
