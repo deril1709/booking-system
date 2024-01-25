@@ -13,7 +13,7 @@ import AdminDashboard from './admin/AdminDashboard'
 import AdminFormlapangan from './admin/AdminFormlapangan'
 import AdminBooking from './admin/AdminBooking'
 
-axios.defaults.baseURL = 'http://localhost:4000';
+axios.defaults.baseURL = 'http://localhost:5050';
 axios.defaults.withCredentials = true;
 
 function App() {

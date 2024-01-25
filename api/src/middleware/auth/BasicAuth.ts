@@ -40,6 +40,8 @@ export class BasicAuthMiddleware {
         );
       }
 
+      console.log(basicSchema[0], basicSchema[1]);
+      
       if (!basicSchema[1]) {
         // todo: handler for authorization credential is not provided
         return next(

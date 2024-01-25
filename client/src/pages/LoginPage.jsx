@@ -13,7 +13,13 @@ function LoginPage() {
     async function handleLoginSubmit(e) {
         e.preventDefault();
         try {
-            const { data } = await axios.post('/login', { email, password });
+            var originalString = email + ':' + password;
+            console.log(originalString)
+            var encodedString = btoa(originalString);
+            console.log(encodedString)
+            const { data } = await axios.post('/api/users/login', {}, {
+                headers: { Authorization: 'Basic ' + encodedString }
+            });
             setUser(data);
             alert('Success');
             setRedirect(true);
