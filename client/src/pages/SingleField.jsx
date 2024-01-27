@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import img from '../badminton.jpg';
 import lapangan from '../Lapangan.jpg';
 import PaymentPopup from '../components/PaymentPopup';
+
 
 
 function SingleField() {
@@ -23,7 +24,6 @@ function SingleField() {
         // Then close the payment pop-up
         handleClosePaymentPopup();
     };
-
     return (
         <div className="mt-4 bg-gray-300 -mx-8 px-8 pt-8">
             <h1 className="text-3xl">Lapangan 1</h1>
