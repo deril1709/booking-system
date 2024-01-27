@@ -16,9 +16,10 @@ function RegisterPage() {
             });
             alert('Registration successful')
         } catch (error) {
-            alert('Registration failed')
-
+            console.error('Registration error:', error);
+            alert('Registration failed. Please check the console for more details.');
         }
+
     }
 
     return (

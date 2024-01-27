@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react'
 import { Link, Navigate } from 'react-router-dom'
 import axios from 'axios';
 import { UserContext } from '../UserContext';
+import { setTokenInLocalStorage } from '../utils/index'
 
 
 function LoginPage() {
@@ -20,6 +21,8 @@ function LoginPage() {
             const { data } = await axios.post('/api/users/login', {}, {
                 headers: { Authorization: 'Basic ' + encodedString }
             });
+            setTokenInLocalStorage(data.data.accessToken);
+            console.log(data.data.accessToken)
             setUser(data);
             alert('Success');
             setRedirect(true);

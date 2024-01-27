@@ -20,6 +20,10 @@ function PaymentPopup({ isOpen, onClose, onPayment, totalPayment }) {
             // Close the pop-up
             onClose();
         }
+        else {
+            // Handle case when required fields are not filled
+            alert('Please fill in all required fields.');
+        }
     };
 
     return (
