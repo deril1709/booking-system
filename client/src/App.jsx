@@ -1,38 +1,39 @@
 import './App.css'
-import { Routes, Route } from 'react-router-dom'
-import IndexPage from './pages/IndexPage'
-import LoginPage from './pages/LoginPage'
-import Layout from './Layout'
-import RegisterPage from './pages/RegisterPage'
-import axios from 'axios'
 import { UserContextProvider } from './UserContext'
-import Lapangan from './pages/Lapangan'
-import SingleField from './pages/SingleField'
-import AccountPage from './pages/AccountPage'
-import AdminDashboard from './admin/AdminDashboard'
-import AdminFormlapangan from './admin/AdminFormlapangan'
-import AdminBooking from './admin/AdminBooking'
-
-axios.defaults.baseURL = 'http://localhost:5050';
-axios.defaults.withCredentials = true;
+import Router from './utils/router'
 
 function App() {
+
+  // const [user, setUser] = useState(null);
+  // const [ready, setReady] = useState(false);
+  // const [hasmutate, setHasmutate] = useState(false)
+  // useEffect(() => {
+  //   if (!user && getTokenFromLocalStorage()) {
+  //     axios.get('/api/users', {
+  //       headers: { Authorization: 'Bearer ' + getTokenFromLocalStorage() }
+  //     }).then(data => {
+  //       setUser(data.data.data);
+  //       console.log(data.data.data);
+  //       setReady(true);
+  //     }).catch(e => {
+  //       setReady(false)
+  //     });
+  //   }
+  // }, [])
+  // const navigate = useNavigate();
+
+  // useEffect(() => {
+  //   if (user && user.role === 'ADMIN') {
+  //     navigate('/admin');
+  //   } else if (user) {
+  //     navigate('/');
+  //   }
+  // }, [user, navigate]);
+
   return (
+
     <UserContextProvider>
-      <Routes>
-        <Route path='/' element={<Layout />}>
-          <Route index element={<IndexPage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="/list" element={<Lapangan />} />
-          <Route path="/field/:fieldId" element={<SingleField />} />
-          <Route path="/account/:subpage?" element={<AccountPage />} />
-          <Route path="/account/:subpage/:action" element={<AccountPage />} />
-        </Route>
-        <Route path='/admin' element={<AdminDashboard />} />
-        <Route path="/admin/formlapangan" element={<AdminFormlapangan />} />
-        <Route path="/admin/booking" element={<AdminBooking />} />
-      </Routes>
+      <Router />
     </UserContextProvider>
   )
 }

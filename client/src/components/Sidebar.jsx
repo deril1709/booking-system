@@ -56,7 +56,7 @@ function Sidebar() {
                 <span className={!isExpanded ? "hidden" : "block"}>Damai</span>
             </div>
             <div className="flex flex-col space-y-8 mt-12">
-                <NavLink to="/admin" style={location.pathname === '/admin' ? activeLinkStyle : null}>
+                <NavLink to="/" style={location.pathname === '/' ? activeLinkStyle : null}>
                     <div className="nav-links w-full">
                         <div className="flex gap-3 w-full p-2">
                             <LayoutDashboard />
@@ -64,7 +64,7 @@ function Sidebar() {
                         </div>
                     </div>
                 </NavLink>
-                <NavLink to={'/admin/formlapangan'} style={location.pathname === '/admin/formlapangan' ? activeLinkStyle : null}>
+                <NavLink to={'/formlapangan'} style={location.pathname === '/formlapangan' ? activeLinkStyle : null}>
                     <div className="nav-links w-full" >
                         <div className="flex space-x-3 w-full p-2" >
                             <ImagePlus />
@@ -73,7 +73,7 @@ function Sidebar() {
                     </div>
                 </NavLink>
 
-                <NavLink to={'/admin/booking'} style={location.pathname === '/admin/booking' ? activeLinkStyle : null}>
+                <NavLink to={'/booking'} style={location.pathname === '/booking' ? activeLinkStyle : null}>
                     <div className="nav-links w-full">
                         <div className="flex space-x-3 w-full p-2 rounded">
                             <List />
@@ -84,7 +84,7 @@ function Sidebar() {
                     </div>
                 </NavLink>
 
-                <NavLink to={'/admin/help'} activeClassName="active-link" exact>
+                <NavLink to={'/help'} activeClassName="active-link">
                     <div className="nav-links w-full">
                         <div className="flex space-x-3 w-full p-2 rounded  ">
                             <HelpCircleIcon />
@@ -94,7 +94,7 @@ function Sidebar() {
                         </div>
                     </div>
                 </NavLink>
-                <NavLink to={'/login'} activeClassName="active-link" exact>
+                <NavLink to={'/login'} activeClassName="active-link">
                     <div className="nav-links w-full">
                         <div className="flex space-x-3 w-full p-2 rounded  ">
                             <LogOut />
