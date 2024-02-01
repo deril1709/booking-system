@@ -15,8 +15,7 @@ export function UserContextProvider({ children }) {
                 headers: { Authorization: 'Bearer ' + getTokenFromLocalStorage() }
             }).then(data => {
                 setUser(data.data.data);
-                console.log(data.data.data);
-            }).catch(error => {
+            }).catch((error) => {
                 console.error(error);
             }).finally(() => {
                 setReady(true);

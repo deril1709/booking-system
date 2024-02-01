@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import instance from '../utils/http';
 
 function Lapangan() {
     const [fields, setFields] = useState([]);
@@ -9,12 +10,11 @@ function Lapangan() {
         const fetchData = async () => {
             try {
                 // Fetch data from the API using Axios
-                const response = await axios.get('/api/fields');
+                const response = await instance.get('/api/fields');
                 const data = response.data;
 
                 // Set the fetched data in the state
                 setFields(data.data);
-                console.log(data)
             } catch (error) {
                 console.error('Error fetching data:', error);
             }

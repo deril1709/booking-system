@@ -24,7 +24,6 @@ function LoginPage() {
                 {},
                 { headers: { Authorization: `Basic ${encodedString}` } }
             );
-
             setTokenInLocalStorage(data.data.accessToken);
             handleChange(!hasChange)
             alert('Success');

@@ -3,7 +3,7 @@ import img from '../badminton.jpg';
 import lapangan from '../Lapangan.jpg';
 import PaymentPopup from '../components/PaymentPopup';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
+import instance from '../utils/http';
 
 function SingleField() {
     const { fieldId } = useParams();
@@ -16,18 +16,14 @@ function SingleField() {
         setPaymentPopupOpen(false);
     };
     const handlePaymentConfirmation = () => {
-        // Handle the payment confirmation logic here
-        // You can implement this part according to your project's requirements
-        // For example, you can send payment details to your backend
-        // and display a confirmation message to the user
-        // Then close the payment pop-up
+
         handleClosePaymentPopup();
     };
     useEffect(() => {
         const fetchData = async () => {
             try {
                 // Fetch data from the API using Axios and the fieldId from the URL
-                const response = await axios.get(`/api/fields/${fieldId}`);
+                const response = await instance.get(`/api/fields/${fieldId}`);
                 const data = response.data;
 
                 // Set the fetched data in the state
