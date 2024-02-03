@@ -1,18 +1,71 @@
 import React from 'react'
+import { useEffect, useState } from 'react';
+import instance from '../utils/http';
+import { getTokenFromLocalStorage } from '../utils';
 
 function FormLapangan() {
+    const [title, setTitle] = useState('')
+    const [address, setAddress] = useState('')
+    const [openingTime, setOpeningTime] = useState('')
+    const [closingTime, setClosingTime] = useState('')
+    const [description, setDescription] = useState('')
+    const [extraInfo, setExtraInfo] = useState('')
+    const [priceHourly, setPrice] = useState('')
+    const [photos, setPhotos] = useState([])
+
+
+    async function submitForm(e) {
+        e.preventDefault();
+        try {
+            const response = await instance.post('/api/fields/', {
+                title,
+                address,
+                description,
+                extraInfo,
+                priceHourly,
+                openingTime,
+                closingTime,
+                photos
+            }, {
+                headers: { Authorization: 'Bearer ' + getTokenFromLocalStorage() }
+            })
+            console.log('API Response:', response.data);
+            console.log(response.data)
+            const data = response.data.data;
+            setconfig(data)
+
+        } catch (error) {
+            console.error('error: ', error);
+        }
+    };
+
     return (
         <div className="flex flex-col py-10 px-16 h-screen overflow-y-auto w-full">
-            <form>
+            <form onSubmit={submitForm}>
                 <h2 className='text-xl'>Lapangan</h2>
                 <p className='text-gray-500 text-sm'>Contoh: Lapangan A, Lapangan 1</p>
-                <input type="text" placeholder='Nama Lapangan' />
+                <input
+                    type="text"
+                    placeholder='Nama Lapangan'
+                    value={title}
+                    onChange={e => setTitle(e.target.value)}
+                />
                 <h2 className='text-xl pt-4'>Alamat</h2>
-                <input type="text" placeholder='Alamat' className='' />
+                <input
+                    type="text"
+                    placeholder='Alamat'
+                    className=''
+                    value={address}
+                    onChange={e => setAddress(e.target.value)}
+                />
                 <h2 className='text-xl pt-4'>Foto</h2>
                 <p className='text-gray-500 text-sm'>Tambahkan foto menggunakan link atau langsung upload dari device anda</p>
                 <div className='flex gap-2'>
-                    <input type="text" placeholder={'add using a link ...'} />
+                    <input type="text"
+                        placeholder={'add using a link ...'}
+                        value={photos}
+                        onChange={e => setPhotos(e.target.value)}
+                    />
                     <button className='bg-gray-200 rounded-xl px-2'>Add&nbsp;photo</button>
                 </div>
                 <div className='mt-2 grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6'>
@@ -25,22 +78,46 @@ function FormLapangan() {
                 </div>
                 <h2 className='text-xl mt-4'>Deskripsi</h2>
                 <p className='text-gray-500 text-sm'>Deskripsi mengenai lapangan yang tersedia</p>
-                <textarea />
+                <textarea
+                    placeholder='deskripsi...'
+                    value={description}
+                    onChange={e => setDescription(e.target.value)}
+                />
+                <h2 className='text-xl mt-4'>Extra Info</h2>
+                <p className='text-gray-500 text-sm'>Deskripsi mengenai lapangan yang tersedia</p>
+                <textarea
+                    placeholder='extrainfo...'
+                    value={extraInfo}
+                    onChange={e => setExtraInfo(e.target.value)}
+                />
                 <h2 className='text-xl mt-4'>Opening & Closing Time</h2>
                 <p className='text-gray-500 text-sm'>Pilih waktu opening dan closing pada lapangan</p>
                 <div className='grid sm:grid-cols-4 gap-4'>
                     <div>
                         <h3 className='mt-2 -mb-1'>Opening Time</h3>
-                        <input type="text" placeholder='09.00' />
+                        <input
+                            type="text"
+                            placeholder='09.00'
+                            value={openingTime}
+                            onChange={e => setOpeningTime(e.target.value)}
+                        />
                     </div>
                     <div>
                         <h3 className='mt-2 -mb-1'>Closing Time</h3>
-                        <input type="text" />
+                        <input
+                            type="text"
+                            value={closingTime}
+                            onChange={e => setClosingTime(e.target.value)} />
                     </div>
                 </div>
                 <div>
                     <h3 className='mt-2 -mb-1'>Harga</h3>
-                    <input type="text" placeholder='Rp 45.000' />
+                    <input
+                        type="text"
+                        placeholder='Rp 45.000'
+                        value={priceHourly}
+                        onChange={e => setPrice(e.target.value)}
+                    />
                 </div>
                 <div>
                     <button type='login' className='login my-4'>Save</button>

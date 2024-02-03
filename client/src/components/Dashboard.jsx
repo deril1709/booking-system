@@ -65,7 +65,7 @@ function Dashboard() {
                                     <th className="border p-2">ID</th>
                                     <th className="border p-2">Name</th>
                                     <th className="border p-2">Email</th>
-                                    <th className="border p-2">Password</th>
+                                    <th className="border p-2">role</th>
                                     <th className="border p-2">Actions</th>
                                 </tr>
                             </thead>
@@ -78,21 +78,21 @@ function Dashboard() {
                                             <input
                                                 type="text"
                                                 value={data.name}
-                                            // Implement onChange to edit the name
+                                                onChange={(e) => handleEditUser(data.id, e.target.value, data.email, data.password)}
                                             />
                                         </td>
                                         <td className="border p-2">
                                             <input
                                                 type="text"
                                                 value={data.email}
-                                            // Implement onChange to edit the email
+                                                onChange={(e) => handleEditUser(data.id, e.target.value, data.email, data.password)}
                                             />
                                         </td>
                                         <td className="border p-2">
                                             <input
                                                 type="text"
                                                 value={data.role}
-                                            // Implement onChange to edit the email
+                                                onChange={(e) => handleEditUser(data.id, e.target.value, data.email, data.password)}
                                             />
                                         </td>
                                         <td className="border p-2">
@@ -100,7 +100,7 @@ function Dashboard() {
                                                 onClick={() => handleEditUser(data.id, data.name, data.email, data.password)}
                                                 className="bg-red-600 text-white p-2 rounded-md"
                                             >
-                                                delete
+                                                edit
                                             </button>
                                         </td>
                                     </tr>

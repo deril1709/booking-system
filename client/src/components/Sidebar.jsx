@@ -84,7 +84,7 @@ function Sidebar() {
                     </div>
                 </NavLink>
 
-                <NavLink to={'/help'} activeClassName="active-link">
+                <NavLink to={'/help'} activeclassname="active-link">
                     <div className="nav-links w-full">
                         <div className="flex space-x-3 w-full p-2 rounded  ">
                             <HelpCircleIcon />
@@ -94,7 +94,7 @@ function Sidebar() {
                         </div>
                     </div>
                 </NavLink>
-                <NavLink to={'/login'} activeClassName="active-link">
+                <NavLink to={'/login'} activeclassname="active-link">
                     <div className="nav-links w-full">
                         <div className="flex space-x-3 w-full p-2 rounded  ">
                             <LogOut />
