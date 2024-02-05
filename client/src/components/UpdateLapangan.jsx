@@ -1,41 +1,80 @@
-import React from 'react'
-import { useEffect, useState } from 'react';
-import instance from '../utils/http';
-import { getTokenFromLocalStorage } from '../utils';
+import React, { useEffect, useState } from 'react'
+import instance from '../utils/http'
+import { getTokenFromLocalStorage } from '../utils'
 
-function FormLapangan() {
-    const [title, setTitle] = useState('')
-    const [address, setAddress] = useState('')
-    const [openingTime, setOpeningTime] = useState('')
-    const [closingTime, setClosingTime] = useState('')
-    const [description, setDescription] = useState('')
-    const [extraInfo, setExtraInfo] = useState('')
-    const [priceHourly, setPrice] = useState('')
-    const [photos, setPhotos] = useState([])
 
+
+function UpdateLapangan({ fieldId, setEditingField }) {
+    console.log('UpdateLapangan rendered with fieldId:', fieldId);
+    const [formData, setFormData] = useState({
+        title: '',
+        address: '',
+        openingTime: '',
+        closingTime: '',
+        description: '',
+        extraInfo: '',
+        priceHourly: '',
+        photos: [],
+    });
+
+    console.log(formData);
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await instance.get(`/api/fields/${fieldId}`);
+                const data = response.data;
+
+                // console.log(data);
+                // Set the fetched data in the state
+                setFormData(data.data);
+            } catch (error) {
+                console.error('Error fetching field data:', error);
+            }
+        };
+
+        fetchData();
+    }, [fieldId]);
+
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        console.log(name);
+        console.log(value);
+        setFormData((prevData) => ({
+            ...prevData,
+            [name]: value,
+        }));
+    };
 
     async function submitForm(e) {
         e.preventDefault();
         try {
-            const response = await instance.post('/api/fields/', {
-                title,
-                address,
-                description,
-                extraInfo,
-                priceHourly,
-                openingTime,
-                closingTime,
-                photos
+            await instance.put(`/api/fields/${fieldId}`, {
+                title: formData.title,
+                address: formData.address,
+                openingTime: formData.openingTime,
+                closingTime: formData.closingTime,
+                description: formData.description,
+                extraInfo: formData.extraInfo,
+                priceHourly: formData.priceHourly,
+                photos: formData.photos
             }, {
-                headers: { Authorization: 'Bearer ' + getTokenFromLocalStorage() }
-            })
-            console.log('API Response:', response.data);
-            console.log(response.data)
-            const data = response.data.data;
-            setconfig(data)
+                headers: { Authorization: 'Bearer ' + getTokenFromLocalStorage() },
+            });
 
+            setFormData({
+                title: '',
+                address: '',
+                openingTime: '',
+                closingTime: '',
+                description: '',
+                extraInfo: '',
+                priceHourly: '',
+                photos: [],
+            });
+            setEditingField(null);
         } catch (error) {
-            console.error('error: ', error);
+            console.error('Error updating field:', error);
+            // Handle error, show error message to the user
         }
     };
 
@@ -47,24 +86,24 @@ function FormLapangan() {
                 <input
                     type="text"
                     placeholder='Nama Lapangan'
-                    value={title}
-                    onChange={e => setTitle(e.target.value)}
+                    name='title'
+                    value={formData.title}
+                    onChange={handleInputChange}
                 />
                 <h2 className='text-xl pt-4'>Alamat</h2>
                 <input
                     type="text"
-                    placeholder='Alamat'
-                    className=''
-                    value={address}
-                    onChange={e => setAddress(e.target.value)}
+                    placeholder='address'
+                    value={formData.address}
+                    onChange={handleInputChange}
                 />
                 <h2 className='text-xl pt-4'>Foto</h2>
                 <p className='text-gray-500 text-sm'>Tambahkan foto menggunakan link atau langsung upload dari device anda</p>
                 <div className='flex gap-2'>
                     <input type="text"
                         placeholder={'add using a link ...'}
-                        value={photos}
-                        onChange={e => setPhotos(e.target.value)}
+                        value={formData.photos}
+                        onChange={handleInputChange}
                     />
                     <button className='bg-gray-200 rounded-xl px-2'>Add&nbsp;photo</button>
                 </div>
@@ -82,15 +121,17 @@ function FormLapangan() {
                 <p className='text-gray-500 text-sm'>Deskripsi mengenai lapangan yang tersedia</p>
                 <textarea
                     placeholder='deskripsi...'
-                    value={description}
-                    onChange={e => setDescription(e.target.value)}
+                    value={formData.description}
+                    onChange={handleInputChange}
+                    name='description'
                 />
                 <h2 className='text-xl mt-4'>Extra Info</h2>
                 <p className='text-gray-500 text-sm'>Deskripsi mengenai lapangan yang tersedia</p>
                 <textarea
                     placeholder='extrainfo...'
-                    value={extraInfo}
-                    onChange={e => setExtraInfo(e.target.value)}
+                    value={formData.extraInfo}
+                    onChange={handleInputChange}
+                    name='extraInfo'
                 />
                 <h2 className='text-xl mt-4'>Opening & Closing Time</h2>
                 <p className='text-gray-500 text-sm'>Pilih waktu opening dan closing pada lapangan</p>
@@ -100,8 +141,9 @@ function FormLapangan() {
                         <input
                             type="text"
                             placeholder='09.00'
-                            value={openingTime}
-                            onChange={e => setOpeningTime(e.target.value)}
+                            value={formData.openingTime}
+                            onChange={handleInputChange}
+                            name='openingTime'
                         />
                     </div>
                     <div>
@@ -109,8 +151,9 @@ function FormLapangan() {
                         <input
                             type="text"
                             placeholder='22.00'
-                            value={closingTime}
-                            onChange={e => setClosingTime(e.target.value)} />
+                            name='closingTime'
+                            value={formData.closingTime}
+                            onChange={handleInputChange} />
                     </div>
                 </div>
                 <div>
@@ -118,8 +161,9 @@ function FormLapangan() {
                     <input
                         type="text"
                         placeholder='Rp 45.000'
-                        value={priceHourly}
-                        onChange={e => setPrice(e.target.value)}
+                        name='priceHourly'
+                        value={formData.priceHourly}
+                        onChange={handleInputChange}
                     />
                 </div>
                 <div>
@@ -130,4 +174,4 @@ function FormLapangan() {
     )
 }
 
-export default FormLapangan
+export default UpdateLapangan

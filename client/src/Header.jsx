@@ -24,7 +24,7 @@ function Header() {
                         </svg>
                     </button>
                 </div>
-                <Link to={user ? '/account' : '/login'} className='flex items-center border border-blue-400 gap-2 rounded-full py-2 px-2'>
+                <Link to={user ? '/account' : '/login'} className='flex items-center border border-gray-300 shadow-sm shadow-blue-500  gap-2 rounded-full py-2 px-2'>
                     {!!user && (
                         <div className='rounded-full flex gap-2'>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">

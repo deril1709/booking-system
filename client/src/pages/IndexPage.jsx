@@ -13,8 +13,8 @@ function IndexPage() {
                 />
             </div>
             <div className="w-full md:w-1/2 text-center space-y-4">
-                <h1 className="text-5xl font-poppins text-blue-400">DAMAI BOOKING APP</h1>
-                <p className="text-lg text-gray-700">
+                <h1 className="text-5xl font-montserrat italic text-blue-400">DAMAI BOOKING APP</h1>
+                <p className="text-lg font-montserrat font-thin text-black">
                     Mudahkan pengalaman bermain anda dengan mulai memesan lapangan <br />
                     melalui aplikasi pembookingan lapangan Badminton.
                 </p>
