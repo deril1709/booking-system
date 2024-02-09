@@ -100,7 +100,7 @@ function Dashboard() {
                                                 onClick={() => handleEditUser(data.id, data.name, data.email, data.password)}
                                                 className="bg-red-600 text-white p-2 rounded-md"
                                             >
-                                                edit
+                                                Edit
                                             </button>
                                         </td>
                                     </tr>

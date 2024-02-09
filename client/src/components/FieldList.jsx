@@ -32,8 +32,6 @@ function FieldList() {
                 console.error('Error fetching data:', error);
             }
         };
-
-        // Call the fetchData function
         fetchData();
     }, []);
 
@@ -88,7 +86,8 @@ function FieldList() {
                         ))}
                     </div>
                     <div>
-                        <button className="bg-blue-400 text-white p-2 rounded-md flex text-center justify-center gap-2 w-full">
+                        <button className="bg-blue-400 text-white p-2 rounded-md flex text-center justify-center gap-2 w-full"
+                        >
                             <Plus /> Tambah Lapangan
                         </button>
                     </div>

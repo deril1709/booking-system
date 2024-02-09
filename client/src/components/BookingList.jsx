@@ -1,47 +1,43 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Plus, Trash2, Eye, Pencil, Save, X } from 'lucide-react';
+import instance from '../utils/http';
+import { getTokenFromLocalStorage } from '../utils';
 
 function AdminBookingList() {
-    // Sample data for booking list
-    const initialBookingData = [
-        {
-            id: 1,
-            userName: 'John Doe',
-            bookingDate: '2023-10-15',
-            bookingTime: '14:00',
-            duration: '2 hours',
-            status: 'Pending',
-            paymentProof: '/path/to/payment-proof-image1.jpg',
-        },
-        {
-            id: 2,
-            userName: 'Alice Smith',
-            bookingDate: '2023-10-16',
-            bookingTime: '16:30',
-            duration: '1.5 hours',
-            status: 'Success',
-            paymentProof: '/path/to/payment-proof-image2.jpg',
-        },
-        {
-            id: 3,
-            userName: 'Bob Smith',
-            bookingDate: '2023-10-16',
-            bookingTime: '09:30',
-            duration: '1.5 hours',
-            status: 'Success',
-            paymentProof: '/path/to/payment-proof-image3.jpg',
-        },
-        // Add more booking data as needed
-    ];
-
-    const [bookingData, setBookingData] = useState(initialBookingData);
+    const [bookingData, setBookingData] = useState([]);
     const [viewedPaymentProof, setViewedPaymentProof] = useState(null);
     const [editingBooking, setEditingBooking] = useState(null);
 
-    const handleDeleteBooking = (id) => {
-        // Implement the delete functionality here
-        const updatedBookingData = bookingData.filter((booking) => booking.id !== id);
-        setBookingData(updatedBookingData);
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                // Fetch data from the API using Axios (make sure to replace 'instance' with your Axios instance)
+                const response = await instance.get('/api/orders', {
+                    headers: {
+                        Authorization: 'Bearer ' + getTokenFromLocalStorage(),
+                    },
+                });
+                const data = response.data;
+
+                // Set the fetched data in the state
+                setBookingData(data.data);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        };
+        fetchData();
+    }, []);
+
+    const handleDeleteBooking = async (bookingId) => {
+        try {
+            await instance.delete(`/api/orders/${bookingId}`, {
+                headers: { Authorization: 'Bearer ' + getTokenFromLocalStorage() }
+            });
+            const updatedBookingData = bookingData.filter((booking) => booking.id === bookingId)
+            setBookingData(updatedBookingData)
+        } catch (error) {
+            console.log('Error deleting booking:', error);
+        }
     };
 
     const handleViewPaymentProof = (paymentProof) => {
@@ -68,9 +64,7 @@ function AdminBookingList() {
     };
 
     const addNewBooking = () => {
-        // Implement adding a new booking functionality here
-        // You can open a modal or navigate to a booking form.
-        // For this example, we'll add a new booking with a random ID.
+
         const newBooking = {
             id: Math.floor(Math.random() * 1000), // Generate a random ID
             userName: 'New User',
@@ -101,9 +95,9 @@ function AdminBookingList() {
                     <tbody>
                         {bookingData.map((booking) => (
                             <tr key={booking.id}>
-                                <td className="border p-2">{booking.userName}</td>
-                                <td className="border p-2">{booking.bookingDate}</td>
-                                <td className="border p-2">{booking.bookingTime}</td>
+                                <td className="border p-2">{booking.user.name}</td>
+                                <td className="border p-2">{booking.bookDate}</td>
+                                <td className="border p-2">{booking.createdAt}</td>
                                 <td className="border p-2">{booking.duration}</td>
                                 <td className="border p-2">{booking.status}</td>
                                 <td className="border p-2 justify-center text-center space-x-2">
