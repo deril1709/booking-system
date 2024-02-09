@@ -5,6 +5,7 @@ export abstract class OrderHandler {
     this.postOrder = this.postOrder.bind(this);
     this.getOrders = this.getOrders.bind(this);
     this.putOrderStatus = this.putOrderStatus.bind(this);
+    this.deleteOrderStatus = this.deleteOrderStatus.bind(this);
   }
 
   async putOrderStatus(
@@ -24,6 +25,14 @@ export abstract class OrderHandler {
   }
 
   async postOrder(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<any> {
+    throw new Error("Method not implemented.");
+  }
+
+  async deleteOrderStatus(
     req: Request,
     res: Response,
     next: NextFunction

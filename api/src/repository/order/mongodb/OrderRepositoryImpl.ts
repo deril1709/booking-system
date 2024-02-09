@@ -74,6 +74,16 @@ export class OrderRepositoryImpl extends OrderRepository {
     }
   }
 
+  async deleteOrderStatusById(orderId: string): Promise<void> {
+    try {
+      const updated = await OrderModel.findByIdAndDelete(orderId);
+    } catch (error: any) {
+      console.log(error);
+
+      throw new BadRequestError(ERRORCODE.BAD_REQUEST_ERROR, error.toString());
+    }
+  }
+
   async getAllOrders(): Promise<OrderEntity[]> {
     const query = await OrderModel.find<IOrderSchema>().populate<{
       user: IUserSchema;

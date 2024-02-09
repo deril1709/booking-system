@@ -24,6 +24,16 @@ export class OrderServiceImpl extends OrderService {
     await this.orderRepository.changeOrderStatusById(orderId, payload.status);
   }
 
+  async deleteOrderStatus(orderId: string) {
+    const order = await this.orderRepository.getOrderById(orderId);
+
+    if (!order) {
+      throw new NotFoundError(ERRORCODE.COMMON_NOT_FOUND, "order's not found");
+    }
+
+    await this.orderRepository.deleteOrderStatusById(orderId);
+  }
+
   async getAllOrders(): Promise<OrderEntity[]> {
     const orders = await this.orderRepository.getAllOrders();
 

@@ -10,6 +10,10 @@ export abstract class OrderService {
     this.orderRepository = repository.orderRepository;
   }
 
+  async deleteOrderStatus(orderId: string) {
+    throw new Error("Method not implemented.");
+  }
+
   async changeOrderStatus(orderId: string, payload: IPutOrderStatusPayload) {
     throw new Error("Method not implemented.");
   }

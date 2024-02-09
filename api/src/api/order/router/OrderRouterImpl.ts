@@ -37,6 +37,9 @@ export class OrderRouterImpl extends BaseRouter {
       .put(
         this.authorizationMiddleware.authorize([ROLE.ADMIN]),
         this.handler.putOrderStatus
+      ).delete(
+        this.authorizationMiddleware.authorize([ROLE.ADMIN]),
+        this.handler.deleteOrderStatus
       );
 
     return this.router;

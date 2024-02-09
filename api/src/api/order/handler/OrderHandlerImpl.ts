@@ -28,6 +28,29 @@ export class OrderHandlerImpl extends OrderHandler {
     this.schemaValidator = schemaValidator;
   }
 
+  async deleteOrderStatus(
+    req: Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>,
+    res: Response<any, Record<string, any>>,
+    next: NextFunction
+  ): Promise<any> {
+    const { orderId } = req.params;
+
+    try {
+      await this.orderService.deleteOrderStatus(orderId);
+
+      return res
+        .status(200)
+        .json(
+          createResponse(
+            RESPONSE_MESSAGE.SUCCESS,
+            "successfully delete order status"
+          )
+        );
+    } catch (error) {
+      return next(error);
+    }
+  }
+
   async putOrderStatus(
     req: Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>,
     res: Response<any, Record<string, any>>,
