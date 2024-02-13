@@ -4,10 +4,12 @@ import { Plus } from 'lucide-react';
 import instance from '../utils/http';
 import { getTokenFromLocalStorage } from '../utils';
 import UpdateLapangan from './UpdateLapangan';
+import FormLapangan from './FormLapangan';
 
 function FieldList() {
     const [fields, setFields] = useState([]);
     const [editingField, setEditingField] = useState(null);
+    const [newField, setNewField] = useState(null)
     const [formData, setFormData] = useState({
         title: '',
         address: '',
@@ -48,7 +50,9 @@ function FieldList() {
             photos: field.photos,
         });
     }
-
+    const handleAddNewField = () => {
+        setNewField(true);
+    };
     const handleDeleteField = async (fieldId) => {
         try {
             // Send a DELETE request to the API endpoint for deleting a field
@@ -72,6 +76,8 @@ function FieldList() {
             <h2 className="text-3xl font-semibold mb-8">List Lapangan</h2>
             {editingField ? (
                 <UpdateLapangan fieldId={editingField} setEditingField={setEditingField} />
+            ) : newField ? (
+                <FormLapangan setNewField={setNewField} />
             ) : (
                 <div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
@@ -85,8 +91,11 @@ function FieldList() {
                             />
                         ))}
                     </div>
+
                     <div>
-                        <button className="bg-blue-400 text-white p-2 rounded-md flex text-center justify-center gap-2 w-full"
+                        <button
+                            onClick={handleAddNewField}
+                            className="bg-blue-400 text-white p-2 rounded-md flex text-center justify-center gap-2 w-full"
                         >
                             <Plus /> Tambah Lapangan
                         </button>
