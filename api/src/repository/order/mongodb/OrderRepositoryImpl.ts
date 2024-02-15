@@ -93,7 +93,7 @@ export class OrderRepositoryImpl extends OrderRepository {
 
     query.forEach((q) => {
       const order = new OrderEntity(
-        q.user.id.toString() ?? "",
+        q.user?.id.toString() ?? "",
         q.field.toString(),
         q.bookDate,
         q.duration,
@@ -106,11 +106,11 @@ export class OrderRepositoryImpl extends OrderRepository {
       order.updatedAt = q.updatedAt;
 
       order.user = new UserEntity(
-        q.user.name_,
-        q.user.email,
-        q.user.role,
-        q.user.password,
-        q.user.id.toString() ?? ""
+        q.user?.name_,
+        q.user?.email,
+        q.user?.role,
+        q.user?.password,
+        q.user?.id.toString() ?? ""
       );
 
       orders.push(order);

@@ -4,7 +4,7 @@ import { Plus } from 'lucide-react';
 import instance from '../utils/http';
 import { getTokenFromLocalStorage } from '../utils';
 import UpdateLapangan from './UpdateLapangan';
-import FormLapangan from './FormLapangan';
+import FormLapangan from './FormTambahLapangan';
 
 function FieldList() {
     const [fields, setFields] = useState([]);
@@ -73,13 +73,14 @@ function FieldList() {
 
     return (
         <div className="py-10 px-6 lg:px-12 xl:px-16 h-screen overflow-y-auto">
-            <h2 className="text-3xl font-semibold mb-8">List Lapangan</h2>
             {editingField ? (
                 <UpdateLapangan fieldId={editingField} setEditingField={setEditingField} />
             ) : newField ? (
                 <FormLapangan setNewField={setNewField} />
             ) : (
+
                 <div>
+                    <h2 className="text-3xl font-semibold mb-8">List Lapangan</h2>
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
                         {fields.map((field) => (
                             <FieldItem

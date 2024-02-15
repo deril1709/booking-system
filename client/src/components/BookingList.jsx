@@ -7,7 +7,7 @@ function AdminBookingList() {
     const [bookingData, setBookingData] = useState([]);
     const [viewedPaymentProof, setViewedPaymentProof] = useState(null);
     const [editingBooking, setEditingBooking] = useState(null);
-
+    console.log(viewedPaymentProof);
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -63,20 +63,6 @@ function AdminBookingList() {
         setEditingBooking(null);
     };
 
-    const addNewBooking = () => {
-
-        const newBooking = {
-            id: Math.floor(Math.random() * 1000), // Generate a random ID
-            userName: 'New User',
-            bookingDate: '2023-10-17',
-            bookingTime: '15:30',
-            duration: '1 hour',
-            status: 'Pending',
-            paymentProof: '/path/to/payment-proof-image4.jpg',
-        };
-        setBookingData([...bookingData, newBooking]);
-    };
-
     return (
         <div className="flex flex-col py-10 px-16 h-screen overflow-y-auto w-full">
             <h2 className="text-xl font-semibold mb-6">Admin Booking List</h2>
@@ -125,17 +111,11 @@ function AdminBookingList() {
                     </tbody>
                 </table>
             </div>
-            <button
-                onClick={addNewBooking}
-                className="bg-blue-500 text-white p-2 rounded-md flex text-center justify-center gap-2"
-            >
-                <Plus /> Add New Booking
-            </button>
 
             {viewedPaymentProof && (
                 <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-60">
                     <div className="bg-white p-4 rounded-lg">
-                        <img src={viewedPaymentProof} alt="Bukti Pembayaran" />
+                        <img src='viewedPaymentProof.jpg' alt="Bukti Pembayaran" />
                         <button
                             onClick={() => setViewedPaymentProof(null)}
                             className="bg-red-500 text-white p-2 rounded-md mt-2"
@@ -202,5 +182,4 @@ function AdminBookingList() {
         </div>
     );
 }
-
 export default AdminBookingList;

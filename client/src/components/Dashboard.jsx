@@ -50,7 +50,7 @@ function Dashboard() {
                     </div>
                     <div className="flex flex-col rounded-md border-blue-400 border w-[400px] h-[150px] p-8 justify-center">
                         <h2 className='text-4xl text-center'>User</h2>
-                        <p className="text-gray-500 mt-3 text-center text-2xl">3</p>
+                        <p className="text-gray-500 mt-3 text-center text-2xl">{userData.length}</p>
                     </div>
                 </div>
             </div>

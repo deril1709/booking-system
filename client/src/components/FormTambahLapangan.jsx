@@ -1,9 +1,9 @@
 import React from 'react'
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import instance from '../utils/http';
 import { getTokenFromLocalStorage } from '../utils';
 
-function FormLapangan() {
+function FormTambahLapangan() {
     const [title, setTitle] = useState('')
     const [address, setAddress] = useState('')
     const [openingTime, setOpeningTime] = useState('')
@@ -32,7 +32,6 @@ function FormLapangan() {
             console.log('API Response:', response.data);
             console.log(response.data)
             const data = response.data.data;
-            setconfig(data)
 
         } catch (error) {
             console.error('error: ', error);
@@ -41,6 +40,9 @@ function FormLapangan() {
 
     return (
         <div className="flex flex-col py-10 px-16 h-screen overflow-y-auto w-full">
+            <div>
+                <h1 className='text-3xl font-semibold mb-8'>Tambah Lapangan</h1>
+            </div>
             <form onSubmit={submitForm}>
                 <h2 className='text-xl'>Lapangan</h2>
                 <p className='text-gray-500 text-sm'>Contoh: Lapangan A, Lapangan 1</p>
@@ -130,4 +132,4 @@ function FormLapangan() {
     )
 }
 
-export default FormLapangan
+export default FormTambahLapangan
