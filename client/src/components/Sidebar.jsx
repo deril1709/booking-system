@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 
 import Logo from "../assets/badminton.svg";
 import {
@@ -11,6 +11,7 @@ import {
 import { motion } from "framer-motion";
 import RightArrowIcon from "./../assets/icons/rightArrow.svg";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import { UserContext } from "../UserContext";
 
 const variants = {
     expanded: { width: "20%" },
@@ -26,11 +27,13 @@ function Sidebar() {
     };
     const location = useLocation();
     const navigate = useNavigate();
+    const { setUser } = useContext(UserContext)
     const logout = () => {
         // Implement your token removal logic here
         // For example, clear the token from localStorage
         localStorage.removeItem('token');
         // Redirect to the login page
+        setUser(null);
         navigate('/login');
     };
 

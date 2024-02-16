@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { UserContext } from '../UserContext'
-import { Navigate, useParams } from 'react-router-dom';
+import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useState } from 'react';
@@ -13,11 +13,13 @@ function AccountPage() {
     if (subpage === undefined) {
         subpage = 'profile';
     }
+    const navigate = useNavigate();
 
     async function logout() {
-        await axios.post('/logout');
+        localStorage.removeItem('token');
+        // Redirect to the login page
         setUser(null);
-        setRedirect('/');
+        navigate('/login');
     }
 
     if (!ready) {

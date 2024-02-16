@@ -9,6 +9,7 @@ export function UserContextProvider({ children }) {
     const [user, setUser] = useState(null);
     const [ready, setReady] = useState(false);
     const [hasChange, setHasChange] = useState(false);
+    console.log(user);
     useEffect(() => {
         if (!user) {
             instance.get('/api/users', {
