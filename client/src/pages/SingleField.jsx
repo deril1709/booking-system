@@ -9,6 +9,8 @@ function SingleField() {
     const { fieldId } = useParams();
     const [fieldData, setFieldData] = useState({});
     const [isPaymentPopupOpen, setPaymentPopupOpen] = useState(false);
+    const [bookDate, setBookDate] = useState(0);
+    const [duration, setDuration] = useState(0);
     const handleOpenPaymentPopup = () => {
         setPaymentPopupOpen(true);
     };
@@ -78,7 +80,7 @@ function SingleField() {
                         <div className="flex">
                             <div className=' bg-white py-3 px-4'>
                                 <label>Pilih Tanggal</label>
-                                <input type="date" />
+                                <input type="date" onChange={(e) => setBookDate(e.target.value.getTime())} />
                             </div>
                             <div className=' bg-white py-3 px-4 border-t'>
                                 <label>Pilih Jam</label>
@@ -86,12 +88,12 @@ function SingleField() {
                             </div>
                             <div className=' bg-white py-3 px-4 border-t'>
                                 <label>Durasi</label>
-                                <input type="number" placeholder="1 jam" />
+                                <input type="number" placeholder="1 jam" onChange={(e) => setDuration(e.target.value)} />
                             </div>
                         </div>
                         <button onClick={handleOpenPaymentPopup} className='login my-4 hover:bg-blue-600'>Booking Lapangan</button>
                         {/* Payment Pop-up */}
-                        <PaymentPopup isOpen={isPaymentPopupOpen} onClose={handleClosePaymentPopup} onPayment={handlePaymentConfirmation} />
+                        <PaymentPopup data={{ fieldId, bookDate, duration }} isOpen={isPaymentPopupOpen} onClose={handleClosePaymentPopup} onPayment={handlePaymentConfirmation} />
                     </div>
                     <div></div>
                 </div>

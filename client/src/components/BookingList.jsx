@@ -11,7 +11,7 @@ function AdminBookingList() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                // Fetch data from the API using Axios (make sure to replace 'instance' with your Axios instance)
+
                 const response = await instance.get('/api/orders', {
                     headers: {
                         Authorization: 'Bearer ' + getTokenFromLocalStorage(),
@@ -93,12 +93,14 @@ function AdminBookingList() {
                                     >
                                         <Pencil />
                                     </button>
-                                    <button
-                                        onClick={() => handleViewPaymentProof(booking.paymentProof)}
-                                        className="bg-blue-500 text-white p-2 rounded-md"
-                                    >
-                                        <Eye />
-                                    </button>
+                                    <a href={`http://localhost:5050/api/uploaded-file/${booking.media}`} target='_blank'>
+                                        <button
+                                            onClick={() => handleViewPaymentProof(booking.paymentProof)}
+                                            className="bg-blue-500 text-white p-2 rounded-md"
+                                        >
+                                            <Eye />
+                                        </button>
+                                    </a>
                                     <button
                                         onClick={() => handleDeleteBooking(booking.id)}
                                         className="bg-red-500 text-white p-2 rounded-md"

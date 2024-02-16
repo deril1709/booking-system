@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 import Logo from "../assets/badminton.svg";
 import {
     List,
@@ -9,7 +10,7 @@ import {
 } from "lucide-react";
 import { motion } from "framer-motion";
 import RightArrowIcon from "./../assets/icons/rightArrow.svg";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 
 const variants = {
     expanded: { width: "20%" },
@@ -22,9 +23,16 @@ function Sidebar() {
         backgroundColor: '#60A5FA',
         color: 'white',
         borderRadius: '2xl',
-
     };
     const location = useLocation();
+    const navigate = useNavigate();
+    const logout = () => {
+        // Implement your token removal logic here
+        // For example, clear the token from localStorage
+        localStorage.removeItem('token');
+        // Redirect to the login page
+        navigate('/login');
+    };
 
 
 
@@ -95,10 +103,12 @@ function Sidebar() {
                     </div>
                 </NavLink>
                 <NavLink to={'/login'} activeclassname="active-link">
-                    <div className="nav-links w-full">
+                    <div className="nav-links w-full" onClick={logout}>
                         <div className="flex space-x-3 w-full p-2 rounded  ">
                             <LogOut />
-                            <span className={!isExpanded ? "hidden" : "block"}>
+                            <span
+                                className={!isExpanded ? "hidden" : "block"}
+                            >
                                 LogOut
                             </span>
                         </div>

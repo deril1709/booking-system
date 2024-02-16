@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import instance from '../utils/http'
+import { getTokenFromLocalStorage } from '../utils'
 
-function PaymentPopup({ isOpen, onClose, onPayment, totalPayment }) {
+function PaymentPopup({ isOpen, onClose, onPayment, totalPayment, data }) {
     const [paymentMethod, setPaymentMethod] = useState('qris'); // Default to QRIS
     const [paymentProof, setPaymentProof] = useState(null);
     const [rentDuration, setRentDuration] = useState(1); // Default to 1 hour
@@ -12,8 +14,42 @@ function PaymentPopup({ isOpen, onClose, onPayment, totalPayment }) {
         setPaymentProof(file);
     };
 
-    const handlePayment = () => {
+    const handlePayment = async () => {
         if (paymentMethod && paymentProof) {
+            // Create FormData object
+            const formData = new FormData();
+            formData.append('file', paymentProof);
+
+            try {
+                const response = await instance.post(`/api/files/`, formData, {
+                    headers: { Authorization: 'Bearer ' + getTokenFromLocalStorage("token"), 'Content-Type': 'multipart/form-data' },
+                });
+
+                const media = response.data.data
+
+                await instance.post(`/api/orders/`, {
+                    bookDate: data.bookDate,
+                    duration: data.duration,
+                    paymentProof: media,
+                    fieldId: data.fieldId
+                }, {
+                    headers: { Authorization: 'Bearer ' + getTokenFromLocalStorage("token") },
+                });
+
+            } catch (error) {
+                console.error('Error updating field:', error);
+                // Handle error, show error message to the user
+            }
+
+            // TODO: Perform actions with formData, such as sending it to a server using fetch or axios
+            // For example:
+            // fetch('/upload-endpoint', {
+            //   method: 'POST',
+            //   body: formData,
+            // })
+            // .then(response => response.json())
+            // .then(data => console.log(data))
+            // .catch(error => console.error('Error:', error));
             // Perform the payment action here with the selected payment method, total payment amount, and the uploaded payment proof
             // You can implement this part according to your project's requirements
 
