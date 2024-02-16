@@ -79,13 +79,13 @@ function SingleField() {
                         </div>
                         <div className="flex">
                             <div className=' bg-white py-3 px-4'>
-                                <label>Pilih Tanggal</label>
-                                <input type="date" onChange={(e) => setBookDate(e.target.value.getTime())} />
+                                <label>Pilih Tanggal dan jam</label>
+                                <input type="datetime-local" onChange={(e) => setBookDate(e.target.value.getTime())} />
                             </div>
-                            <div className=' bg-white py-3 px-4 border-t'>
+                            {/* <div className=' bg-white py-3 px-4 border-t'>
                                 <label>Pilih Jam</label>
                                 <input type="time" />
-                            </div>
+                            </div> */}
                             <div className=' bg-white py-3 px-4 border-t'>
                                 <label>Durasi</label>
                                 <input type="number" placeholder="1 jam" onChange={(e) => setDuration(e.target.value)} />

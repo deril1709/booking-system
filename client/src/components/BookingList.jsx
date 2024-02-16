@@ -157,12 +157,16 @@ function AdminBookingList() {
                                 value={editingBooking.duration}
                                 onChange={(e) => setEditingBooking({ ...editingBooking, duration: e.target.value })}
                             />
-                            <label>Status</label>
-                            <input
-                                type="text"
+                            <label >Status</label>
+                            <select
+                                className='block text-sm font-medium '
+                                name="languages"
+                                id="lang"
                                 value={editingBooking.status}
-                                onChange={(e) => setEditingBooking({ ...editingBooking, status: e.target.value })}
-                            />
+                                onChange={(e) => setEditingBooking({ ...editingBooking, status: e.target.value })}>
+                                <option value="SUCCESS" >SUCCESS</option>
+                                <option value="PENDING" >PENDING</option>
+                            </select>
                             <div className="mt-4">
                                 <button
                                     onClick={handleSaveBooking}
