@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import instance from '../utils/http';
 import { getTokenFromLocalStorage } from '../utils';
+import { User } from 'lucide-react';
 
 function Dashboard() {
     const [userData, setUserData] = useState([])
@@ -22,20 +23,29 @@ function Dashboard() {
         fetchData();
     }, []);
 
-
-
-
-
-    const handleEditUser = (id, name, email, password) => {
-        const updatedUserData = userData.data.map((data) => {
-            if (data.id === id) {
-                return { id, name, email, password };
-            }
-            return { ...data, name, email, password };
-        });
-
-        setUserData(updatedUserData);
+    const handleDeleteUser = async (userId) => {
+        try {
+            await instance.delete(`/api/users/${userId}/master`, {
+                headers: { Authorization: 'Bearer ' + getTokenFromLocalStorage() }
+            });
+            const updatedUserData = userData.filter((user) => user.id !== userId)
+            setUserData(updatedUserData)
+        } catch (error) {
+            console.log('Error deleting booking:', error);
+        }
     };
+
+
+    // const handleEditUser = (id, name, email, password) => {
+    //     const updatedUserData = userData.data.map((data) => {
+    //         if (data.id === id) {
+    //             return { id, name, email, password };
+    //         }
+    //         return { ...data, name, email, password };
+    //     });
+
+    //     setUserData(updatedUserData);
+    // };
 
     return (
         // ...
@@ -70,7 +80,7 @@ function Dashboard() {
                                 </tr>
                             </thead>
                             <tbody>
-                                {console.log(userData)}
+                                {console.log('ini user data: ', userData)}
                                 {userData && userData.map((data) => (
                                     <tr key={data.id}>
                                         <td className="border p-2">{data.id}</td>
@@ -78,29 +88,29 @@ function Dashboard() {
                                             <input
                                                 type="text"
                                                 value={data.name}
-                                                onChange={(e) => handleEditUser(data.id, e.target.value, data.email, data.password)}
+                                                onChange={(e) => handleDeleteUser(User.id, e.target.value)}
                                             />
                                         </td>
                                         <td className="border p-2">
                                             <input
                                                 type="text"
                                                 value={data.email}
-                                                onChange={(e) => handleEditUser(data.id, e.target.value, data.email, data.password)}
+                                                onChange={(e) => handleDeleteUser(User.id, e.target.value)}
                                             />
                                         </td>
                                         <td className="border p-2">
                                             <input
                                                 type="text"
                                                 value={data.role}
-                                                onChange={(e) => handleEditUser(data.id, e.target.value, data.email, data.password)}
+                                                onChange={(e) => handleDeleteUser(User.id, e.target.value)}
                                             />
                                         </td>
                                         <td className="border p-2">
                                             <button
-                                                onClick={() => handleEditUser(data.id, data.name, data.email, data.password)}
+                                                onClick={() => handleDeleteUser(data.id)}
                                                 className="bg-red-600 text-white p-2 rounded-md"
                                             >
-                                                Edit
+                                                Delete
                                             </button>
                                         </td>
                                     </tr>

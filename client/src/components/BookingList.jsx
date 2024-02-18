@@ -7,11 +7,11 @@ function AdminBookingList() {
     const [bookingData, setBookingData] = useState([]);
     const [viewedPaymentProof, setViewedPaymentProof] = useState(null);
     const [editingBooking, setEditingBooking] = useState(null);
+    const [Status, setStatus] = useState('PENDING')
     console.log(viewedPaymentProof);
     useEffect(() => {
         const fetchData = async () => {
             try {
-
                 const response = await instance.get('/api/orders', {
                     headers: {
                         Authorization: 'Bearer ' + getTokenFromLocalStorage(),
@@ -27,6 +27,8 @@ function AdminBookingList() {
         };
         fetchData();
     }, []);
+
+
 
     const handleDeleteBooking = async (bookingId) => {
         try {
@@ -44,7 +46,19 @@ function AdminBookingList() {
         setViewedPaymentProof(paymentProof);
     };
 
-    const handleEditBooking = (booking) => {
+    const handleEditBooking = async (booking) => {
+        try {
+            const response = await instance.put(`/api/orders/${booking.id}`, {
+                status: Status === 'SUCCESS' ? true : false
+            }, {
+                headers: { Authorization: 'Bearer ' + getTokenFromLocalStorage() }
+            });
+
+            const booking = response.data.data;
+            setEditingBooking(booking);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
         setEditingBooking(booking);
     };
 
@@ -163,7 +177,12 @@ function AdminBookingList() {
                                 name="languages"
                                 id="lang"
                                 value={editingBooking.status}
-                                onChange={(e) => setEditingBooking({ ...editingBooking, status: e.target.value })}>
+                                onChange={(e) => {
+                                    setEditingBooking({ ...editingBooking, status: e.target.value })
+                                    setStatus(e.target.value)
+                                }
+
+                                }>
                                 <option value="SUCCESS" >SUCCESS</option>
                                 <option value="PENDING" >PENDING</option>
                             </select>
