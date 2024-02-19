@@ -18,7 +18,7 @@ function RegisterPage() {
             alert('Registration successful')
         } catch (error) {
             console.error('Registration error:', error);
-            alert('Registration failed. Please check the console for more details.');
+            alert('Registration failed. Data tidak boleh kosong.');
         }
 
     }
