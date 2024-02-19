@@ -11,6 +11,19 @@ export class OrderServiceImpl extends OrderService {
     super(repository);
   }
 
+  async getOrdersByUserId(userId: string): Promise<OrderEntity[]> {
+    const orders = await this.orderRepository.getOrdersByUserId(userId);
+
+    if (!orders) {
+      throw new NotFoundError(
+        ERRORCODE.USER_NOT_FOUND_ERROR,
+        "user's not found"
+      );
+    }
+
+    return orders;
+  }
+
   async changeOrderStatus(
     orderId: string,
     payload: IPutOrderStatusPayload

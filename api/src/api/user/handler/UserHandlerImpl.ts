@@ -14,20 +14,50 @@ import { ITokenPayload } from "../../../utils/interfaces/ITokenPayload";
 import { userCredentialDTO } from "../../../utils/dto/user/UserCredentialDTO";
 import { ParamsDictionary } from "express-serve-static-core";
 import { ParsedQs } from "qs";
+import { OrderService } from "../../../services/order/OrderService";
+import { orderListDTO } from "../../../utils/dto/order/OrderListDTO";
 
 export class UserHandlerImpl extends UserHandler {
   private authService: AuthService;
   private userService: UserService;
+  private orderService: OrderService;
   private schemaValidator: SchemaValidator;
 
   constructor(
-    service: { authService: AuthService; userService: UserService },
+    service: {
+      authService: AuthService;
+      userService: UserService;
+      orderService: OrderService;
+    },
     schemaValidator: SchemaValidator
   ) {
     super();
     this.authService = service.authService;
     this.userService = service.userService;
+    this.orderService = service.orderService;
     this.schemaValidator = schemaValidator;
+  }
+
+  async getUserOrders(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<any> {
+    const tokenPayload: ITokenPayload = getTokenPayload(res);
+
+    try {
+      const orders = await this.orderService.getOrdersByUserId(
+        tokenPayload.userId
+      );
+
+      return res
+        .status(200)
+        .json(
+          createResponse(RESPONSE_MESSAGE.SUCCESS, orders.map(orderListDTO))
+        );
+    } catch (error) {
+      return next(error);
+    }
   }
 
   async deleteUserMaster(

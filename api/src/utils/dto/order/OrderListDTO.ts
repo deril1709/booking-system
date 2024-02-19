@@ -24,8 +24,8 @@ export const orderListDTO = (order: OrderEntity) => {
     updatedAt: order.updatedAt,
     media: order.paymentProof,
     user: {
-      id: order.user.id,
-      name: order.user.name,
+      id: order.user?.id,
+      name: order.user?.name,
     },
   } as IOrderListDTO;
 };

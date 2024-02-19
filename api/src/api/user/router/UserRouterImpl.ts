@@ -60,6 +60,14 @@ export class UserRouterImpl extends BaseRouter {
         this.handler.deleteUserMaster
       );
 
+    // * get user's order
+    this.router
+      .route(this.path + "/orders")
+      .get(
+        this.authorizationMiddlware.authorize([ROLE.RENTEE]),
+        this.handler.getUserOrders
+      );
+
     return this.router;
   }
 }

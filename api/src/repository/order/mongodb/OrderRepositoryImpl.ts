@@ -1,4 +1,4 @@
-import { Schema, isValidObjectId } from "mongoose";
+import { isValidObjectId } from "mongoose";
 import { BadRequestError } from "../../../Exceptions/http/BadRequestError";
 import { FieldModel } from "../../../entities/field/mongoose/FieldSchema";
 import { OrderEntity } from "../../../entities/order/OrderEntity";
@@ -13,6 +13,47 @@ import { FieldEntity } from "../../../entities/field/FieldEntity";
 import { IFieldSchema } from "../../../utils/interfaces/schema/FieldSchema";
 
 export class OrderRepositoryImpl extends OrderRepository {
+  async getOrdersByUserId(userId: string): Promise<OrderEntity[] | null> {
+    if (!isValidObjectId(userId)) {
+      return null;
+    }
+
+    const query = await OrderModel.find<IOrderSchema>({
+      user: userId,
+    }).populate<{
+      user: IUserSchema;
+    }>("user");
+
+    const orders: OrderEntity[] = [];
+
+    query.forEach((q) => {
+      const order = new OrderEntity(
+        q.user?.id.toString() ?? "",
+        q.field.toString(),
+        q.bookDate,
+        q.duration,
+        q.status,
+        q.paymentProof
+      );
+
+      order.id = q.id.toString();
+      order.createdAt = q.createdAt;
+      order.updatedAt = q.updatedAt;
+
+      // order.user = new UserEntity(
+      //   q.user?.name_,
+      //   q.user?.email,
+      //   q.user?.role,
+      //   q.user?.password,
+      //   q.user?.id.toString() ?? ""
+      // );
+
+      orders.push(order);
+    });
+
+    return orders;
+  }
+
   async getOrderById(
     orderId: string,
     isUserPopulated: boolean = false,

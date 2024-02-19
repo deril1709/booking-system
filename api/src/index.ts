@@ -33,7 +33,7 @@ const orderService = new OrderServiceImpl({ orderRepository });
 const schemaValidator = new JoiValidatorImpl();
 // * handlers
 const userHandler = new UserHandlerImpl(
-  { authService, userService },
+  { authService, userService, orderService },
   schemaValidator
 );
 const fieldHandler = new FieldHandlerImpl({ fieldService }, schemaValidator);

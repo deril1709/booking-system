@@ -10,6 +10,10 @@ export abstract class OrderService {
     this.orderRepository = repository.orderRepository;
   }
 
+  async getOrdersByUserId(userId: string): Promise<OrderEntity[]> {
+    throw new Error("Method not implemented.");
+  }
+
   async deleteOrderStatus(orderId: string) {
     throw new Error("Method not implemented.");
   }

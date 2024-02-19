@@ -1,6 +1,9 @@
 import { OrderEntity } from "../../entities/order/OrderEntity";
 
 export abstract class OrderRepository {
+  async getOrdersByUserId(userId: string): Promise<OrderEntity[] | null> {
+    throw new Error("Method not implemented.");
+  }
   async deleteOrderStatusById(orderId: string) {
     throw new Error("Method not implemented.");
   }
