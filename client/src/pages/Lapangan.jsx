@@ -31,7 +31,7 @@ function Lapangan() {
                     <Link to={`/field/${fields.id}`} key={fields.id}>
                         <div className="bg-gray-500 mb-2 rounded-2xl flex h-48">
                             <img
-                                src={fields.photos} // Assuming there's an 'image' property in the API response
+                                src={fields.photos ? `http://localhost:5050/api/uploaded-file/${fields.photos[0].split("media\\").at(-1)}` : ""} // Assuming there's an 'image' property in the API response
                                 alt=""
                                 className="rounded-2xl object-cover w-full h-full"
                             />

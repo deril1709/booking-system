@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
-import axios from 'axios'
+import { Link, useNavigate } from 'react-router-dom'
 import instance from '../utils/http'
 
 function RegisterPage() {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const navigate = useNavigate()
+
     async function registerUser(e) {
         e.preventDefault();
         try {
@@ -15,7 +16,8 @@ function RegisterPage() {
                 email,
                 password,
             });
-            alert('Registration successful')
+            navigate('/login')
+            alert('registered')
         } catch (error) {
             console.error('Registration error:', error);
             alert('Registration failed. Data tidak boleh kosong.');

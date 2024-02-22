@@ -1,6 +1,4 @@
 import React, { useState, useEffect, } from 'react';
-import img from '../badminton.jpg';
-import lapangan from '../Lapangan.jpg';
 import PaymentPopup from '../components/PaymentPopup';
 import { useParams } from 'react-router-dom';
 import instance from '../utils/http';
@@ -52,7 +50,8 @@ function SingleField() {
             </a>
             <div className="grid gap-2 grid-cols-[2fr_1fr]">
                 <div className="h-full w-full relative">
-                    <img src={fieldData.photos} alt="" className='object-contain  h-full w-full' />
+
+                    <img src={fieldData.photos ? `http://localhost:5050/api/uploaded-file/${fieldData.photos[0].split("media\\").at(-1)}` : ""} alt="" className='object-contain  h-full w-full' />
                 </div>
                 <div className='grid'>
                     <img src={fieldData.photos} alt="" className='aspect-video object-cover' />

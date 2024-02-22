@@ -107,7 +107,8 @@ function AdminBookingList() {
                                     >
                                         <Pencil />
                                     </button>
-                                    <a href={`http://localhost:5050/api/uploaded-file/${booking.media}`} target='_blank'>
+
+                                    <a href={`http://localhost:5050/api/uploaded-file/${booking.media.split("media\\").at(-1)}`} target='_blank'>
                                         <button
                                             onClick={() => handleViewPaymentProof(booking.paymentProof)}
                                             className="bg-blue-500 text-white p-2 rounded-md"

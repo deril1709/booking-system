@@ -4,8 +4,6 @@ import { getTokenFromLocalStorage } from '../utils';
 
 function BookingHistory() {
     const [bookingData, setBookingData] = useState([]);
-    const [viewedPaymentProof, setViewedPaymentProof] = useState(null);
-    const [editingBooking, setEditingBooking] = useState(null);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -33,7 +31,7 @@ function BookingHistory() {
                 <table className="w-full border-collapse">
                     <thead>
                         <tr>
-                            <th className="border p-2">Booking Date</th>
+                            <th className="border p-2">Field</th>
                             <th className="border p-2">Booking Time</th>
                             <th className="border p-2">Duration</th>
                         </tr>
@@ -41,7 +39,7 @@ function BookingHistory() {
                     <tbody>
                         {bookingData.map((booking) => (
                             <tr key={booking.id}>
-                                <td className="border p-2">{booking.bookDate}</td>
+                                <td className="border p-2">{booking.fieldName}</td>
                                 <td className="border p-2">{booking.createdAt}</td>
                                 <td className="border p-2">{booking.duration}</td>
                             </tr>
