@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react'
 import instance from '../utils/http'
 import { getTokenFromLocalStorage } from '../utils'
 
-
-
 function UpdateLapangan({ fieldId, setEditingField }) {
     console.log('UpdateLapangan rendered with fieldId:', fieldId);
     const [formData, setFormData] = useState({

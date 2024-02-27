@@ -13,7 +13,7 @@ function FieldItem({ field, onEdit, onDelete, setEditingField }) {
     };
 
     return (
-        <div className="border p-4 mb-4">
+        <div className="border rounded-xl border-blue-400 p-4 mb-4">
             <img src={field.photos} alt="" className='w-40' />
             <h2 className="text-xl font-semibold text-gray-500">{field.title}</h2>
             <div className="flex mt-2">

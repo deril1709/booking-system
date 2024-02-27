@@ -68,8 +68,8 @@ function SingleField() {
 
             <div className='grid grid-cols-[2fr_1fr] '>
                 <div>
-                    <p>{fieldData.openingTime}</p>
-                    <p>{fieldData.closingTime}</p>
+                    <p>Opening time: {fieldData.openingTime}</p>
+                    <p>Closing time: {fieldData.closingTime}</p>
                 </div>
                 <div className='bg-white p-4 rounded-xl shadow mb-4'>
                     <div className='border rounded-2xl mt-4'>

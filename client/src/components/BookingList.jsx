@@ -95,12 +95,12 @@ function AdminBookingList() {
                     <tbody>
                         {bookingData.map((booking) => (
                             <tr key={booking.id}>
-                                <td className="border p-2">{booking.user.name}</td>
-                                <td className="border p-2">{booking.bookDate}</td>
-                                <td className="border p-2">{booking.createdAt}</td>
-                                <td className="border p-2">{booking.duration}</td>
-                                <td className="border p-2">{booking.status}</td>
-                                <td className="border p-2 justify-center text-center space-x-2">
+                                <td className="border p-2 text-center">{booking.user.name}</td>
+                                <td className="border p-2 text-center">{booking.bookDate}</td>
+                                <td className="border p-2 text-center">{booking.createdAt}</td>
+                                <td className="border p-2 text-center">{booking.duration}</td>
+                                <td className="border p-2 text-center">{booking.status}</td>
+                                <td className="border p-2 text-center justify-center space-x-2">
                                     <button
                                         onClick={() => handleEditBooking(booking)}
                                         className="bg-green-700 text-white p-2 rounded-md"
