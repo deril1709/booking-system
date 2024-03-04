@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react';
 import instance from '../utils/http';
 import { getTokenFromLocalStorage } from '../utils';
 import { User } from 'lucide-react';
+import DeleteModal from './DeleteModal';
 
 function Dashboard() {
     const [userData, setUserData] = useState([])
-    const [selectedUserId, setSelectedUserId] = useState(null)
-    const [isDelete, setIsDelete] = useState
+    const [selectedUserId, setSelectedUserId] = useState(null);
+    const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -26,17 +27,29 @@ function Dashboard() {
     }, []);
 
     const handleDeleteUser = async (userId) => {
-        try {
-            await instance.delete(`/api/users/${userId}/master`, {
-                headers: { Authorization: 'Bearer ' + getTokenFromLocalStorage() }
-            });
-            const updatedUserData = userData.filter((user) => user.id !== userId)
-            setUserData(updatedUserData)
-        } catch (error) {
-            console.log('Error deleting booking:', error);
-        }
+        setSelectedUserId(userId);
+        setDeleteModalOpen(true);
     };
 
+    const handleConfirmDelete = async () => {
+        try {
+            await instance.delete(`/api/users/${selectedUserId}/master`, {
+                headers: { Authorization: 'Bearer ' + getTokenFromLocalStorage() }
+            });
+
+            const updatedUserData = userData.filter((user) => user.id !== selectedUserId);
+            setUserData(updatedUserData);
+
+            setDeleteModalOpen(false);
+            setSelectedUserId(null);
+        } catch (error) {
+            console.log('Error deleting user:', error);
+        }
+    };
+    const handleCancelDelete = () => {
+        setDeleteModalOpen(false);
+        setSelectedUserId(null);
+    };
 
     // const handleEditUser = (id, name, email, password) => {
     //     const updatedUserData = userData.data.map((data) => {
@@ -114,6 +127,11 @@ function Dashboard() {
                                             >
                                                 Delete
                                             </button>
+                                            <DeleteModal
+                                                isOpen={isDeleteModalOpen}
+                                                onCancel={handleCancelDelete}
+                                                onConfirm={handleConfirmDelete}
+                                            />
                                         </td>
                                     </tr>
                                 ))}
