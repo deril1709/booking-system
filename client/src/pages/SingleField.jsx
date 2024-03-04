@@ -61,22 +61,24 @@ function SingleField() {
                 </div>
 
             </div>
-            <div className="my-4">
+            <div className="my-4 md:">
                 <h2 className="font-semibold text-2xl">Description</h2>
                 {fieldData.description}
             </div>
 
-            <div className='grid grid-cols-[2fr_1fr] '>
+            <div className='md:grid grid-cols-[2fr_1fr] '>
                 <div>
                     <p>Opening time: {fieldData.openingTime}</p>
                     <p>Closing time: {fieldData.closingTime}</p>
                 </div>
-                <div className='bg-white p-4 rounded-xl shadow mb-4'>
+
+                {/* card */}
+                <div className='bg-white p-4 rounded-xl shadow mb-4 w-72 md:w-full'>
                     <div className='border rounded-2xl mt-4'>
                         <div className='text-xl text-center font-semibold'>
                             {fieldData.priceHourly} <br />
                         </div>
-                        <div className="flex">
+                        <div className="flex w-40 text-xs md:text-base md:w-full">
                             <div className=' bg-white py-3 px-4'>
                                 <label>Pilih Tanggal dan jam</label>
                                 <input type="datetime-local" onChange={(e) => setBookDate(e.target.value.getTime())} />
@@ -96,8 +98,9 @@ function SingleField() {
                     </div>
                     <div></div>
                 </div>
-
             </div>
+
+            {/* footer */}
             <div className="bg-white -mx-8 px-8 py-8 border-l">
                 <div>
                     <h2 className="font-semibold text-2xl">Extra info</h2>

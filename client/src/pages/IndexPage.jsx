@@ -9,10 +9,10 @@ function IndexPage() {
                 <img
                     src={img}
                     alt="Badminton Image"
-                    className="rounded-lg shadow-lg object-cover h-80 md:h-full w-full"
+                    className="rounded-lg shadow-lg object-cover object-center h-50 md:h-full w-full"
                 />
             </div>
-            <div className="w-full md:w-1/2 text-center space-y-4">
+            <div className="w-full md:w-1/2 text-center space-y-4 mt-4 md:mt-0">
                 <h1 className="text-5xl font-montserrat italic text-blue-400">DAMAI BOOKING APP</h1>
                 <p className="text-lg font-montserrat font-thin text-black">
                     Mudahkan pengalaman bermain anda dengan mulai memesan lapangan <br />

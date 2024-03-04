@@ -1,20 +1,20 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import Logo from './assets/badminton.svg'
-import { UserContext } from './UserContext'
-import { useContext } from 'react'
-
+import React from 'react';
+import { Link } from 'react-router-dom';
+import Logo from './assets/badminton.svg';
+import { UserContext } from './UserContext';
+import { useContext } from 'react';
 
 function Header() {
-    const { user } = useContext(UserContext)
+    const { user } = useContext(UserContext);
+
     return (
-        <div>
-            <header className=' flex justify-between'>
-                <Link to={'/'} className=" items-center gap-1 flex">
-                    <img src={Logo} alt="" className='w-10 h-w-10' />
+        <div className=''>
+            <header className='flex flex-row md:flex-row sm:w-full md:w-full items-center justify-between px-4 py-2 md:px-8 md:py-4'>
+                <Link to={'/'} className="flex items-center gap-1">
+                    <img src={Logo} alt="" className='w-10 h-10' />
                     <span className="font-semibold text-xl">Damai</span>
                 </Link>
-                <div className='flex gap-2 border border-gray-300 rounded-full py-2 px-4 shadow-sm shadow-blue-500'>
+                <div className=' flex-col md:flex-row gap-2 hidden md:flex md:w-50 md:gap-4 border border-gray-300 rounded-full py-2 px-4 shadow-sm shadow-blue-500 mt-4 md:mt-0 '>
                     <div>Jl.Damai</div>
                     <div>Lr.1</div>
                     <div>Unhas</div>
@@ -24,7 +24,7 @@ function Header() {
                         </svg>
                     </button>
                 </div>
-                <Link to={user ? '/account' : '/login'} className='flex items-center border border-gray-300 shadow-sm shadow-blue-500  gap-2 rounded-full py-2 px-2'>
+                <Link to={user ? '/account' : '/login'} className='flex items-center gap-2 border border-gray-300 shadow-sm shadow-blue-500 rounded-full py-2 px-2 mt-4 md:mt-0'>
                     {!!user && (
                         <div className='rounded-full flex gap-2'>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
@@ -48,7 +48,7 @@ function Header() {
                 </Link>
             </header>
         </div>
-    )
+    );
 }
 
-export default Header
+export default Header;

@@ -5,6 +5,8 @@ import { User } from 'lucide-react';
 
 function Dashboard() {
     const [userData, setUserData] = useState([])
+    const [selectedUserId, setSelectedUserId] = useState(null)
+    const [isDelete, setIsDelete] = useState
 
     useEffect(() => {
         const fetchData = async () => {
@@ -68,44 +70,44 @@ function Dashboard() {
             <div className="flex space-x-8 py-6">
                 <div className="flex flex-col rounded-md border border-blue-400 w-full p-8 justify-center">
                     <h2>Dummy</h2>
-                    <div className="flex space-x-8 py-6">
-                        <table className="border-collapse border-blue-400 w-full">
-                            <thead className='border border-blue-400'>
-                                <tr className='border border-blue-400'>
-                                    <th className="border p-2 border-blue-400">ID</th>
-                                    <th className="border p-2 border-blue-400">Name</th>
-                                    <th className="border p-2 border-blue-400">Email</th>
-                                    <th className="border p-2 border-blue-400">role</th>
-                                    <th className="border p-2 border-blue-400">Actions</th>
+                    <div className="flex space-x-8 py-6 border-blue-400">
+                        <table className="border w-full">
+                            <thead >
+                                <tr>
+                                    <th className="border p-2 ">ID</th>
+                                    <th className="border p-2 ">Name</th>
+                                    <th className="border p-2 ">Email</th>
+                                    <th className="border p-2 ">role</th>
+                                    <th className="border p-2 ">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {console.log('ini user data: ', userData)}
                                 {userData && userData.map((data) => (
                                     <tr key={data.id}>
-                                        <td className="border p-2 ">{data.id}</td>
-                                        <td className="border p-2 ">
+                                        <td className="border text-center p-2">{data.id}</td>
+                                        <td className="border text-center p-2">
                                             <input
-                                                type="text"
+                                                type="readonly"
                                                 value={data.name}
                                                 onChange={(e) => handleDeleteUser(User.id, e.target.value)}
                                             />
                                         </td>
-                                        <td className="border p-2 ">
+                                        <td className="border text-center p-2">
                                             <input
-                                                type="text"
+                                                type="readonly"
                                                 value={data.email}
                                                 onChange={(e) => handleDeleteUser(User.id, e.target.value)}
                                             />
                                         </td>
-                                        <td className="border p-2 ">
+                                        <td className="border text-center p-2">
                                             <input
-                                                type="text"
+                                                type="readonly"
                                                 value={data.role}
                                                 onChange={(e) => handleDeleteUser(User.id, e.target.value)}
                                             />
                                         </td>
-                                        <td className="border p-2 ">
+                                        <td className="border text-center p-2">
                                             <button
                                                 onClick={() => handleDeleteUser(data.id)}
                                                 className="bg-red-600 text-white p-2 rounded-md"

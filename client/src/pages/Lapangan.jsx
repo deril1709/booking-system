@@ -24,15 +24,15 @@ function Lapangan() {
     }, []);
 
     return (
-        <div className="mt-8 flex gap-x-6 gap-y-6">
+        <div className="mt-12 grid md:grid-cols-4 gap-x-6 gap-y-10 md:gap-y-6">
             {Array.isArray(fields) && fields.length > 0 ? (
                 fields.map((fields) => (
                     <Link to={`/field/${fields.id}`} key={fields.id}>
-                        <div className="bg-gray-500 mb-2 rounded-2xl flex h-48">
+                        <div className="bg-gray-500 mb-2 rounded-2xl flex h-auto">
                             <img
                                 src={fields.photos ? `http://localhost:5050/api/uploaded-file/${fields.photos[0].split("media\\").at(-1)}` : ""} // Assuming there's an 'image' property in the API response
-                                alt=""
-                                className="rounded-2xl object-cover w-full h-full"
+                                alt="lapangan"
+                                className="rounded-2xl h-full md:w-auto"
                             />
                         </div>
                         <h2 className="font-bold">{fields.title}</h2>

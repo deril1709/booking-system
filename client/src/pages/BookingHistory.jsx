@@ -25,10 +25,10 @@ function BookingHistory() {
     }, []);
 
     return (
-        <div className="flex flex-col py-10 px-16 h-screen overflow-y-auto w-full">
+        <div className="fle py-10 px-16 overflow-y-auto md:w-full">
             <h2 className="text-xl font-semibold mb-6">Booking List History</h2>
             <div className="border border-blue-400 p-4 my-4 rounded-lg">
-                <table className="w-full border-collapse">
+                <table className="w-full border-collapse md:w-full w-50 table-auto">
                     <thead>
                         <tr>
                             <th className="border p-2">Field</th>
