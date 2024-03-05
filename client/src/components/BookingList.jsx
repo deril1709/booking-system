@@ -117,6 +117,9 @@ function AdminBookingList() {
                                         </button>
                                     </a>
                                     <button
+                                        data-modal-target="popup-modal"
+                                        data-modal-toggle="popup-modal" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                                        type="button"
                                         onClick={() => handleDeleteBooking(booking.id)}
                                         className="bg-red-500 text-white p-2 rounded-md"
                                     >
@@ -148,31 +151,6 @@ function AdminBookingList() {
                     <div className="bg-white p-4 rounded-lg">
                         <h2>Edit Booking</h2>
                         <form>
-                            <label>User Name</label>
-                            <input
-                                type="text"
-                                value={editingBooking.userName}
-                                onChange={(e) => setEditingBooking({ ...editingBooking, userName: e.target.value })}
-                            />
-                            <label>Booking Date</label>
-                            <input
-                                type="text"
-                                value={editingBooking.bookingDate}
-                                onChange={(e) => setEditingBooking({ ...editingBooking, bookingDate: e.target.value })}
-                            />
-                            <label>Booking Time</label>
-                            <input
-                                type="text"
-                                value={editingBooking.bookingTime}
-                                onChange={(e) => setEditingBooking({ ...editingBooking, bookingTime: e.target.value })}
-                            />
-                            <label>Duration</label>
-                            <input
-                                type="text"
-                                value={editingBooking.duration}
-                                onChange={(e) => setEditingBooking({ ...editingBooking, duration: e.target.value })}
-                            />
-                            <label >Status</label>
                             <select
                                 className='block text-sm font-medium '
                                 name="languages"

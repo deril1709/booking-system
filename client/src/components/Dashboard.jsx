@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import instance from '../utils/http';
 import { getTokenFromLocalStorage } from '../utils';
 import { User } from 'lucide-react';
-import DeleteModal from './DeleteModal';
+import DeleteModal from './DeleteUserModal';
 
 function Dashboard() {
     const [userData, setUserData] = useState([])
@@ -80,66 +80,66 @@ function Dashboard() {
                 </div>
             </div>
 
-            <div className="flex space-x-8 py-6">
-                <div className="flex flex-col rounded-md border border-blue-400 w-full p-8 justify-center">
-                    <h2>Dummy</h2>
-                    <div className="flex space-x-8 py-6 border-blue-400">
-                        <table className="border w-full">
-                            <thead >
-                                <tr>
-                                    <th className="border p-2 ">ID</th>
-                                    <th className="border p-2 ">Name</th>
-                                    <th className="border p-2 ">Email</th>
-                                    <th className="border p-2 ">role</th>
-                                    <th className="border p-2 ">Actions</th>
+            <div className="relative overflow-x-auto">
+                <h2>Dummy</h2>
+                <div className="flex space-x-8 py-6 border-blue-400">
+                    <table className="w-full text-md text-left rtl:text-right text-gray-600">
+                        <thead className='text-md text-gray-700 uppercase bg-blue-400 text-center'>
+                            <tr>
+                                <th className="border p-2 ">ID</th>
+                                <th className="border p-2 ">Name</th>
+                                <th className="border p-2 ">Email</th>
+                                <th className="border p-2 ">role</th>
+                                <th className="border p-2 ">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {console.log('ini user data: ', userData)}
+                            {userData && userData.map((data) => (
+                                <tr key={data.id}>
+                                    <td className="border text-center p-2">{data.id}</td>
+                                    <td className="border text-center p-2">
+                                        <input
+                                            type="readonly"
+                                            value={data.name}
+                                            onChange={(e) => handleDeleteUser(User.id, e.target.value)}
+                                        />
+                                    </td>
+                                    <td className="border text-center p-2">
+                                        <input
+                                            type="readonly"
+                                            value={data.email}
+                                            onChange={(e) => handleDeleteUser(User.id, e.target.value)}
+                                        />
+                                    </td>
+                                    <td className="border text-center p-2">
+                                        <input
+                                            type="readonly"
+                                            value={data.role}
+                                            onChange={(e) => handleDeleteUser(User.id, e.target.value)}
+                                        />
+                                    </td>
+                                    <td className="border text-center p-2">
+                                        <button
+                                            onClick={() => handleDeleteUser(data.id)}
+                                            className="bg-red-600 text-white p-2 rounded-md"
+                                        >
+                                            Delete
+                                        </button>
+                                        <DeleteModal
+                                            isOpen={isDeleteModalOpen}
+                                            onCancel={handleCancelDelete}
+                                            onConfirm={handleConfirmDelete}
+                                        />
+                                    </td>
                                 </tr>
-                            </thead>
-                            <tbody>
-                                {console.log('ini user data: ', userData)}
-                                {userData && userData.map((data) => (
-                                    <tr key={data.id}>
-                                        <td className="border text-center p-2">{data.id}</td>
-                                        <td className="border text-center p-2">
-                                            <input
-                                                type="readonly"
-                                                value={data.name}
-                                                onChange={(e) => handleDeleteUser(User.id, e.target.value)}
-                                            />
-                                        </td>
-                                        <td className="border text-center p-2">
-                                            <input
-                                                type="readonly"
-                                                value={data.email}
-                                                onChange={(e) => handleDeleteUser(User.id, e.target.value)}
-                                            />
-                                        </td>
-                                        <td className="border text-center p-2">
-                                            <input
-                                                type="readonly"
-                                                value={data.role}
-                                                onChange={(e) => handleDeleteUser(User.id, e.target.value)}
-                                            />
-                                        </td>
-                                        <td className="border text-center p-2">
-                                            <button
-                                                onClick={() => handleDeleteUser(data.id)}
-                                                className="bg-red-600 text-white p-2 rounded-md"
-                                            >
-                                                Delete
-                                            </button>
-                                            <DeleteModal
-                                                isOpen={isDeleteModalOpen}
-                                                onCancel={handleCancelDelete}
-                                                onConfirm={handleConfirmDelete}
-                                            />
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
+                            ))}
+                        </tbody>
+                    </table>
                 </div>
+
             </div>
+
         </div>
     );
 
