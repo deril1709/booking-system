@@ -1,6 +1,6 @@
 import React from 'react'
-import Sidebar from '../components/Sidebar'
-import FieldList from '../components/FieldList'
+import Sidebar from '../../components/Sidebar'
+import FieldList from '../../components/FieldList'
 
 function AdminFormlapangan() {
     return (

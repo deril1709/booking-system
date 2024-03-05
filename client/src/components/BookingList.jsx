@@ -81,8 +81,8 @@ function AdminBookingList() {
         <div className="flex flex-col py-10 px-16 h-screen overflow-y-auto w-full">
             <h2 className="text-xl font-semibold mb-6">Admin Booking List</h2>
             <div className="border border-blue-400 p-4 my-4 rounded-lg">
-                <table className="w-full border-collapse">
-                    <thead>
+                <table className="w-full text-md text-left rtl:text-right text-gray-600">
+                    <thead className='text-md text-gray-700 uppercase bg-blue-400 text-center'>
                         <tr>
                             <th className="border p-2">User Name</th>
                             <th className="border p-2">Booking Date</th>
@@ -151,20 +151,21 @@ function AdminBookingList() {
                     <div className="bg-white p-4 rounded-lg">
                         <h2>Edit Booking</h2>
                         <form>
-                            <select
-                                className='block text-sm font-medium '
-                                name="languages"
-                                id="lang"
-                                value={editingBooking.status}
-                                onChange={(e) => {
-                                    setEditingBooking({ ...editingBooking, status: e.target.value })
-                                    setStatus(e.target.value)
-                                }
-
-                                }>
-                                <option value="SUCCESS" >SUCCESS</option>
-                                <option value="PENDING" >PENDING</option>
-                            </select>
+                            <div>
+                                <select
+                                    className='block text-sm font-medium '
+                                    name="languages"
+                                    id="lang"
+                                    value={editingBooking.status}
+                                    onChange={(e) => {
+                                        setEditingBooking({ ...editingBooking, status: e.target.value })
+                                        setStatus(e.target.value)
+                                    }
+                                    }>
+                                    <option value="SUCCESS" >SUCCESS</option>
+                                    <option value="PENDING" >PENDING</option>
+                                </select>
+                            </div>
                             <div className="mt-4">
                                 <button
                                     onClick={handleSaveBooking}

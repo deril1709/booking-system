@@ -1,6 +1,6 @@
 import React from 'react'
-import Sidebar from '../components/Sidebar'
-import BookingList from '../components/BookingList'
+import Sidebar from '../../components/Sidebar'
+import BookingList from '../../components/BookingList'
 
 function AdminBooking() {
     return (
