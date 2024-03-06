@@ -7,9 +7,9 @@ import RegisterPage from '../pages/RegisterPage'
 import Lapangan from '../pages/Lapangan'
 import SingleField from '../pages/SingleField'
 import AccountPage from '../pages/AccountPage'
-import AdminDashboard from '../admin/AdminDashboard'
-import AdminFormlapangan from '../admin/AdminFormlapangan'
-import AdminBooking from '../admin/AdminBooking'
+import AdminDashboard from '../pages/admin/AdminDashboard'
+import AdminFormlapangan from '../pages/admin/AdminFormlapangan'
+import AdminBooking from '../pages/admin/AdminBooking'
 import { UserContext } from '../UserContext'
 
 

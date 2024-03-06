@@ -92,6 +92,7 @@ function UpdateLapangan({ fieldId, setEditingField }) {
                 <input
                     type="text"
                     placeholder='address'
+                    name='address'
                     value={formData.address}
                     onChange={handleInputChange}
                 />

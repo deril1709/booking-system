@@ -14,7 +14,6 @@ function BookingHistory() {
                     },
                 });
                 const data = response.data;
-                console.log(data.data);
                 setBookingData(data.data)
 
             } catch (error) {
@@ -30,16 +29,16 @@ function BookingHistory() {
             <div className="border border-blue-400 p-4 my-4 rounded-lg">
                 <table className="w-full border-collapse md:w-full w-50 table-auto">
                     <thead>
-                        <tr>
+                        <tr className='border my-0 mx-0 '>
                             <th className="border p-2">Field</th>
-                            <th className="border p-2">Booking Time</th>
+                            <th className="border p-2">BookingTime</th>
                             <th className="border p-2">Duration</th>
                         </tr>
                     </thead>
                     <tbody>
                         {bookingData.map((booking) => (
                             <tr key={booking.id}>
-                                <td className="border p-2">{booking.fieldName}</td>
+                                <td className="border p-2">FieldName</td>
                                 <td className="border p-2">{booking.createdAt}</td>
                                 <td className="border p-2">{booking.duration}</td>
                             </tr>
@@ -47,8 +46,6 @@ function BookingHistory() {
                     </tbody>
                 </table>
             </div>
-
-
         </div>
     );
 }
