@@ -76,7 +76,15 @@ function FieldList() {
                 <FormLapangan setNewField={setNewField} />
             ) : (
                 <div>
-                    <h2 className="text-3xl font-semibold mb-8">List Lapangan</h2>
+                    <div className='flex justify-between'>
+                        <h2 className="text-3xl font-semibold mb-8">List Lapangan</h2>
+                        <button
+                            onClick={handleAddNewField}
+                            className="bg-blue-400 text-white p-2 rounded-md flex text-center justify-end gap-2 h-10"
+                        >
+                            <Plus /> Tambah Lapangan
+                        </button>
+                    </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
                         {fields.map((field) => (
                             <FieldItem
@@ -87,15 +95,6 @@ function FieldList() {
                                 setEditingField={setEditingField}
                             />
                         ))}
-                    </div>
-
-                    <div>
-                        <button
-                            onClick={handleAddNewField}
-                            className="bg-blue-400 text-white p-2 rounded-md flex text-center justify-center gap-2 w-full"
-                        >
-                            <Plus /> Tambah Lapangan
-                        </button>
                     </div>
                 </div>
             )}
