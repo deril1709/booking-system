@@ -78,6 +78,9 @@ function UpdateLapangan({ fieldId, setEditingField }) {
 
     return (
         <div className="flex flex-col py-10 px-16 h-screen overflow-y-auto w-full">
+            <div>
+                <h1 className='text-3xl font-semibold mb-8'>Edit Lapangan</h1>
+            </div>
             <form onSubmit={submitForm}>
                 <h2 className='text-xl'>Lapangan</h2>
                 <p className='text-gray-500 text-sm'>Contoh: Lapangan A, Lapangan 1</p>

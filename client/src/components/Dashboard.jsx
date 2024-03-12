@@ -6,11 +6,13 @@ import DeleteModal from './DeleteUserModal';
 
 function Dashboard() {
     const [userData, setUserData] = useState([])
+    const [bookingData, setBookingData] = useState([])
     const [selectedUserId, setSelectedUserId] = useState(null);
     const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
 
     useEffect(() => {
-        const fetchData = async () => {
+        //get total number of users
+        const fetchDataUser = async () => {
             try {
                 const response = await instance.get('/api/users/master', {
                     headers: { Authorization: 'Bearer ' + getTokenFromLocalStorage() }
@@ -23,7 +25,24 @@ function Dashboard() {
                 console.error('error: ', error);
             }
         };
-        fetchData();
+        fetchDataUser();
+
+        //get total booking
+        const fetchDataBook = async () => {
+            try {
+                const response = await instance.get('/api/orders', {
+                    headers: { Authorization: 'Bearer ' + getTokenFromLocalStorage() }
+                })
+                console.log('API Response:', response.data);
+                const data = response.data.data
+
+                setBookingData(data);
+            } catch (error) {
+                console.error('error: ', error);
+            }
+
+        }
+        fetchDataBook();
     }, []);
 
     const handleDeleteUser = async (userId) => {
@@ -71,7 +90,7 @@ function Dashboard() {
                 <div className="flex space-x-8 py-6">
                     <div className="flex flex-col rounded-md border-blue-400 border w-[400px] h-[150px] p-8 justify-center">
                         <h2 className='text-4xl text-center'>Total Pesanan</h2>
-                        <p className="text-gray-500 mt-3 text-center text-2xl">10</p>
+                        <p className="text-gray-500 mt-3 text-center text-2xl">{bookingData.length}</p>
                     </div>
                     <div className="flex flex-col rounded-md border-blue-400 border w-[400px] h-[150px] p-8 justify-center">
                         <h2 className='text-4xl text-center'>User</h2>
