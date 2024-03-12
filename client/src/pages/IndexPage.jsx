@@ -1,5 +1,5 @@
 import React from 'react';
-import img from '../damai-badminton.jpg';
+import img from '../assets/image/damai-badminton.jpg';
 import { Link } from 'react-router-dom';
 
 function IndexPage() {

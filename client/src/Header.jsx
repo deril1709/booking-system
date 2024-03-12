@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Logo from './assets/badminton.svg';
+import Logo from './assets/icons/badminton.svg';
 import { UserContext } from './UserContext';
 import { useContext } from 'react';
 
