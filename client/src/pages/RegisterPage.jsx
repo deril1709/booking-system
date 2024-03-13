@@ -39,7 +39,7 @@ function RegisterPage() {
                     <input type="password" placeholder='Password'
                         value={password}
                         onChange={e => setPassword(e.target.value)} />
-                    <button className='login'>Register</button>
+                    <button className='login hover:bg-blue-500 active:bg-blue-600'>Register</button>
                     <div className='text-center p-2'>Already Have an Account? <Link to={'/login'} className='underline text-gray-600'>Login</Link>
                     </div>
                 </form>

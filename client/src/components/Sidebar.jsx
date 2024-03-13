@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 
-import Logo from "../assets/badminton.svg";
+import Logo from "../assets/icons/badminton.svg";
 import {
     List,
     ImagePlus,

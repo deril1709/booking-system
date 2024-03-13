@@ -55,7 +55,7 @@ function LoginPage() {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                     />
-                    <button className='login'>Login</button>
+                    <button className='login hover:bg-blue-500 active:bg-blue-600'>Login</button>
                     <div className='text-center p-2'>
                         Don't have an account yet? <Link to={'/register'} className='underline text-gray-600'>Register Here!</Link>
                     </div>

@@ -25,7 +25,7 @@ function BookingHistory() {
 
     return (
         <div className="fle py-10 px-16 overflow-y-auto md:w-full">
-            <h2 className="text-xl font-semibold mb-6">Booking List History</h2>
+            <h2 className="text-xl font-semibold mb-6">Booking History List</h2>
             <div className="border border-blue-400 p-4 my-4 rounded-lg">
                 <table className="w-full border-collapse md:w-full w-50 table-auto">
                     <thead>
