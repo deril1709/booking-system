@@ -12,6 +12,9 @@ interface IOrderListDTO {
     name: string;
     id: string;
   };
+  field: {
+    title: string;
+  };
 }
 
 export const orderListDTO = (order: OrderEntity) => {
@@ -26,6 +29,10 @@ export const orderListDTO = (order: OrderEntity) => {
     user: {
       id: order.user?.id,
       name: order.user?.name,
+    },
+    field: {
+      title: order.field?.title,
+      photos: order.field?.photos,
     },
   } as IOrderListDTO;
 };

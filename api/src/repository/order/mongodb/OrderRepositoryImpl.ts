@@ -20,16 +20,18 @@ export class OrderRepositoryImpl extends OrderRepository {
 
     const query = await OrderModel.find<IOrderSchema>({
       user: userId,
-    }).populate<{
-      user: IUserSchema;
-    }>("user");
+    })
+      .populate<{
+        user: IUserSchema;
+      }>("user")
+      .populate<{ field: IFieldSchema }>("field");
 
     const orders: OrderEntity[] = [];
 
     query.forEach((q) => {
       const order = new OrderEntity(
         q.user?.id.toString() ?? "",
-        q.field.toString(),
+        q.field?.toString() ?? "",
         q.bookDate,
         q.duration,
         q.status,
@@ -40,13 +42,24 @@ export class OrderRepositoryImpl extends OrderRepository {
       order.createdAt = q.createdAt;
       order.updatedAt = q.updatedAt;
 
-      // order.user = new UserEntity(
-      //   q.user?.name_,
-      //   q.user?.email,
-      //   q.user?.role,
-      //   q.user?.password,
-      //   q.user?.id.toString() ?? ""
-      // );
+      order.user = new UserEntity(
+        q.user?.name_,
+        q.user?.email,
+        q.user?.role,
+        q.user?.password,
+        q.user?.id.toString() ?? ""
+      );
+
+      order.field = new FieldEntity(
+        q.field?.title,
+        q.field?.address,
+        q.field?.openingTime,
+        q.field?.closingTime,
+        q.field?.priceHourly,
+        q.field?.description,
+        q.field?.extraInfo
+      );
+      order.field.photos = q.field?.photos ?? [];
 
       orders.push(order);
     });
