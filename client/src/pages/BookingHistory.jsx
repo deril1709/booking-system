@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import instance from '../utils/http';
 import { getTokenFromLocalStorage } from '../utils';
+import img from '../assets/image/damai-badminton.jpg'
 
 function BookingHistory() {
     const [bookingData, setBookingData] = useState([]);
@@ -28,7 +29,8 @@ function BookingHistory() {
             <h2 className="text-xl font-semibold mb-6">Booking History List</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
                 {bookingData.map((booking) => (
-                    <div key={booking.id} className="border rounded-xl shadow-xl p-4 mb-4">
+                    <div key={booking.id} className="border rounded-xl shadow-xl p-4 mb-4 w-64 sm:w-full">
+                        <img src={img} alt="" />
                         <h3 className="text-lg font-semibold mb-2">Field Name</h3>
                         <p className="text-gray-600 mb-2">{booking.fieldName}</p>
                         <h3 className="text-lg font-semibold mb-2">Booking Time</h3>
