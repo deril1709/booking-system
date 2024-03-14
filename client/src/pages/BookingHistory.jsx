@@ -24,27 +24,19 @@ function BookingHistory() {
     }, []);
 
     return (
-        <div className="fle py-10 px-16 overflow-y-auto md:w-full">
+        <div className="py-10 px-16 overflow-y-auto md:w-full">
             <h2 className="text-xl font-semibold mb-6">Booking History List</h2>
-            <div className="border border-blue-400 p-4 my-4 rounded-lg">
-                <table className="w-full border-collapse md:w-full w-50 table-auto">
-                    <thead>
-                        <tr className='border my-0 mx-0 '>
-                            <th className="border p-2">Field</th>
-                            <th className="border p-2">BookingTime</th>
-                            <th className="border p-2">Duration</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {bookingData.map((booking) => (
-                            <tr key={booking.id}>
-                                <td className="border p-2">FieldName</td>
-                                <td className="border p-2">{booking.createdAt}</td>
-                                <td className="border p-2">{booking.duration}</td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+                {bookingData.map((booking) => (
+                    <div key={booking.id} className="border rounded-xl shadow-xl p-4 mb-4">
+                        <h3 className="text-lg font-semibold mb-2">Field Name</h3>
+                        <p className="text-gray-600 mb-2">{booking.fieldName}</p>
+                        <h3 className="text-lg font-semibold mb-2">Booking Time</h3>
+                        <p className="text-gray-600 mb-2">{booking.createdAt}</p>
+                        <h3 className="text-lg font-semibold mb-2">Duration</h3>
+                        <p className="text-gray-600 mb-2">{booking.duration}</p>
+                    </div>
+                ))}
             </div>
         </div>
     );
