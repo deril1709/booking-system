@@ -66,10 +66,22 @@ function AccountPage() {
                 </Link> */}
             </nav>
             {subpage === 'profile' && (
-                <div className='text-center max-w-xs mx-auto'>
-                    Logged in as {user.name} ({user.email}) <br />
-                    <button onClick={logout} className='bg-blue-400 max-w-sm mt-4 login'>Log out</button>
+                <div className="max-w-lg mx-auto bg-white rounded-lg shadow-lg p-8 grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div className="text-center">
+                        <h2 className="text-lg font-semibold">Logged in as {user.name}</h2>
+                        <p className="text-sm text-gray-600">{user.email}</p>
+                        <button onClick={logout} className="bg-blue-400 max-w-sm mt-4 login hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                            Log out
+                        </button>
+                    </div>
+                    <div className="text-left">
+                        <h2 className="text-lg font-semibold">Info:</h2>
+                        <ul className="list-disc pl-4">
+                            <li>Hubungi Admin untuk membatalkan pemesananan.</li>
+                        </ul>
+                    </div>
                 </div>
+
             )}
             {subpage === 'bookings' && (
                 <BookingHistory />
