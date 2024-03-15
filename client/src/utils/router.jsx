@@ -11,6 +11,7 @@ import AdminDashboard from '../pages/admin/AdminDashboard'
 import AdminFormlapangan from '../pages/admin/AdminFormlapangan'
 import AdminBooking from '../pages/admin/AdminBooking'
 import { UserContext } from '../UserContext'
+import AdminHelpcenter from '../pages/admin/AdminHelpcenter'
 
 
 function Router() {
@@ -55,6 +56,7 @@ function Router() {
                                     <Route index element={<AdminDashboard />} />
                                     <Route path="/formlapangan" element={<AdminFormlapangan />} />
                                     <Route path="/booking" element={<AdminBooking />} />
+                                    <Route path="/help" element={<AdminHelpcenter />} />
                                 </Route>
                             </>
                         )}

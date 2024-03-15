@@ -66,7 +66,7 @@ function AccountPage() {
                 </Link> */}
             </nav>
             {subpage === 'profile' && (
-                <div className="max-w-lg mx-auto bg-white rounded-lg shadow-lg p-8 grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="max-w-lg mx-auto bg-white rounded-lg shadow-xl p-8 grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div className="text-center">
                         <h2 className="text-lg font-semibold">Logged in as {user.name}</h2>
                         <p className="text-sm text-gray-600">{user.email}</p>

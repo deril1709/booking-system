@@ -94,8 +94,7 @@ function Sidebar() {
                         </div>
                     </div>
                 </NavLink>
-
-                <NavLink to={'/help'} activeclassname="active-link">
+                <NavLink to={'/help'} style={location.pathname === '/help' ? activeLinkStyle : null}>
                     <div className="nav-links w-full">
                         <div className="flex space-x-3 w-full p-2 rounded  ">
                             <HelpCircleIcon />
