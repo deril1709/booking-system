@@ -8,7 +8,6 @@ function AdminBookingList() {
     const [viewedPaymentProof, setViewedPaymentProof] = useState(null);
     const [editingBooking, setEditingBooking] = useState(null);
     const [Status, setStatus] = useState('PENDING')
-    console.log(viewedPaymentProof);
     useEffect(() => {
         const fetchData = async () => {
             try {
