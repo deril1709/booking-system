@@ -66,7 +66,7 @@ function AccountPage() {
                 </Link> */}
             </nav>
             {subpage === 'profile' && (
-                <div className="max-w-lg mx-auto bg-white rounded-lg shadow-xl p-8 grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="max-w-5xl mx-auto bg-white rounded-lg shadow-xl p-8 grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div className="text-center">
                         <h2 className="text-lg font-semibold">Logged in as {user.name}</h2>
                         <p className="text-sm text-gray-600">{user.email}</p>
@@ -76,8 +76,10 @@ function AccountPage() {
                     </div>
                     <div className="text-left">
                         <h2 className="text-lg font-semibold">Info:</h2>
+                        <p>Untuk membatalkan pemesanan, hubungi admin melalui:</p>
                         <ul className="list-disc pl-4">
-                            <li>Hubungi Admin untuk membatalkan pemesananan.</li>
+                            <li>Email: admin@damai.com</li>
+                            <li>Telepon: 123-456-789</li>
                         </ul>
                     </div>
                 </div>
