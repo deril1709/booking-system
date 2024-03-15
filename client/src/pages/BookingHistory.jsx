@@ -27,7 +27,7 @@ function BookingHistory() {
 
     return (
         <div className="py-10 px-16 overflow-y-auto md:w-full">
-            <h2 className="text-xl font-semibold mb-6">Booking History List</h2>
+            <h2 className="text-xl font-semibold mb-6">Booking History</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
                 {bookingData.map((booking) => (
                     <div key={booking.id} className="border rounded-xl shadow-xl p-4 mb-4 w-64 sm:w-full">
