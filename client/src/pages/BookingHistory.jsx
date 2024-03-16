@@ -31,7 +31,7 @@ function BookingHistory() {
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
                 {bookingData.map((booking) => (
                     <div key={booking.id} className="border rounded-xl shadow-xl p-4 mb-4 w-64 sm:w-full">
-                        <img src={img} alt="" />
+                        <img src={booking.field.photos ? `http://localhost:5050/api/uploaded-file/${booking.field.photos[0].split("media\\").at(-1)}` : ""} alt="" />
                         <h3 className="text-lg font-semibold mt-2">Field Name</h3>
                         <p className="text-gray-600">{booking.field.title}</p>
                         <h3 className="text-lg font-semibold mt-2">Booking Time</h3>
