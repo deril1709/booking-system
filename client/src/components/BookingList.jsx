@@ -8,6 +8,9 @@ function AdminBookingList() {
     const [viewedPaymentProof, setViewedPaymentProof] = useState(null);
     const [editingBooking, setEditingBooking] = useState(null);
     const [Status, setStatus] = useState('PENDING')
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
+    const [bookingToDelete, setBookingToDelete] = useState(null);
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -27,15 +30,36 @@ function AdminBookingList() {
         fetchData();
     }, []);
 
+    // Fungsi untuk menampilkan modal konfirmasi dan menetapkan item yang akan dihapus
+    const showDeleteConfirmation = (bookingId) => {
+        setBookingToDelete(bookingId);
+        setShowDeleteModal(true);
+    };
 
+    // Fungsi untuk menyembunyikan modal konfirmasi
+    const hideDeleteConfirmation = () => {
+        setBookingToDelete(null);
+        setShowDeleteModal(false);
+    };
 
     const handleDeleteBooking = async (bookingId) => {
+        try {
+            // Panggil showDeleteConfirmation untuk menampilkan modal konfirmasi
+            showDeleteConfirmation(bookingId);
+        } catch (error) {
+            console.log('Error deleting booking:', error);
+        }
+    };
+
+    // Di dalam fungsi handleDeleteBooking, panggil hideDeleteConfirmation setelah penghapusan berhasil
+    const handleConfirmDelete = async (bookingId) => {
         try {
             await instance.delete(`/api/orders/${bookingId}`, {
                 headers: { Authorization: 'Bearer ' + getTokenFromLocalStorage() }
             });
-            const updatedBookingData = bookingData.filter((booking) => booking.id === bookingId)
-            setBookingData(updatedBookingData)
+            const updatedBookingData = bookingData.filter((booking) => booking.id !== bookingId);
+            setBookingData(updatedBookingData);
+            hideDeleteConfirmation(); // Sembunyikan modal setelah penghapusan berhasil
         } catch (error) {
             console.log('Error deleting booking:', error);
         }
@@ -178,6 +202,23 @@ function AdminBookingList() {
                                 </button>
                             </div>
                         </form>
+                    </div>
+                </div>
+            )}
+            {showDeleteModal && (
+                <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-60">
+                    <div className="bg-white p-4 rounded-lg">
+                        <p>Anda yakin ingin menghapus booking ini?</p>
+                        <div className="flex justify-center mt-4">
+                            {/* Menggunakan handleConfirmDelete untuk menghapus item */}
+                            <button onClick={() => handleConfirmDelete(bookingToDelete)} className="bg-red-500 text-white p-2 rounded-md mr-2">
+                                Konfirmasi
+                            </button>
+                            {/* Menggunakan hideDeleteConfirmation untuk menyembunyikan modal */}
+                            <button onClick={hideDeleteConfirmation} className="bg-gray-300 text-gray-800 p-2 rounded-md ml-2">
+                                Batal
+                            </button>
+                        </div>
                     </div>
                 </div>
             )}
