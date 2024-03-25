@@ -18,11 +18,13 @@ function Header() {
                     <div>Jl.Damai</div>
                     <div>Lr.1</div>
                     <div>Unhas</div>
-                    <button className='bg-blue-400 text-white rounded-full p-1'>
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
-                        </svg>
-                    </button>
+                    <a href={'https://www.google.com/maps/place/Lapangan+Bulutangkis+Damai/@-5.1302029,119.4939794,17z/data=!4m8!3m7!1s0x2dbefdb79dac8719:0xae0fa332867d9268!8m2!3d-5.1302029!4d119.4939794!9m1!1b1!16s%2Fg%2F11js8ntvlh?entry=ttu'}>
+                        <button className='bg-blue-400 text-white rounded-full p-1'>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4" >
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                            </svg>
+                        </button>
+                    </a>
                 </div>
                 <Link to={user ? '/account' : '/login'} className='flex items-center gap-2 border border-gray-300 shadow-sm shadow-blue-500 rounded-full py-2 px-2 mt-4 md:mt-0'>
                     {!!user && (

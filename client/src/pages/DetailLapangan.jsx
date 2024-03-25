@@ -3,7 +3,7 @@ import PaymentPopup from '../components/PaymentPopup';
 import { useParams } from 'react-router-dom';
 import instance from '../utils/http';
 
-function SingleField() {
+function DetailLapangan() {
     const { fieldId } = useParams();
     const [fieldData, setFieldData] = useState({});
     const [isPaymentPopupOpen, setPaymentPopupOpen] = useState(false);
@@ -94,7 +94,7 @@ function SingleField() {
                         </div>
                         <button onClick={handleOpenPaymentPopup} className='login my-4 hover:bg-blue-600'>Booking Lapangan</button>
                         {/* Payment Pop-up */}
-                        <PaymentPopup data={{ fieldId, bookDate, duration }} isOpen={isPaymentPopupOpen} onClose={handleClosePaymentPopup} onPayment={handlePaymentConfirmation} />
+                        <PaymentPopup data={{ fieldId, bookDate, duration }} isOpen={isPaymentPopupOpen} onClose={handleClosePaymentPopup} onPayment={fieldData.priceHourly} />
                     </div>
                     <div></div>
                 </div>
@@ -111,4 +111,4 @@ function SingleField() {
     );
 }
 
-export default SingleField;
+export default DetailLapangan;

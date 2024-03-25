@@ -5,7 +5,7 @@ import LoginPage from '../pages/LoginPage'
 import Layout from '../Layout'
 import RegisterPage from '../pages/RegisterPage'
 import Lapangan from '../pages/Lapangan'
-import SingleField from '../pages/SingleField'
+import DetailLapangan from '../pages/DetailLapangan'
 import AccountPage from '../pages/AccountPage'
 import AdminDashboard from '../pages/admin/AdminDashboard'
 import AdminFormlapangan from '../pages/admin/AdminFormlapangan'
@@ -43,7 +43,7 @@ function Router() {
                                     <Route index element={<IndexPage />} />
                                     <Route path="/register" element={<RegisterPage />} />
                                     <Route path="/list" element={<Lapangan />} />
-                                    <Route path="/field/:fieldId" element={<SingleField />} />
+                                    <Route path="/field/:fieldId" element={<DetailLapangan />} />
                                     <Route path="/account/:subpage?" element={<AccountPage />} />
                                     <Route path="/account/:subpage/:action" element={<AccountPage />} />
                                 </Route>
