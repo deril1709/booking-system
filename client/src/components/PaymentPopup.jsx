@@ -42,7 +42,7 @@ function PaymentPopup({ isOpen, onClose, onPayment, totalPayment, data }) {
                 // Handle error, show error message to the user
             }
 
-            onClose();
+            onClose(alert("Booking Berhasil"));
         }
         else {
             // Handle case when required fields are not filled
@@ -81,12 +81,6 @@ function PaymentPopup({ isOpen, onClose, onPayment, totalPayment, data }) {
                     </div>
                     <div>
                         <label>Total Payment Amount: {onPayment}</label>
-                        <input
-                            type="number"
-                            value={totalPayment}
-                            onChange={(e) => setTotalPayment(e.target.value)}
-                            className="mb-4"
-                        />
                     </div>
                     {paymentProof && (
                         <img src={URL.createObjectURL(paymentProof)} alt="Payment Proof" className="mt-4 w-full h-40 object-contain" />

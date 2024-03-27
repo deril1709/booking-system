@@ -118,7 +118,7 @@ function AdminBookingList() {
                         {bookingData.map((booking) => (
                             <tr key={booking.id}>
                                 <td className="border p-2 text-center">{booking.user.name}</td>
-                                <td className="border p-2 text-center">{booking.createdAt}</td>
+                                <td className="border p-2 text-center">{booking.bookDate}</td>
                                 <td className="border p-2 text-center">{booking.duration}</td>
                                 <td className="border p-2 text-center">{booking.status}</td>
                                 <td className="border p-2 text-center justify-center space-x-2">
