@@ -15,10 +15,6 @@ function DetailLapangan() {
     const handleClosePaymentPopup = () => {
         setPaymentPopupOpen(false);
     };
-    const handlePaymentConfirmation = () => {
-
-        handleClosePaymentPopup();
-    };
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -95,7 +91,8 @@ function DetailLapangan() {
                                 <label>Durasi</label>
                                 <input
                                     type="number"
-                                    max={24}
+                                    max={10}
+                                    min={0}
                                     placeholder="1 jam"
                                     onChange={(e) => {
                                         const value = parseInt(e.target.value);

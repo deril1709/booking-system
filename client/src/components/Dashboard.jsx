@@ -118,26 +118,23 @@ function Dashboard() {
                                 {userData && userData.map((data) => (
                                     <tr key={data.id}>
                                         <td className="border text-center p-2">{data.id}</td>
-                                        <td className="border text-center p-2">
-                                            <input
-                                                type="readonly"
+                                        <td className="border text-center justify-center p-2">
+                                            <p
                                                 value={data.name}
-                                                onChange={(e) => handleDeleteUser(User.id, e.target.value)}
-                                            />
+                                                onChange={(e) => handleDeleteUser(User.id, e.target.value)}>{data.name}</p>
                                         </td>
                                         <td className="border text-center p-2">
-                                            <input
-                                                type="readonly"
+                                            <p
                                                 value={data.email}
                                                 onChange={(e) => handleDeleteUser(User.id, e.target.value)}
-                                            />
+                                            >{data.email}</p>
                                         </td>
                                         <td className="border text-center p-2">
-                                            <input
+                                            <p
                                                 type="readonly"
                                                 value={data.role}
                                                 onChange={(e) => handleDeleteUser(User.id, e.target.value)}
-                                            />
+                                            >{data.role}</p>
                                         </td>
                                         <td className="border text-center p-2">
                                             <button
