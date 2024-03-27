@@ -35,7 +35,7 @@ function BookingHistory() {
                         <h3 className="text-lg font-semibold mt-2">Field Name</h3>
                         <p className="text-gray-600">{booking.field.title}</p>
                         <h3 className="text-lg font-semibold mt-2">Booking Time</h3>
-                        <p className="text-gray-600">{booking.createdAt}</p>
+                        <p className="text-gray-600">{new Date(booking.bookDate * 1000).toDateString()}</p>
                         <h3 className="text-lg font-semibold mt-2">Duration</h3>
                         <p className="text-gray-600">{booking.duration}</p>
                     </div>

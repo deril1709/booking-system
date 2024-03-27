@@ -84,8 +84,9 @@ function DetailLapangan() {
                                 <input
                                     type="datetime-local"
                                     onChange={(e) => {
-                                        const selectedDate = new Date(e.target.value);
-                                        const dividedDate = selectedDate.getTime() / 1000; // Mengubah nilai ke detik
+                                        const selectedDate = new Date(e.target.value).getTime();
+                                        const dividedDate = Math.floor(selectedDate / 1000); // Mengubah nilai ke detik
+                                        setBookDate(dividedDate)
                                         console.log(dividedDate);
                                     }}
                                 />
@@ -98,7 +99,7 @@ function DetailLapangan() {
                                     placeholder="1 jam"
                                     onChange={(e) => {
                                         const value = parseInt(e.target.value);
-                                        if (value <= 5) {
+                                        if (value <= 5 || value < 0) {
                                             setDuration(value);
                                         } else {
                                             // Handle jika nilai melebihi 24
