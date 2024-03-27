@@ -76,20 +76,37 @@ function DetailLapangan() {
                 <div className='bg-white p-4 rounded-xl shadow mb-4 w-72 md:w-full'>
                     <div className='border rounded-2xl mt-4'>
                         <div className='text-xl text-center font-semibold'>
-                            {fieldData.priceHourly} <br />
+                            Rp.{fieldData.priceHourly} <br />
                         </div>
                         <div className="flex w-40 text-xs md:text-base md:w-full">
                             <div className=' bg-white py-3 px-4'>
                                 <label>Pilih Tanggal dan jam</label>
-                                <input type="datetime-local" onChange={(e) => setBookDate(e.target.value.getTime())} />
+                                <input
+                                    type="datetime-local"
+                                    onChange={(e) => {
+                                        const selectedDate = new Date(e.target.value);
+                                        const dividedDate = selectedDate.getTime() / 1000; // Mengubah nilai ke detik
+                                        console.log(dividedDate);
+                                    }}
+                                />
                             </div>
-                            {/* <div className=' bg-white py-3 px-4 border-t'>
-                                <label>Pilih Jam</label>
-                                <input type="time" />
-                            </div> */}
                             <div className=' bg-white py-3 px-4 border-t'>
                                 <label>Durasi</label>
-                                <input type="number" placeholder="1 jam" onChange={(e) => setDuration(e.target.value)} />
+                                <input
+                                    type="number"
+                                    max={24}
+                                    placeholder="1 jam"
+                                    onChange={(e) => {
+                                        const value = parseInt(e.target.value);
+                                        if (value <= 5) {
+                                            setDuration(value);
+                                        } else {
+                                            // Handle jika nilai melebihi 24
+                                            alert("Durasi maksimal 5 jam!");
+                                            // Atau sesuaikan dengan logika aplikasi Anda
+                                        }
+                                    }}
+                                />
                             </div>
                         </div>
                         <button onClick={handleOpenPaymentPopup} className='login my-4 hover:bg-blue-600'>Booking Lapangan</button>
