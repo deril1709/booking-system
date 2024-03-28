@@ -9,12 +9,21 @@ function DetailLapangan() {
     const [isPaymentPopupOpen, setPaymentPopupOpen] = useState(false);
     const [bookDate, setBookDate] = useState(0);
     const [duration, setDuration] = useState(0);
+    const [error, setError] = useState()
+
     const handleOpenPaymentPopup = () => {
-        setPaymentPopupOpen(true);
+        if (bookDate === 0 || duration === 0) {
+            setError("Mohon lengkapi tanggal dan durasi terlebih dahulu.");
+        } else {
+            setError(null);
+            setPaymentPopupOpen(true);
+        }
     };
+
     const handleClosePaymentPopup = () => {
         setPaymentPopupOpen(false);
     };
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -91,22 +100,36 @@ function DetailLapangan() {
                                 <label>Durasi</label>
                                 <input
                                     type="number"
-                                    max={10}
+                                    max={5}
                                     min={0}
                                     placeholder="1 jam"
-                                    onChange={(e) => {
-                                        const value = parseInt(e.target.value);
-                                        if (value <= 5 || value < 0) {
-                                            setDuration(value);
-                                        } else {
-                                            // Handle jika nilai melebihi 24
-                                            alert("Durasi maksimal 5 jam!");
-                                            // Atau sesuaikan dengan logika aplikasi Anda
-                                        }
-                                    }}
+                                    onChange={(e) => setDuration(e.target.value)}
                                 />
                             </div>
                         </div>
+                        {/* Notifikasi Error */}
+                        {error && (
+                            <div className="bg-red-100 border border-red-400 text-red-700 px-6 py-3 rounded relative" role="alert">
+                                <strong className="font-bold">Error: </strong>
+                                <span className="block sm:inline">{error}</span>
+                                <span className="absolute top-0 bottom-0 right-0 px-4 py-3">
+                                    <svg
+                                        onClick={() => setError(null)}
+                                        className="fill-current h-6 w-6 text-red-500"
+                                        role="button"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 20 20"
+                                    >
+                                        <title>Close</title>
+                                        <path
+                                            fillRule="evenodd"
+                                            d="M14.348 14.849a1 1 0 0 1-1.415 0L10 11.414l-2.933 2.93a1 1 0 1 1-1.414-1.415L8.586 10 5.653 7.066a1 1 0 0 1 1.414-1.415L10 8.586l2.933-2.93a1 1 0 0 1 1.415 1.415L11.414 10l2.934 2.933a1 1 0 0 1 0 1.416z"
+                                            clipRule="evenodd"
+                                        />
+                                    </svg>
+                                </span>
+                            </div>
+                        )}
                         <button onClick={handleOpenPaymentPopup} className='login my-4 hover:bg-blue-600'>Booking Lapangan</button>
                         {/* Payment Pop-up */}
                         <PaymentPopup data={{ fieldId, bookDate, duration }} isOpen={isPaymentPopupOpen} onClose={handleClosePaymentPopup} onPayment={fieldData.priceHourly} />
