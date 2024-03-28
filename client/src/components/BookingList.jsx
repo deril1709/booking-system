@@ -10,6 +10,7 @@ function AdminBookingList() {
     const [Status, setStatus] = useState('PENDING')
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [bookingToDelete, setBookingToDelete] = useState(null);
+    const [orderId, setorderId] = useState()
 
     useEffect(() => {
         const fetchData = async () => {
@@ -71,7 +72,17 @@ function AdminBookingList() {
 
     const handleEditBooking = async (booking) => {
         try {
-            const response = await instance.put(`/api/orders/${booking.id}`, {
+            setorderId(booking.id);
+            setEditingBooking(booking);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    };
+
+    const handleSaveBooking = async () => {
+        try {
+            console.log(Status);
+            const response = await instance.put(`/api/orders/${orderId}`, {
                 status: Status === 'SUCCESS' ? true : false
             }, {
                 headers: { Authorization: 'Bearer ' + getTokenFromLocalStorage() }
@@ -83,17 +94,6 @@ function AdminBookingList() {
             console.error('Error fetching data:', error);
         }
         setEditingBooking(booking);
-    };
-
-    const handleSaveBooking = () => {
-        const updatedBookingData = bookingData.map((booking) => {
-            if (booking.id === editingBooking.id) {
-                return editingBooking;
-            }
-            return booking;
-        });
-        setBookingData(updatedBookingData);
-        setEditingBooking(null);
     };
 
     const handleCancelEdit = () => {

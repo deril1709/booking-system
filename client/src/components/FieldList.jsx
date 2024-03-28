@@ -1,4 +1,3 @@
-// FieldList.js
 import React, { useState, useEffect } from 'react';
 import FieldItem from './FieldItem';
 import { Plus } from 'lucide-react';
