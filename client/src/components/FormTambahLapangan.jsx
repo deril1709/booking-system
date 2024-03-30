@@ -31,6 +31,20 @@ function FormTambahLapangan() {
         });
     };
 
+    function convertToMinutes(timeString) {
+        // Split the time string into hours and minutes
+        var timeParts = timeString.split('.');
+
+        // Parse hours and minutes
+        var hours = parseInt(timeParts[0]);
+        var minutes = parseInt(timeParts[1]);
+
+        // Convert hours to minutes and add to total
+        var totalMinutes = hours * 60 + minutes;
+
+        return totalMinutes;
+    }
+
     const submitForm = async (e) => {
         e.preventDefault();
 
@@ -58,8 +72,8 @@ function FormTambahLapangan() {
             const response = await instance.post('/api/fields/', {
                 title,
                 address,
-                openingTime,
-                closingTime,
+                openingTime: convertToMinutes(openingTime),
+                closingTime: convertToMinutes(closingTime),
                 description,
                 extraInfo,
                 priceHourly,
@@ -73,6 +87,7 @@ function FormTambahLapangan() {
 
             console.log('API Response:', response.data);
             const data = response.data.data;
+            alert("successfully uploaded")
             // Handle the response as needed in your application
         } catch (error) {
             console.error('Error submitting form:', error);
@@ -160,7 +175,10 @@ function FormTambahLapangan() {
                             type="text"
                             placeholder='09.00'
                             value={openingTime}
-                            onChange={e => setOpeningTime(e.target.value)}
+                            onChange={e => {
+
+                                setOpeningTime(e.target.value);
+                            }}
                         />
                     </div>
                     <div>

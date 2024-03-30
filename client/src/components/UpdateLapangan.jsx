@@ -103,11 +103,10 @@ function UpdateLapangan({ fieldId, setEditingField }) {
                 <p className='text-gray-500 text-sm'>Tambahkan foto menggunakan link atau langsung upload dari device anda</p>
                 <div className='flex gap-2'>
                     <input type="text"
-                        placeholder={'add using a link ...'}
-                        value={formData.photos}
-                        onChange={handleInputChange}
                     />
-                    <button className='bg-gray-200 rounded-xl px-2'>Add&nbsp;photo</button>
+                    <button className='bg-gray-200 rounded-xl px-2'
+                            value={formData.photos}
+                            onChange={handleInputChange}>Add&nbsp;photo</button>
                 </div>
                 <div className='mt-2 grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6'>
                     <label className="h-20 bg-gray-500 cursor-pointer flex items-center gap-1 justify-center border bg-transparent rounded-2xl p-2 text-2xl text-gray-600">

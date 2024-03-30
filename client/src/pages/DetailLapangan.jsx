@@ -24,6 +24,18 @@ function DetailLapangan() {
         setPaymentPopupOpen(false);
     };
 
+    function convertToTimeString(totalMinutes) {
+        // Menghitung jam dan menit
+        var hours = Math.floor(totalMinutes / 60);
+        var minutes = totalMinutes % 60;
+
+        // Membuat string waktu dengan format "HH:MM"
+        var hoursString = hours < 10 ? '0' + hours : hours.toString();
+        var minutesString = minutes < 10 ? '0' + minutes : minutes.toString();
+
+        return hoursString + ':' + minutesString;
+    }
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -73,8 +85,8 @@ function DetailLapangan() {
 
             <div className='md:grid grid-cols-[2fr_1fr] '>
                 <div>
-                    <p>Opening time: {fieldData.openingTime}</p>
-                    <p>Closing time: {fieldData.closingTime}</p>
+                    <p>Opening time: {convertToTimeString(fieldData.openingTime)}</p>
+                    <p>Closing time: {convertToTimeString(fieldData.closingTime)}</p>
                 </div>
 
                 {/* card */}
