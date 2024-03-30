@@ -4,7 +4,7 @@ import instance from '../utils/http';
 import { getTokenFromLocalStorage } from '../utils';
 
 
-function FormTambahLapangan() {
+function FormTambahLapangan({ setNewField }) {
     const [title, setTitle] = useState('');
     const [address, setAddress] = useState('');
     const [openingTime, setOpeningTime] = useState('');
@@ -88,7 +88,7 @@ function FormTambahLapangan() {
             console.log('API Response:', response.data);
             const data = response.data.data;
             alert("successfully uploaded")
-            // Handle the response as needed in your application
+            setNewField(null)
         } catch (error) {
             console.error('Error submitting form:', error);
         }
