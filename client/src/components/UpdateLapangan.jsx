@@ -3,7 +3,6 @@ import instance from '../utils/http'
 import { getTokenFromLocalStorage } from '../utils'
 
 function UpdateLapangan({ fieldId, setEditingField }) {
-    console.log('UpdateLapangan rendered with fieldId:', fieldId);
     const [formData, setFormData] = useState({
         title: '',
         address: '',
@@ -15,14 +14,13 @@ function UpdateLapangan({ fieldId, setEditingField }) {
         photos: [],
     });
 
-    console.log(formData);
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const response = await instance.get(`/api/fields/${fieldId}`);
                 const data = response.data;
 
-                // console.log(data);
+                console.log(data.data);
                 // Set the fetched data in the state
                 setFormData(data.data);
             } catch (error) {
@@ -46,11 +44,12 @@ function UpdateLapangan({ fieldId, setEditingField }) {
     async function submitForm(e) {
         e.preventDefault();
         try {
+            console.log(formData.openingTime)
             await instance.put(`/api/fields/${fieldId}`, {
                 title: formData.title,
                 address: formData.address,
-                openingTime: formData.openingTime,
-                closingTime: formData.closingTime,
+                openingTime: convertToMinutes(formData.openingTime),
+                closingTime: convertToMinutes(formData.closingTime),
                 description: formData.description,
                 extraInfo: formData.extraInfo,
                 priceHourly: formData.priceHourly,
@@ -75,6 +74,32 @@ function UpdateLapangan({ fieldId, setEditingField }) {
             // Handle error, show error message to the user
         }
     };
+    function convertToMinutes(timeString) {
+        console.log(timeString)
+        // Split the time string into hours and minutes
+        var timeParts = timeString.split(':');
+
+        // Parse hours and minutes
+        var hours = parseInt(timeParts[0]);
+        var minutes = parseInt(timeParts[1]);
+
+        // Convert hours to minutes and add to total
+        var totalMinutes = hours * 60 + minutes;
+
+        return totalMinutes;
+    }
+    function minutesToTimeString(minutes) {
+        // Mendapatkan jam dan menit dari jumlah menit
+        var hours = Math.floor(minutes / 60);
+        var mins = minutes % 60;
+
+        // Membuat string untuk jam dan menit
+        var hoursStr = hours < 10 ? '0' + hours : '' + hours;
+        var minsStr = mins < 10 ? '0' + mins : '' + mins;
+
+        // Menggabungkan string jam dan menit dengan format "HH.MM"
+        return hoursStr + ':' + minsStr;
+    }
 
     return (
         <div className="flex flex-col py-10 px-16 h-screen overflow-y-auto w-full">
@@ -105,8 +130,8 @@ function UpdateLapangan({ fieldId, setEditingField }) {
                     <input type="text"
                     />
                     <button className='bg-gray-200 rounded-xl px-2'
-                            value={formData.photos}
-                            onChange={handleInputChange}>Add&nbsp;photo</button>
+                        value={formData.photos}
+                        onChange={handleInputChange}>Add&nbsp;photo</button>
                 </div>
                 <div className='mt-2 grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6'>
                     <label className="h-20 bg-gray-500 cursor-pointer flex items-center gap-1 justify-center border bg-transparent rounded-2xl p-2 text-2xl text-gray-600">
@@ -140,9 +165,9 @@ function UpdateLapangan({ fieldId, setEditingField }) {
                     <div>
                         <h3 className='mt-2 -mb-1'>Opening Time</h3>
                         <input
-                            type="text"
+                            type="time"
                             placeholder='09.00'
-                            value={formData.openingTime}
+                            // value={minutesToTimeString(formData.openingTime)}
                             onChange={handleInputChange}
                             name='openingTime'
                         />
@@ -150,11 +175,12 @@ function UpdateLapangan({ fieldId, setEditingField }) {
                     <div>
                         <h3 className='mt-2 -mb-1'>Closing Time</h3>
                         <input
-                            type="text"
+                            type="time"
                             placeholder='22.00'
                             name='closingTime'
-                            value={formData.closingTime}
-                            onChange={handleInputChange} />
+                            // value={minutesToTimeString(formData.closingTime)}
+                            onChange={handleInputChange}
+                        />
                     </div>
                 </div>
                 <div>

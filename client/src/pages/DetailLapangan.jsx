@@ -93,7 +93,7 @@ function DetailLapangan() {
                 <div className='bg-white p-4 rounded-xl shadow mb-4 w-72 md:w-full'>
                     <div className='border rounded-2xl mt-4'>
                         <div className='text-xl text-center font-semibold'>
-                            Rp.{fieldData.priceHourly} <br />
+                            Rp{new Intl.NumberFormat('en-DE').format(fieldData.priceHourly)} <br />
                         </div>
                         <div className="flex w-40 text-xs md:text-base md:w-full">
                             <div className=' bg-white py-3 px-4'>

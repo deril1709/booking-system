@@ -33,7 +33,7 @@ function FormTambahLapangan({ setNewField }) {
 
     function convertToMinutes(timeString) {
         // Split the time string into hours and minutes
-        var timeParts = timeString.split('.');
+        var timeParts = timeString.split(':');
 
         // Parse hours and minutes
         var hours = parseInt(timeParts[0]);
@@ -124,7 +124,6 @@ function FormTambahLapangan({ setNewField }) {
                         value={photos}
                         onChange={e => setPhotos(e.target.value)}
                     />
-                    <button className='bg-gray-200 rounded-xl px-2'>Add&nbsp;photo</button>
                 </div>
                 <div className='mt-2 grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2'>
                     {photoPreviews.map((preview, index) => (
@@ -170,9 +169,9 @@ function FormTambahLapangan({ setNewField }) {
                 <p className='text-gray-500 text-sm'>Pilih waktu opening dan closing pada lapangan</p>
                 <div className='grid sm:grid-cols-4 gap-4'>
                     <div>
-                        <h3 className='mt-2 -mb-1'>Opening Time</h3>
+                        <h3 className='mt-2 mb-1'>Opening Time</h3>
                         <input
-                            type="text"
+                            type="time"
                             placeholder='09.00'
                             value={openingTime}
                             onChange={e => {
@@ -182,9 +181,9 @@ function FormTambahLapangan({ setNewField }) {
                         />
                     </div>
                     <div>
-                        <h3 className='mt-2 -mb-1'>Closing Time</h3>
+                        <h3 className='mt-2 mb-1'>Closing Time</h3>
                         <input
-                            type="text"
+                            type="time"
                             placeholder='22.00'
                             value={closingTime}
                             onChange={e => setClosingTime(e.target.value)} />
@@ -194,7 +193,7 @@ function FormTambahLapangan({ setNewField }) {
                     <h3 className='mt-2 -mb-1'>Harga</h3>
                     <input
                         type="text"
-                        placeholder='Rp 45.000'
+                        placeholder='45000'
                         value={priceHourly}
                         onChange={e => setPrice(e.target.value)}
                     />

@@ -5,11 +5,11 @@ import { Link } from 'react-router-dom';
 function IndexPage() {
     return (
         <div className="min-h-screen flex flex-col md:flex-row items-center justify-center mx-5 my-5">
-            <div className="w-full md:w-1/2">
+            <div className="sm:max-w-full md:w-1/2">
                 <img
                     src={img}
                     alt="Badminton Image"
-                    className="rounded-lg shadow-lg object-cover object-center h-80 md:h-full w-full"
+                    className="rounded-lg shadow-lg object-cover object-center h-full md:h-full w-full"
                 />
             </div>
             <div className="w-full md:w-1/2 flex flex-col justify-center items-center md:items-start space-y-4 mt-4 md:mt-0">

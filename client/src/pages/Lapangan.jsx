@@ -38,7 +38,7 @@ function Lapangan() {
                         <h2 className="font-bold">{fields.title}</h2>
                         <h3 className="text-sm text-gray-500">{fields.description}</h3>
                         <div className="mt-1">
-                            <span className="font-bold">{`Rp ${fields.priceHourly}`}</span> per jam
+                            <span className="font-bold">Rp{new Intl.NumberFormat('en-DE').format(fields.priceHourly)}</span> per jam
                         </div>
                     </Link>
                 ))
