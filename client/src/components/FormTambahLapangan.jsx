@@ -118,13 +118,6 @@ function FormTambahLapangan({ setNewField }) {
                 />
                 <h2 className='text-xl pt-4'>Foto</h2>
                 <p className='text-gray-500 text-sm'>Tambahkan foto menggunakan link atau langsung upload dari device anda</p>
-                <div className='flex gap-2'>
-                    <input type="text"
-                        placeholder={'add using a link ...'}
-                        value={photos}
-                        onChange={e => setPhotos(e.target.value)}
-                    />
-                </div>
                 <div className='mt-2 grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2'>
                     {photoPreviews.map((preview, index) => (
                         <img
@@ -191,6 +184,7 @@ function FormTambahLapangan({ setNewField }) {
                 </div>
                 <div>
                     <h3 className='mt-2 -mb-1'>Harga</h3>
+                    <p className='text-gray-500 text-sm'>Masukkan hanya angka tanpa titik</p>
                     <input
                         type="text"
                         placeholder='45000'

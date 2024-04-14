@@ -13,6 +13,8 @@ function UpdateLapangan({ fieldId, setEditingField }) {
         priceHourly: '',
         photos: [],
     });
+    const [photos, setPhotos] = useState([]);
+    const [photoPreviews, setPhotoPreviews] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -31,6 +33,7 @@ function UpdateLapangan({ fieldId, setEditingField }) {
         fetchData();
     }, [fieldId]);
 
+
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         console.log(name);
@@ -39,6 +42,21 @@ function UpdateLapangan({ fieldId, setEditingField }) {
             ...prevData,
             [name]: value,
         }));
+    };
+    const handleFileChange = (e) => {
+        const selectedPhotos = Array.from(e.target.files);
+        setPhotos(selectedPhotos);
+
+        // Generate previews for selected photos
+        const previews = [];
+        selectedPhotos.forEach((photo) => {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                previews.push(e.target.result);
+                setPhotoPreviews([...previews]);
+            };
+            reader.readAsDataURL(photo);
+        });
     };
 
     async function submitForm(e) {
@@ -71,6 +89,7 @@ function UpdateLapangan({ fieldId, setEditingField }) {
             setEditingField(null);
         } catch (error) {
             console.error('Error updating field:', error);
+            alert('Error updating field: isi semua data dengan benar');
             // Handle error, show error message to the user
         }
     };
@@ -126,16 +145,19 @@ function UpdateLapangan({ fieldId, setEditingField }) {
                 />
                 <h2 className='text-xl pt-4'>Foto</h2>
                 <p className='text-gray-500 text-sm'>Tambahkan foto menggunakan link atau langsung upload dari device anda</p>
-                <div className='flex gap-2'>
-                    <input type="text"
-                    />
-                    <button className='bg-gray-200 rounded-xl px-2'
-                        value={formData.photos}
-                        onChange={handleInputChange}>Add&nbsp;photo</button>
+                <div className='mt-2 grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2'>
+                    {photoPreviews.map((preview, index) => (
+                        <img
+                            key={index}
+                            src={preview}
+                            alt={`Preview-${index}`}
+                            className="h-20 w-full object-cover rounded-lg border"
+                        />
+                    ))}
                 </div>
                 <div className='mt-2 grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6'>
                     <label className="h-20 bg-gray-500 cursor-pointer flex items-center gap-1 justify-center border bg-transparent rounded-2xl p-2 text-2xl text-gray-600">
-                        <input type="file" multiple className="hidden" />
+                        <input type="file" multiple className="hidden" onChange={handleFileChange} />
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8 h-8">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M12 16.5V9.75m0 0l3 3m-3-3l-3 3M6.75 19.5a4.5 4.5 0 01-1.41-8.775 5.25 5.25 0 0110.233-2.33 3 3 0 013.758 3.848A3.752 3.752 0 0118 19.5H6.75z" />
                         </svg>
@@ -167,7 +189,6 @@ function UpdateLapangan({ fieldId, setEditingField }) {
                         <input
                             type="time"
                             placeholder='09.00'
-                            // value={minutesToTimeString(formData.openingTime)}
                             onChange={handleInputChange}
                             name='openingTime'
                         />
@@ -178,7 +199,6 @@ function UpdateLapangan({ fieldId, setEditingField }) {
                             type="time"
                             placeholder='22.00'
                             name='closingTime'
-                            // value={minutesToTimeString(formData.closingTime)}
                             onChange={handleInputChange}
                         />
                     </div>
@@ -194,7 +214,7 @@ function UpdateLapangan({ fieldId, setEditingField }) {
                     />
                 </div>
                 <div>
-                    <button type='login' className='login my-4'>Save</button>
+                    <button type='submit' className='login my-4'>Save</button>
                 </div>
             </form>
         </div>
