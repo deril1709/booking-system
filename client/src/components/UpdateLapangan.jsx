@@ -27,6 +27,17 @@ function UpdateLapangan({ fieldId, setEditingField }) {
                 // Set the fetched data in the state
                 setFormData(data.data);
 
+                // Init opening time and closing time
+                const openingTimeInput = document.querySelector('input[name="openingTime"]');
+                openingTimeInput.value = convertToString(data.data.openingTime);
+
+                const closingTimeInput = document.querySelector('input[name="closingTime"]');
+                closingTimeInput.value = convertToString(data.data.closingTime);
+
+                const field = data.data;
+                const photo = field.photos ? `http://localhost:5050/api/uploaded-file/${field.photos[0].split("media\\").at(-1)}` : "";
+                setPhotoPreviews([photo]);
+
             } catch (error) {
                 console.error('Error fetching field data:', error);
             }
@@ -36,13 +47,17 @@ function UpdateLapangan({ fieldId, setEditingField }) {
     }, [fieldId]);
 
 
+
     const handleInputChange = (e) => {
         const { name, value } = e.target;
+        console.log(name, value);
         setFormData((prevData) => ({
             ...prevData,
             [name]: value,
         }));
     };
+
+
     const handleFileChange = (e) => {
         const selectedPhotos = Array.from(e.target.files);
         setPhotos(selectedPhotos);
@@ -65,7 +80,7 @@ function UpdateLapangan({ fieldId, setEditingField }) {
             const photosArray = Array.isArray(photos) ? photos : [photos];
 
             const photosFormData = new FormData();
-            
+
             photosArray.forEach((photo) => {
                 photosFormData.append('file', photo);
             });
@@ -119,6 +134,19 @@ function UpdateLapangan({ fieldId, setEditingField }) {
         var totalMinutes = hours * 60 + minutes;
 
         return totalMinutes;
+    }
+
+    function convertToString(time) {
+        // Konversi total menit ke jam dan menit
+        const hours = Math.floor(time / 60);
+        const minutes = time % 60;
+
+        // Format jam dan menit menjadi string dengan format HH:MM
+        const formattedHours = String(hours).padStart(2, '0');
+        const formattedMinutes = String(minutes).padStart(2, '0');
+
+        // Gabungkan jam dan menit menjadi satu string
+        return `${formattedHours}:${formattedMinutes}`;
     }
 
     return (
