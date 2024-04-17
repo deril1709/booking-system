@@ -51,7 +51,7 @@ function FormTambahLapangan({ setNewField }) {
         try {
             // Ensure photos is always an array
             const photosArray = Array.isArray(photos) ? photos : [photos];
-
+            
             // First, upload photos to the /api/files endpoint
             const photosFormData = new FormData();
             photosArray.forEach((photo) => {
@@ -67,6 +67,7 @@ function FormTambahLapangan({ setNewField }) {
 
             // Assuming your /api/files returns an array of file paths or IDs
             const uploadedPhotoPaths = [photosUploadResponse.data.data];
+
 
             // Now, create the field using the uploaded photo paths
             const response = await instance.post('/api/fields/', {

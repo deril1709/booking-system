@@ -23,8 +23,10 @@ function UpdateLapangan({ fieldId, setEditingField }) {
                 const data = response.data;
 
                 console.log(data.data);
+
                 // Set the fetched data in the state
                 setFormData(data.data);
+
             } catch (error) {
                 console.error('Error fetching field data:', error);
             }
@@ -36,8 +38,6 @@ function UpdateLapangan({ fieldId, setEditingField }) {
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
-        console.log(name);
-        console.log(value);
         setFormData((prevData) => ({
             ...prevData,
             [name]: value,
@@ -62,7 +62,19 @@ function UpdateLapangan({ fieldId, setEditingField }) {
     async function submitForm(e) {
         e.preventDefault();
         try {
-            console.log(formData.openingTime)
+            const photosArray = Array.isArray(photos) ? photos : [photos];
+
+            const photosFormData = new FormData();
+            
+            photosArray.forEach((photo) => {
+                photosFormData.append('file', photo);
+            });
+            const photosUploadResponse = await instance.post('/api/files', photosFormData, {
+                headers: {
+                    Authorization: 'Bearer ' + getTokenFromLocalStorage(),
+                    'Content-Type': 'multipart/form-data',
+                },
+            });
             await instance.put(`/api/fields/${fieldId}`, {
                 title: formData.title,
                 address: formData.address,
@@ -71,7 +83,7 @@ function UpdateLapangan({ fieldId, setEditingField }) {
                 description: formData.description,
                 extraInfo: formData.extraInfo,
                 priceHourly: formData.priceHourly,
-                photos: formData.photos
+                photos: [photosUploadResponse.data.data],
             }, {
                 headers: { Authorization: 'Bearer ' + getTokenFromLocalStorage() },
             });
@@ -86,6 +98,7 @@ function UpdateLapangan({ fieldId, setEditingField }) {
                 priceHourly: '',
                 photos: [],
             });
+            alert("Berhasil edit lapangan")
             setEditingField(null);
         } catch (error) {
             console.error('Error updating field:', error);
@@ -106,18 +119,6 @@ function UpdateLapangan({ fieldId, setEditingField }) {
         var totalMinutes = hours * 60 + minutes;
 
         return totalMinutes;
-    }
-    function minutesToTimeString(minutes) {
-        // Mendapatkan jam dan menit dari jumlah menit
-        var hours = Math.floor(minutes / 60);
-        var mins = minutes % 60;
-
-        // Membuat string untuk jam dan menit
-        var hoursStr = hours < 10 ? '0' + hours : '' + hours;
-        var minsStr = mins < 10 ? '0' + mins : '' + mins;
-
-        // Menggabungkan string jam dan menit dengan format "HH.MM"
-        return hoursStr + ':' + minsStr;
     }
 
     return (

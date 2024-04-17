@@ -12,6 +12,7 @@ import { IPutFieldPayload } from "../../../utils/interfaces/request/IPutFieldPay
 export class FieldRepositoryImpl extends FieldRepository {
   async updateFieldById(id: string, payload: IPutFieldPayload): Promise<void> {
     try {
+      console.log(payload.photos);
       await FieldModel.findByIdAndUpdate(id, {
         $set: {
           address: payload.address,
