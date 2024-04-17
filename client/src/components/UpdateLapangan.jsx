@@ -124,6 +124,8 @@ function UpdateLapangan({ fieldId, setEditingField }) {
             });
             alert("Berhasil edit lapangan")
             setEditingField(null);
+            window.location.reload();
+
         } catch (error) {
             console.error('Error updating field:', error);
             alert('Error updating field: isi semua data dengan benar');

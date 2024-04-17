@@ -51,7 +51,7 @@ function FormTambahLapangan({ setNewField }) {
         try {
             // Ensure photos is always an array
             const photosArray = Array.isArray(photos) ? photos : [photos];
-            
+
             // First, upload photos to the /api/files endpoint
             const photosFormData = new FormData();
             photosArray.forEach((photo) => {
@@ -90,6 +90,8 @@ function FormTambahLapangan({ setNewField }) {
             const data = response.data.data;
             alert("successfully uploaded")
             setNewField(null)
+            window.location.reload();
+
         } catch (error) {
             console.error('Error submitting form:', error);
         }

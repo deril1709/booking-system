@@ -39,8 +39,8 @@ function FieldItem({ field, onEdit, onDelete, setEditingField }) {
 
     return (
         <div className="border rounded-xl shadow-xl p-4 mb-4">
-            <img src={field.photos ? `http://localhost:5050/api/uploaded-file/${field.photos[0].split("media\\").at(-1)}` : ""} alt="" className='w-40' />
-            <h2 className="text-xl font-semibold text-gray-500">{field.title}</h2>
+            <img src={field.photos ? `http://localhost:5050/api/uploaded-file/${field.photos[0].split("media\\").at(-1)}` : ""} alt="" className='w-40 object-cover h-24' />
+            <h2 className="text-xl font-semibold text-gray-500 line-clamp-2">{field.title}</h2>
             <div className="flex mt-2">
                 <button onClick={handleEditClick} className="bg-blue-400 text-white p-2 rounded-md mr-2">
                     Edit
