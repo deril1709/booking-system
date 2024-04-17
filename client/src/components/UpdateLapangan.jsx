@@ -22,17 +22,26 @@ function UpdateLapangan({ fieldId, setEditingField }) {
                 const response = await instance.get(`/api/fields/${fieldId}`);
                 const data = response.data;
 
-                console.log(data.data);
+
 
                 // Set the fetched data in the state
                 setFormData(data.data);
 
                 // Init opening time and closing time
                 const openingTimeInput = document.querySelector('input[name="openingTime"]');
-                openingTimeInput.value = convertToString(data.data.openingTime);
+                const openingTime = convertToString(data.data.openingTime);
+                openingTimeInput.value = openingTime;
 
                 const closingTimeInput = document.querySelector('input[name="closingTime"]');
-                closingTimeInput.value = convertToString(data.data.closingTime);
+                const closingTime = convertToString(data.data.closingTime);
+                closingTimeInput.value = closingTime;
+
+                setFormData((prevData) => ({
+                    ...prevData,
+                    openingTime: openingTime,
+                    closingTime: closingTime,
+                }));
+
 
                 const field = data.data;
                 const photo = field.photos ? `http://localhost:5050/api/uploaded-file/${field.photos[0].split("media\\").at(-1)}` : "";
@@ -50,7 +59,7 @@ function UpdateLapangan({ fieldId, setEditingField }) {
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
-        console.log(name, value);
+
         setFormData((prevData) => ({
             ...prevData,
             [name]: value,
@@ -98,7 +107,7 @@ function UpdateLapangan({ fieldId, setEditingField }) {
                 description: formData.description,
                 extraInfo: formData.extraInfo,
                 priceHourly: formData.priceHourly,
-                photos: [photosUploadResponse.data.data],
+                photos: photosUploadResponse.data.data ? [photosUploadResponse.data.data] : formData.photos,
             }, {
                 headers: { Authorization: 'Bearer ' + getTokenFromLocalStorage() },
             });
@@ -122,7 +131,7 @@ function UpdateLapangan({ fieldId, setEditingField }) {
         }
     };
     function convertToMinutes(timeString) {
-        console.log(timeString)
+
         // Split the time string into hours and minutes
         var timeParts = timeString.split(':');
 
@@ -137,6 +146,7 @@ function UpdateLapangan({ fieldId, setEditingField }) {
     }
 
     function convertToString(time) {
+
         // Konversi total menit ke jam dan menit
         const hours = Math.floor(time / 60);
         const minutes = time % 60;
