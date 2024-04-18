@@ -16,7 +16,6 @@ function BookingHistory() {
                 });
                 const data = response.data;
                 setBookingData(data.data)
-                console.log(data.data)
 
             } catch (error) {
                 console.error('Error fetching data:', error);
@@ -37,7 +36,7 @@ function BookingHistory() {
                         <h3 className="text-lg font-semibold mt-2">Booking Time</h3>
                         <p className="text-gray-600">{new Date(booking.bookDate * 1000).toString()}</p>
                         <h3 className="text-lg font-semibold mt-2">Duration</h3>
-                        <p className="text-gray-600">{booking.duration}</p>
+                        <p className="text-gray-600">{booking.duration} jam</p>
                     </div>
                 ))}
             </div>
