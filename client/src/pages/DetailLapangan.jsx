@@ -11,10 +11,16 @@ function DetailLapangan() {
     const [duration, setDuration] = useState(0);
     const [error, setError] = useState()
 
+
+
     const handleOpenPaymentPopup = () => {
-        if (bookDate === 0 || duration === 0) {
+        if (bookDate === 0 || duration === 0 || duration === '' || bookDate === '') {
             setError("Mohon lengkapi tanggal dan durasi terlebih dahulu.");
-        } else {
+        }
+        else if (duration > 5) {
+            setError("Durasi maksimal 5 jam")
+        }
+        else {
             setError(null);
             setPaymentPopupOpen(true);
         }
