@@ -1,7 +1,3 @@
-Here's a sample README for the "booking-system" project:
-
----
-
 # Booking System
 
 This repository contains the source code for a Booking System developed as part of a final project. The system is designed to manage bookings for various services efficiently.
@@ -67,7 +63,11 @@ Contributions are welcome! Please fork the repository and create a pull request 
 
 ## License
 
-This project is licensed under the MIT License.
+This project is licensed under the NPE Digital.
+
+## Live Demo
+
+The project is hosted at [damaibookingapp.online](http://damaibookingapp.online/).
 
 ---
 
